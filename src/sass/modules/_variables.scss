@@ -1,0 +1,11 @@
+$test-variable: firebrick;
+$another-test-variable: 'Comic Sans';
+
+/* media query breakpoints */
+$breakpoints: (
+  "phone":        400px,
+  "phone-wide":   480px,
+  "tablet":       768px,
+  "desktop":      1248px,
+  "desktop-wide": 1440px
+);

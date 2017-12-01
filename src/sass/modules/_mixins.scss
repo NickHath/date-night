@@ -1,0 +1,11 @@
+/* media query */
+/* by default, will apply styling to provider $width and larger */
+/* encourages mobile first design */
+@mixin media-query($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+      $width: map_get($breakpoints, $width);
+      @media only screen and (#{$type}-width: $width - 1) {
+          @content;
+      }
+  }
+}
