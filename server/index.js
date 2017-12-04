@@ -14,5 +14,8 @@ massive(process.env.CONNECTION_STRING).then((db) => {
     app.set('db', db)
 })
 
+// expect req.body to have location, category, radius (optional)
+app.post('/api/yelp', dateCtrl.getBusinessesByCat)
+
 const PORT = 4200;
 app.listen(PORT, console.log(`I'm listening.. port: ${PORT}`));
