@@ -43,7 +43,7 @@ module.exports = {
   addDate: (req, res) => {
     const db = req.app.get('db')
     let {date_id, title, first_buisness, second_buisness, third_buisness } = req.body
-    db.add_date([20, 'test', 'double', 'yeah', third_buisness]).then( () => {
+    db.add_date([date_id, title, first_buisness, second_buisness, third_buisness]).then( () => {
       res.status(200).send("successfully added date")
     }).catch(err => res.status(500).send(err));
   },
@@ -51,7 +51,7 @@ module.exports = {
   modifyDate: (req,res) => {
     const db = req.app.get('db')
     let {first_buisness, second_buisness, third_buisness } = req.body
-    db.modify_date([req.params.id, 'test', second_buisness, third_buisness ]).then(() => {
+    db.modify_date([req.params.id, first_buisness, second_buisness, third_buisness ]).then(() => {
       res.status(200).send("succesfully modified date")
     }).catch(err => res.status(500).send(err));
   }
