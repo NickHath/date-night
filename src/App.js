@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './sass/main.css';
 import Landing from './components/Landing/Landing';
+import DateResults from './components/DateResults/DateResults';
 
 class App extends Component {
   render() {
@@ -8,6 +9,7 @@ class App extends Component {
       <div className="App">
         <h1>Test Header</h1>
         <Landing/>
+        <DateResults/>
       </div>
     );
   }
