@@ -1,10 +1,9 @@
 require('dotenv').config();
 const bodyParser = require("body-parser")
     , express = require("express")
-    , session = require("express-session")
     , massive = require('massive')
     , cors = require('cors')
-    , dateCtrl = require('./dateCtrl');
+    , dateCtrl = require('./controllers/dateCtrl');
 
 const app = express();
 
@@ -21,5 +20,5 @@ massive(process.env.CONNECTION_STRING).then((db) => {
 })
 
 
-const PORT = 8080;
+const PORT = 4200;
 app.listen(PORT, console.log(`I'm listening.. port: ${PORT}`));
