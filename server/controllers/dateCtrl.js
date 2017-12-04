@@ -1,5 +1,6 @@
 require('dotenv').config();
 const axios = require('axios')
+
 // Yelp API setup
 const baseUrl = 'https://api.yelp.com/v3/businesses/search'
     , limit = 50
@@ -12,8 +13,6 @@ const baseUrl = 'https://api.yelp.com/v3/businesses/search'
 
 module.exports = {
   getBusinesses: (req, res) => {
-    // limit and offset will let us retrieve many more reviews per search
-    // categories will let us focus our search results
     let { location, category, radius } = req.body;
     if (!radius) { radius = 15000; };
     console.log(`FULL URL:\n${baseUrl}?location=${location}&limit=${limit}&categories=${category}&radius=${radius}`);
