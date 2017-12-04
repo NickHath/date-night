@@ -7,15 +7,18 @@ const bodyParser = require("body-parser")
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 
-massive(process.env.CONNECTION_STRING).then((db) => {
+massive(process.env.CONNECTION_STRING)
+  .then((db) => {
     console.log("Database connected")
     app.set('db', db)
-})
+  })
+  .catch(err => console.log(err));
 
-// expect req.body to have location, category, radius (optional)
-app.post('/api/yelp', dateCtrl.getBusinessesByCat)
+// req.body should have location, category and (optionally) radius
+app.post('/api/yelp', dateCtrl.getBusinesses)
 
 const PORT = 4200;
 app.listen(PORT, console.log(`I'm listening.. port: ${PORT}`));
