@@ -20,6 +20,6 @@ module.exports = {
   night: {
     short: [],
     medium: [],
-    long: []
+    long: ['bars', 'danceclubs', 'coffee']
   }
 }

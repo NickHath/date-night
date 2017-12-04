@@ -11,7 +11,7 @@ const GET_BUSINESSES = 'GET_BUSINESSES';
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case GET_BUSINESSES + '_FULFILLED': 
-      return Object.assign({}, state, { businesses: action.payload });
+      return Object.assign({}, state, { businesses: [...state.businesses, action.payload] });
     default:
       return state;
   } 
