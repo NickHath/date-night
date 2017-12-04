@@ -1,0 +1,1 @@
+select * from dates where date_id = $1;
