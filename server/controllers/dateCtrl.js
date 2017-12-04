@@ -11,6 +11,8 @@ const baseUrl = 'https://api.yelp.com/v3/businesses/search'
         } 
     }
 
+
+    
 module.exports = {
   getBusinesses: (req, res) => {
     let { location, category, radius } = req.body;
@@ -22,5 +24,35 @@ module.exports = {
            res.status(200).send(businesses.data.businesses)
         })
          .catch(err => res.status(500).send(err));
+  },
+
+  getAllDates: (req, res) => {
+    const db = req.app.get('db')
+    db.get_all_dates().then((resp) => {
+      res.status(200).send(resp)
+    })
+  },
+
+  getDate: (req, res) => {
+    const db = req.app.get('db')
+    db.get_one_date(req.params.id).then( (resp) => {
+      res.status(200).send(resp)
+    }).catch(err => res.status(500).send(err));
+  },
+
+  addDate: (req, res) => {
+    const db = req.app.get('db')
+    let {date_id, title, first_buisness, second_buisness, third_buisness } = req.body
+    db.add_date([20, 'test', 'double', 'yeah', third_buisness]).then( () => {
+      res.status(200).send("successfully added date")
+    }).catch(err => res.status(500).send(err));
+  },
+
+  modifyDate: (req,res) => {
+    const db = req.app.get('db')
+    let {first_buisness, second_buisness, third_buisness } = req.body
+    db.modify_date([req.params.id, 'test', second_buisness, third_buisness ]).then(() => {
+      res.status(200).send("succesfully modified date")
+    }).catch(err => res.status(500).send(err));
   }
 }
