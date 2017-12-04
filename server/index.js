@@ -22,4 +22,4 @@ massive(process.env.CONNECTION_STRING).then((db) => {
 
 
 const PORT = 8080;
-app.listen(PORT, console.log(`I'm listening... port: ${PORT}`));
+app.listen(PORT, console.log(`I'm listening.. port: ${PORT}`));
