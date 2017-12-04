@@ -51,7 +51,7 @@ module.exports = {
   modifyDate: (req,res) => {
     const db = req.app.get('db')
     let {first_buisness, second_buisness, third_buisness } = req.body
-    db.modify_date([req.params.id, 'test', second_buisness, third_buisness ]).then(() => {
+    db.modify_date([req.params.id, first_buisness, second_buisness, third_buisness ]).then(() => {
       res.status(200).send("succesfully modified date")
     }).catch(err => res.status(500).send(err));
   }
