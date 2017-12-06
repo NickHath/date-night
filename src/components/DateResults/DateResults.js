@@ -6,7 +6,7 @@ import Date from './Date';
 
 // redux
 import { connect } from 'react-redux';
-import { getBusinesses } from '../../ducks/reducer';
+import { getBusinesses} from '../../ducks/reducer';
 
 class DateResults extends Component {
   componentDidMount() {
@@ -19,12 +19,18 @@ class DateResults extends Component {
   }
 
   getDates() {
-    let location = 'provo', radius = 12000, startTime = 1200, duration = 'long';
+
+    console.log( this.props.preferences[0])
+    if(this.props.preferences[0]){
+      console.log( this.props.preferences[0])
+    let {location, radius, duration, startTime} = this.props.preferences[0]
+    
     let categories = this.getCategories(startTime, duration);
     console.log(`random category within ${radius} meters of ${location}\n${duration} date at ${startTime}: `, categories);
     if (Array.isArray(categories)) {
-      for (let i = 0; i < categories.length; i++) {
+      for( let i =0; i < categories.length; i++ ){
         this.props.getBusinesses(location, categories[i]);
+        }
       }
     }
   }
@@ -67,6 +73,7 @@ class DateResults extends Component {
         let randIndex = Math.floor(Math.random() * business.length);
       return (
         <div>
+          
           <a target="_blank" href={ business[randIndex].url }>{business[randIndex].name}</a>
           {business[randIndex].categories.map(category => <h2>{category.alias}</h2>)}
         </div>
@@ -78,7 +85,7 @@ class DateResults extends Component {
         <h1>All results from our date search</h1>
         {/* render several date components here */}
         <button onClick={ () => this.getDates() }>Give me some dates!!!</button>
-        { displayBusinesses }
+      { displayBusinesses }
       </div>
     );
   }
@@ -87,7 +94,8 @@ class DateResults extends Component {
 function mapStateToProps(state) {
   return { 
     businesses: state.businesses, 
-    categories: state.categories 
+    categories: state.categories ,
+    preferences: state.preferences,
   };
 }
 
