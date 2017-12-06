@@ -2,44 +2,48 @@ import axios from 'axios';
 import categories from './categories';
 
 const initialState = {
-  businesses: [],
+  results: [],
   preferences: [],
   categories: categories
 }
 
-const GET_BUSINESSES = 'GET_BUSINESSES';
-const ADD_PREFERENCES = 'ADD_PREFERENCES'
+const GET_RESULTS = 'GET_RESULTS'
+    , CLEAR_RESULTS = 'CLEAR_RESULTS'
+    , ADD_PREFERENCES = 'ADD_PREFERENCES';
+
 export default function reducer(state = initialState, action) {
   switch(action.type) {
-    case GET_BUSINESSES + '_FULFILLED': 
-      return Object.assign({}, state, { businesses: [...state.businesses, action.payload] });
-
+    case GET_RESULTS + '_FULFILLED': 
+      return Object.assign({}, state, { results: [...state.results, action.payload] });
+    case CLEAR_RESULTS:
+      return Object.assign({}, state, { results: [] })
     case ADD_PREFERENCES:
-     console.log('here')
       return Object.assign({}, state, { preferences: [...state.preferences, action.payload]})
-
     default:
-    
       return state;
   } 
 }
 
-export function getBusinesses(location, category, radius) {
-  const businesses = axios.post('http://localhost:4200/api/yelp', { location, category, radius })
+export function getResults(location, category, radius) {
+  const results = axios.post('http://localhost:4200/api/yelp', { location, category, radius })
                           .then(res => res.data);
   return {
-    type: GET_BUSINESSES,
-    payload: businesses
+    type: GET_RESULTS,
+    payload: results
+  }
+}
+
+export function clearResults() {
+  return {
+    type: CLEAR_RESULTS
   }
 }
 
 export function addPreferences(preferences){
-  console.log('test ' + preferences)
   return {
-  type: ADD_PREFERENCES,
-  payload: preferences
+    type: ADD_PREFERENCES,
+    payload: preferences
   }
-
 }
 
 

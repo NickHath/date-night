@@ -6,30 +6,24 @@ import Date from './Date';
 
 // redux
 import { connect } from 'react-redux';
-import { getBusinesses} from '../../ducks/reducer';
+import { getResults, clearResults } from '../../ducks/reducer';
 
 class DateResults extends Component {
   componentDidMount() {
-    // gets their location/radius from either the store or props
-    // and the category comes from a random search based on their
-    // input (start time, duration)
-    
-    // these should come from landing page input fields!!!
-    this.getDates();
+    this.findBusinesses();
   }
 
-  getDates() {
-
-    console.log( this.props.preferences[0])
+  findBusinesses() {
+    // clear businesses off store
+    this.props.clearResults();
     if(this.props.preferences[0]){
-      console.log( this.props.preferences[0])
-    let {location, radius, duration, startTime} = this.props.preferences[0]
-    
-    let categories = this.getCategories(startTime, duration);
-    console.log(`random category within ${radius} meters of ${location}\n${duration} date at ${startTime}: `, categories);
-    if (Array.isArray(categories)) {
-      for( let i =0; i < categories.length; i++ ){
-        this.props.getBusinesses(location, categories[i]);
+      let { location, radius, duration, startTime } = this.props.preferences[0]
+      let categories = this.getCategories(startTime, duration);
+      console.log(`random category within ${radius} meters of ${location}\n${duration} date at ${startTime}: `, categories);
+      // cycle through categories
+      if (Array.isArray(categories)) {
+        for(let i = 0; i < categories.length; i++ ){
+          this.props.getResults(location, categories[i]);
         }
       }
     }
@@ -46,9 +40,6 @@ class DateResults extends Component {
     return categories;
   }
 
-  // needs to handle empty responses, multiple businesses for a longer date
-  // and time changes (i.e., two locations in the morning and one in the afternoon)
-  // update time based on the duration of date location
   randomCategory(startTime) {
     let time = '';
     // set time to the correct key for categories object
@@ -57,7 +48,6 @@ class DateResults extends Component {
     } else {
       time = 'night';
     }
-
     // push a random category string to the categories array
     let mainCategories = this.props.categories[time];
     let randIndex = Math.floor(Math.random() * mainCategories.length)
@@ -65,17 +55,17 @@ class DateResults extends Component {
   }
 
   render() {
-    console.log(this.props);
-    const displayBusinesses = this.props.businesses.map(business => {
-      if (business.length === 0) {
-        return <div><h2>No business found for this category</h2></div>;
+    console.log('PROPS:', this.props);
+    const displayResults = this.props.results.map(results => {
+      if (results.length === 0) {
+        return <div><h2>No results found for this category</h2></div>;
       } else {
-        let randIndex = Math.floor(Math.random() * business.length);
+        let randIndex = Math.floor(Math.random() * results.length);
       return (
         <div>
           
-          <a target="_blank" href={ business[randIndex].url }>{business[randIndex].name}</a>
-          {business[randIndex].categories.map(category => <h2>{category.alias}</h2>)}
+          <a target="_blank" href={ results[randIndex].url }>{results[randIndex].name}</a>
+          {results[randIndex].categories.map(category => <h2>{category.alias}</h2>)}
         </div>
     );
       }
@@ -84,8 +74,8 @@ class DateResults extends Component {
       <div className='date-results'>
         <h1>All results from our date search</h1>
         {/* render several date components here */}
-        <button onClick={ () => this.getDates() }>Give me some dates!!!</button>
-      { displayBusinesses }
+        <button onClick={ () => this.findBusinesses() }>Give me some dates!!!</button>
+      { displayResults }
       </div>
     );
   }
@@ -93,10 +83,10 @@ class DateResults extends Component {
 
 function mapStateToProps(state) {
   return { 
-    businesses: state.businesses, 
+    results: state.results, 
     categories: state.categories ,
     preferences: state.preferences,
   };
 }
 
-export default connect(mapStateToProps, { getBusinesses })(DateResults);
+export default connect(mapStateToProps, { getResults, clearResults })(DateResults);
