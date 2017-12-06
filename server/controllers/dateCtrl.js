@@ -53,7 +53,7 @@ module.exports = {
   }
     let date_id = randomValueBase64(6)
     let { title, first_buisness, second_buisness, third_buisness } = req.body
-    db.add_date([date_id, 'title', 'first_buisness', second_buisness, third_buisness]).then( () => {
+    db.add_date([date_id, title, first_buisness, second_buisness, third_buisness]).then( () => {
       res.status(200).send("successfully added date")
     }).catch(err => res.status(500).send(err));
   },
