@@ -68,7 +68,10 @@ class DateResults extends Component {
 }
 
 function mapStateToProps(state) {
-  return { businesses: state.businesses, categories: state.categories };
+  return { 
+    businesses: state.businesses, 
+    categories: state.categories 
+  };
 }
 
 export default connect(mapStateToProps, { getBusinesses })(DateResults);
