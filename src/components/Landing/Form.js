@@ -59,8 +59,10 @@ render(){
       <button onClick = {() => this.setState ({buttonClick: "long"})} >long </button>
       <input type="text" placeholder = "location" ref = "location"/>
       <input type="integer" placeholder = "radius" ref = "radius"/>
-     <Link to = "/results"> <button onClick = { () =>{this.createDate()}}>create date</button>
-      </Link></div>
+      
+      
+      <Link to = "/results" onClick = { () =>{this.createDate()}}> <button>click me hoe</button></Link>
+      </div>
   );
 }
 }

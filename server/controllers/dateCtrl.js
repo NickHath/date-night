@@ -48,16 +48,10 @@ module.exports = {
       return crypto.randomBytes(Math.ceil(len * 3 / 4))
           .toString('base64')   // convert to base64 format
           .slice(0, len)        // return required number of characters
-          .replace(/\+/g, '_')  // replace '+' with '0'
-          .replace(/\//g, '-'); // replace '/' with '0'
+          .replace(/\+/g, '0')  // replace '+' with '0'
+          .replace(/\//g, '0'); // replace '/' with '0'
   }
     let date_id = randomValueBase64(6)
-    db.check_date_ID(date_id).then( (resp) =>{
-      if(resp){
-       date_id = randomValueBase64(6) 
-      }
-    })
-
     let { title, first_buisness, second_buisness, third_buisness } = req.body
     db.add_date([date_id, title, first_buisness, second_buisness, third_buisness]).then( () => {
       res.status(200).send("successfully added date")
@@ -73,21 +67,7 @@ module.exports = {
   },
 
   test: (req, res) => {
-    const db = req.app.get('db')
-
-    function randomValueBase64 (len) {
-      return crypto.randomBytes(Math.ceil(len * 3 / 4))
-          .toString('base64')   // convert to base64 format
-          .slice(0, len)        // return required number of characters
-          .replace(/\+/g, '_')  // replace '+' with '0'
-          .replace(/\//g, '-'); // replace '/' with '0'
-  }
-
-
-
-  let date_id = randomValueBase64(6)
-  
-  
-    
+   
+    res.status(200).send(date_id)
   }
 }

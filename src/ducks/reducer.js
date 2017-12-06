@@ -15,7 +15,7 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { businesses: [...state.businesses, action.payload] });
 
     case ADD_PREFERENCES:
-    console.log('here')
+     console.log('here')
       return Object.assign({}, state, { preferences: [...state.preferences, action.payload]})
 
     default:
