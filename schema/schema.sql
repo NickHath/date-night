@@ -1,10 +1,10 @@
 
 create table dates(
     id serial primary key not null,
-    date_id bigint not null,
+    date_id varchar(6) not null,
     title varchar(25) not null,
-    first_buisness varchar(255) not null,
-    second_buisness varchar(255),
-    third_buisness varchar(255)
+    first_business varchar(255) not null,
+    second_business varchar(255),
+    third_business varchar(255)
 )
 

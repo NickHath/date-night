@@ -24,5 +24,6 @@ app.get("/api/getAllDates", dateCtrl.getAllDates)
 app.get("/api/getDate/:id", dateCtrl.getDate)
 app.post("/api/addDate", dateCtrl.addDate)
 app.put("/api/modifyDate/:id", dateCtrl.modifyDate)
+app.get("/api/test", dateCtrl.test)
 const PORT = 4200;
 app.listen(PORT, console.log(`I'm listening.. port: ${PORT}`));
