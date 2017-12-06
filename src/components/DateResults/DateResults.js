@@ -6,7 +6,7 @@ import Date from './Date';
 
 // redux
 import { connect } from 'react-redux';
-import { getBusinesses } from '../../ducks/reducer';
+import { getBusinesses  } from '../../ducks/reducer';
 
 class DateResults extends Component {
   componentDidMount() {
@@ -91,7 +91,8 @@ class DateResults extends Component {
 function mapStateToProps(state) {
   return { 
     businesses: state.businesses, 
-    categories: state.categories 
+    categories: state.categories ,
+    preferences: state.preferences,
   };
 }
 

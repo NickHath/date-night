@@ -13,10 +13,13 @@ export default function reducer(state = initialState, action) {
   switch(action.type) {
     case GET_BUSINESSES + '_FULFILLED': 
       return Object.assign({}, state, { businesses: [...state.businesses, action.payload] });
-    case ADD_PREFERENCES + '_FULFILLED':
+
+    case ADD_PREFERENCES:
+    console.log('here')
       return Object.assign({}, state, { preferences: [...state.preferences, action.payload]})
 
     default:
+    
       return state;
   } 
 }
@@ -31,7 +34,7 @@ export function getBusinesses(location, category, radius) {
 }
 
 export function addPreferences(preferences){
-  console.log(preferences)
+  console.log('test ' + preferences)
   return {
   type: ADD_PREFERENCES,
   payload: preferences

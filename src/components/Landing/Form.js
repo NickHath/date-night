@@ -24,7 +24,7 @@ class Form extends Component {
 
   createDate(){
     
-    setTimeout(() =>{
+
     var milesToMeters = Math.round(parseFloat(this.refs.radius.value) * 1609.34)
    if(milesToMeters > 40000){
      milesToMeters = 40000
@@ -45,7 +45,6 @@ class Form extends Component {
 else{
   alert("please put in a location bitch")
 }
-  }, 250)
   }
 
 
@@ -60,8 +59,8 @@ render(){
       <button onClick = {() => this.setState ({buttonClick: "long"})} >long </button>
       <input type="text" placeholder = "location" ref = "location"/>
       <input type="integer" placeholder = "radius" ref = "radius"/>
-      <button onClick = { () =>{this.createDate()}}>create date</button>
-      </div>
+     <Link to = "/results"> <button onClick = { () =>{this.createDate()}}>create date</button>
+      </Link></div>
   );
 }
 }
