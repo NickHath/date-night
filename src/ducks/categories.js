@@ -1,7 +1,7 @@
 // main categories and select subcategories
 module.exports = {
   'day': ['active', 'arts', 'coffee', 'shopping', 'parks'],
-  'night': ['nightlife', 'coffee', 'icecream', 'streetvendors', 'localflavor', 'parks', 'bars']
+  'night': ['nightlife', 'coffee', 'icecream', 'parks', 'bars']
 }
 
 // // only main categories
