@@ -1,6 +1,9 @@
 // short, medium, long could also have an object as their value
 // that object could contain all the subcategories for a given category
 // businesses.night.long.bars would point to ['wine bar', 'irish bar', 'champagne bar', etc]
+
+// businesses.morning.short.activelife: [ 'atvrentals', 'beach' ]
+// businesses.morning.short.keys(): ['activelife', 'restaurants', 'arts']
 module.exports = {
   morning: {
     short: ['artclasses', 'arts', 'cafes', 'candy', 'coffee', 'communitycenters', 'communitygardens', 'festivals', 'gardens', 'juicebars', 'landmarks', 'libraries', 'localflavor', 'museums', 'photoclasses', 'publicart', 'publicplazas', 'recreation', 'rock_climbing', 'streetart', 'swimmingpools', 'tea', 'tennis'],
