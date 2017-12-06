@@ -1,30 +1,12 @@
-// short, medium, long could also have an object as their value
-// that object could contain all the subcategories for a given category
-// businesses.night.long.bars would point to ['wine bar', 'irish bar', 'champagne bar', etc]
-
-// businesses.morning.short.activelife: [ 'atvrentals', 'beach' ]
-// businesses.morning.short.keys(): ['activelife', 'restaurants', 'arts']
+// main categories and select subcategories
 module.exports = {
-  morning: {
-    short: ['artclasses', 'arts', 'cafes', 'candy', 'coffee', 'communitycenters', 'communitygardens', 'festivals', 'gardens', 'juicebars', 'landmarks', 'libraries', 'localflavor', 'museums', 'photoclasses', 'publicart', 'publicplazas', 'recreation', 'rock_climbing', 'streetart', 'swimmingpools', 'tea', 'tennis'],
-    medium: ['amusementparks', 'aquariums', 'arts', 'beachequipmentrentals', 'bicyclepaths', 'bicycles', 'bikerentals', 'boxing', 'candy', 'coffee', 'communitycenters', 'communitygardens', 'dancestudio', 'diving', 'experiences', 'festivals', 'fishing', 'fitness', 'gardens', 'golflessons', 'gun_ranges', 'hiking', 'juicebars', 'landmarks', 'libraries', 'localflavor', 'meditationcenters', 'movietheaters', 'museums', 'park', 'publicart', 'recreation', 'skiing', 'snorkeling', 'swimmingpools', 'tea', 'tennis', 'tours', 'trampoline', 'zoos'],
-    long: ['amusementparks', 'aquariums', 'arts', 'beachequipmentrentals', 'bicyclepaths', 'bicycles', 'boxing', 'brunch', 'bungeejumping', 'coffee', 'communitycenters', 'communitygardens', 'dancestudio', 'diving', 'experiences', 'festivals', 'fishing', 'fitness', 'gardens', 'golflessons', 'gun_ranges', 'hiking', 'landmarks', 'libraries', 'localflavor', 'meditationcenters', 'museums', 'publicart', 'recreation', 'skiing', 'snorkeling', 'swimmingpools', 'tours', 'zoos']
-  },
-  afternoon: {
-    short: ['artclasses', 'arts', 'candy', 'communitycenters', 'communitygardens', 'festivals', 'gardens', 'juicebars', 'landmarks', 'libraries', 'localflavor', 'meditationcenters', 'museums', 'photoclasses', 'publicart', 'publicplazas', 'recreation', 'rock_climbing', 'streetart', 'swimmingpools', 'tea', 'tennis', 'virtualrealitycenters'],
-    medium: ['amusementparks', 'aquariums', 'arts', 'battingcages', 'bicyclepaths', 'bicycles', 'bikerentals', 'boxing', 'candy', 'communitycenters', 'communitygardens', 'dancestudio', 'diving', 'escapegames', 'experiences', 'festivals', 'fishing', 'fitness', 'gardens', 'gokarts', 'golflessons', 'gun_ranges', 'hiking', 'hotsprings', 'juicebars', 'landmarks', 'libraries', 'localflavor', 'massage_schools', 'meditationcenters', 'movietheaters', 'museums', 'publicart', 'recreation', 'skatingrinks', 'skiing', 'snorkeling', 'swimmingpools', 'tea', 'tennis', 'tours', 'trampoline', 'virtualrealitycenters', 'zoos'],
-    long: ['airsoft', 'amusementparks', 'aquariums', 'arts', 'atvrentals', 'bicyclepaths', 'bicycles', 'bikerentals', 'boxing', 'bungeejumping', 'communitycenters', 'communitygardens', 'dancestudio', 'diving', 'escapegames', 'experiences', 'festivals', 'fishing', 'fitness', 'gardens', 'gokarts', 'golflessons', 'gun_ranges', 'hiking', 'landmarks', 'libraries', 'localflavor', 'meditationcenters', 'museums', 'publicart', 'recreation', 'skatingrinks', 'skiing', 'snorkeling', 'swimmingpools', 'tours', 'zoos']
-  },
-  evening: {
-    short: ['breweries', 'bubbletea', 'candy', 'coffee', 'communitycenters', 'desserts', 'festivals', 'gardens', 'gelato', 'icecream', 'juicebars', 'landmarks', 'localflavor', 'meditationcenters', 'musicvenues', 'photoclasses', 'pianobars', 'poolhalls', 'publicart', 'publicplazas', 'rock_climbing', 'tea', 'tennis'],
-    medium: ['bicycles', 'breweries', 'candy', 'coffee', 'dancestudio', 'escapegames', 'experiences', 'festivals', 'fishing', 'gardens', 'gelato', 'gokarts', 'golflessons', 'hiking', 'hotsprings', 'icecream', 'juicebars', 'landmarks', 'localflavor', 'massage_schools', 'meditationcenters', 'movietheaters', 'musicvenues', 'paintandsip', 'pianobars', 'poolhalls', 'publicart', 'skatingrinks', 'tea', 'tennis', 'theater', 'tours'],
-    long: ['breweries', 'dancestudio', 'escapegames', 'experiences', 'gardens', 'gokarts', 'golflessons', 'hikingskatingrinks', 'landmarks', 'localflavor', 'meditationcenters', 'musicvenues', 'paintandsip', 'publicart', 'theater']
-  },
-  night: {
-    short: ['bars', 'breweries', 'candy', 'coffee', 'coffeeshops', 'comedyclubs', 'countrydancehalls', 'danceclubs', 'dancerestaurants', 'desserts', 'gelato', 'icecream', 'jazzandblues', 'juicebars', 'karaoke', 'landmarks', 'localflavor', 'musicvenues', 'pianobars', 'poolhalls', 'publicart', 'publicplazas', 'tea', 'wineries'],
-    medium: ['bars', 'beergardens', 'breweries', 'casinos', 'clubcrawl', 'coffee', 'comedyclubs', 'countrydancehalls', 'danceclubs', 'dancerestaurants', 'gelato', 'hotsprings', 'icecream', 'jazzandblues', 'juicebars', 'karaoke', 'landmarks', 'localflavor', 'movietheaters', 'musicvenues', 'paintandsip', 'pianobars', 'poolhalls', 'publicart', 'tea', 'theater', 'wineries'],
-    long: ['barcrawl', 'breweries', 'casinos', 'dancerestaurants', 'jazzandblues', 'landmarks', 'localflavor', 'musicvenues', 'paintandsip', 'publicart', 'theater', 'wineries']
-  },
-  breakfast: ['bagels', 'bakeries', 'basque', 'belgian', 'breakfast_brunch', 'british', 'cafes' , 'churros', 'comfortfood', 'creperies', 'diners', 'donuts', 'publicart', 'themedcafes', 'waffles'],
-  lunchDinner: ['afghan', 'african', 'arabian', 'argentine', 'armenian', 'asianfusion', 'austraillan', 'austrian', 'bangladeshi', 'bistros', 'brasseries', 'brazilian', 'british', 'burmese', 'cajun', 'cambodian', 'caribbean', 'cheesesteaks', 'chicken_wings', 'chickenshop', 'chinese', 'comfortfood', 'cuban', 'czech', 'delis', 'diners', 'dinnertheater', 'dumplings', 'eastern_european', 'ethiopian', 'filipino', 'flatbread', 'fondue', 'galician', 'german' , 'gluten_free', 'haitian', 'honduran', 'international', 'irish', 'italian', 'japanese', 'jewish', 'kebab', 'kopitiam', 'korean', 'kosher', 'laotian', 'latin', 'malaysian', 'meatballs', 'mexican', 'mideastern', 'milkbars', 'mongolian', 'moroccan', 'newamerican', 'newmexican', 'newzealand', 'noodles', 'pizza', 'popuprestaurants', 'raw_food', 'salad', 'sandwiches', 'scottish', 'seafood', 'soup', 'steak', 'sushi', 'thai', 'tradamerican', 'trinidadian', 'vegan', 'vegetarian']
+  'day': ['active', 'arts', 'coffee', 'shopping', 'parks'],
+  'night': ['nightlife', 'coffee', 'icecream', 'streetvendors', 'localflavor', 'parks', 'bars']
 }
+
+// // only main categories
+// // maybe classes should be handled as EVENTS and not general business searches
+// module.exports = {
+//   'day': ['active', 'arts', 'localflavor', 'food', 'shopping'],
+//   'night': ['nightlife', 'shopping', 'arts', 'beautysvc', 'food']
+// }
