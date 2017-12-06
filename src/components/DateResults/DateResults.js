@@ -6,7 +6,7 @@ import Date from './Date';
 
 // redux
 import { connect } from 'react-redux';
-import { getBusinesses  } from '../../ducks/reducer';
+import { getBusinesses} from '../../ducks/reducer';
 
 class DateResults extends Component {
   componentDidMount() {
@@ -19,7 +19,11 @@ class DateResults extends Component {
   }
 
   getDates() {
-    let location = 'provo', radius = 12000, startTime = 1200, duration = 'long';
+
+    console.log( this.props.preferences[0])
+    if(this.props.preferences[0]){
+    let {location, radius, duration, startTime} = this.props.preferences[0]
+    
     let categories = this.getCategories(startTime, duration);
     console.log(`random category within ${radius} meters of ${location}\n${duration} date at ${startTime}: `, categories);
     if (Array.isArray(categories)) {
@@ -28,7 +32,7 @@ class DateResults extends Component {
       }
     }
   }
-
+}
   // selects appropriate number of random categories for startime and duration
   getCategories(startTime, duration) {
     let categories = [];

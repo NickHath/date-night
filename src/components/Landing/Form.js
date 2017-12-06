@@ -6,7 +6,7 @@ class Form extends Component {
   constructor(){
     super()
     this.state = {
-      buttonClick: "short",
+      buttonClick: '',
       longitude: '',
       latitude: ''
     }
@@ -33,7 +33,7 @@ class Form extends Component {
     let preferences = {
       startDate: this.refs.startDate.value,
       startTime: this.refs.startTime.value,
-      dateLength: this.state.buttonClick,
+      duration: this.state.buttonClick,
       location: this.refs.location.value,
       radius: milesToMeters
     }
@@ -55,7 +55,7 @@ render(){
       <input type="text" placeholder = "start Date" ref = 'startDate'  />
       <input type="text" placeholder = "start Time" ref = 'startTime'/>
       <button onClick = {() => this.setState ({buttonClick: "short"})} >Short </button>
-      <button onClick = {() => this.setState ({buttonClick: "Medium"})} >medium </button>
+      <button onClick = {() => this.setState ({buttonClick: "medium"})} >medium </button>
       <button onClick = {() => this.setState ({buttonClick: "long"})} >long </button>
       <input type="text" placeholder = "location" ref = "location"/>
       <input type="integer" placeholder = "radius" ref = "radius"/>
