@@ -45,7 +45,7 @@ class DateResults extends Component {
   }
 
   updateBusinesses() {
-
+    console.log('update our businesses with these categories:\n', this.state.categories);
   }
 
   // selects appropriate number of random categories for startime
@@ -91,8 +91,8 @@ class DateResults extends Component {
   lockCategory(index, newCategory) {
     let lockedCategories = [...this.state.lockedCategories];
     let categories = [...this.state.categories];
-    lockedCategories[index] = true;
-    categories[index] = newCategory;
+    lockedCategories[index] = !lockedCategories[index];
+    if (lockedCategories[index]) { categories[index] = newCategory };
     this.setState({ lockedCategories, categories });
   }
 
@@ -103,6 +103,9 @@ class DateResults extends Component {
         <h1>All results from our date search</h1>
         {/* render several date components here */}
         <button onClick={ () => this.refreshDate() }>Give me some dates!!!</button>
+        <button onClick={ () => this.lockCategory(0, '1 locked!!!') }>Lock category #1</button>
+        <button onClick={ () => this.lockCategory(1, '2 locked!!!') }>Lock category #2</button>
+        <button onClick={ () => this.lockCategory(2, '3 locked!!!') }>Lock category #3</button>
       </div>
     );
   }
