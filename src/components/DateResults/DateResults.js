@@ -81,8 +81,8 @@ class DateResults extends Component {
 
   // given an index, updates lockedBusinesses at that index
   lockBusiness(index) {
-    let lockedBusinesses = [...this.state.businesses];
-    lockedBusinesses[index] = true;
+    let lockedBusinesses = [...this.state.lockedBusinesses];
+    lockedBusinesses[index] = !lockedBusinesses[index];
     this.setState({ lockedBusinesses });
   }
 
@@ -97,15 +97,20 @@ class DateResults extends Component {
   }
 
   render() {
-    console.log('CATEGORIES:', this.state.categories);
+    // console.log('CATEGORIES:', this.state.categories);
+    console.log(this.state);
     return (
       <div className='date-results'>
         <h1>All results from our date search</h1>
         {/* render several date components here */}
-        <button onClick={ () => this.refreshDate() }>Give me some dates!!!</button>
-        <button onClick={ () => this.lockCategory(0, '1 locked!!!') }>Lock category #1</button>
-        <button onClick={ () => this.lockCategory(1, '2 locked!!!') }>Lock category #2</button>
-        <button onClick={ () => this.lockCategory(2, '3 locked!!!') }>Lock category #3</button>
+        <button onClick={ () => this.refreshDate() }>Give me some dates!!!</button><br/><br/>
+        <button onClick={ () => this.lockCategory(0, '1 locked!!!') }>Lock Category #1</button>
+        <button onClick={ () => this.lockCategory(1, '2 locked!!!') }>Lock Category #2</button>
+        <button onClick={ () => this.lockCategory(2, '3 locked!!!') }>Lock Category #3</button><br/>
+
+        <button onClick={ () => this.lockBusiness(0) }>Lock Business #1</button>
+        <button onClick={ () => this.lockBusiness(1) }>Lock Business #2</button>
+        <button onClick={ () => this.lockBusiness(2) }>Lock Business #3</button>
       </div>
     );
   }
