@@ -13,9 +13,9 @@ class DateResults extends Component {
     super();
     this.state = {
       categories: [],
-      categoriesLocked: [],
+      lockedCategories: [],
       businesses: [],
-      businessesLocked: []
+      lockedBusinesses: []
     }
   }
 
@@ -32,35 +32,42 @@ class DateResults extends Component {
       categories.push('');
       businesses.push(null);
     }
-    this.setState({ categories, businesses, categoriesLocked: locked, businessesLocked: locked })
+    this.setState({ categories, businesses, lockedCategories: locked, lockedBusinesses: locked })
   }
 
   findBusinesses() {
-    // clear businesses off store
-    this.props.clearResults();
-    let { location, radius, duration, startTime } = this.props.preferences;
-    let categories = this.getCategories(startTime, duration);
-    console.log(`random category within ${radius} meters of ${location}\n${duration} date at ${startTime}: `, categories);
+    console.log('CATEGORIES:', this.getRandomCategories());
+    // // clear businesses off store
+    // this.props.clearResults();
+    // let { location, radius, duration, startTime } = this.props.preferences;
+    // let categories = this.getRandomCategories(startTime, duration);
+    // console.log(`random category within ${radius} meters of ${location}\n${duration} date at ${startTime}: `, categories);
 
-    // cycle through categories
-    if (Array.isArray(categories)) {
-      for(let i = 0; i < categories.length; i++ ){
-        this.props.getResults(location, categories[i]);
-      }
-    }
+    // // cycle through categories
+    // if (Array.isArray(categories)) {
+    //   for(let i = 0; i < categories.length; i++ ){
+    //     this.props.getResults(location, categories[i]);
+    //   }
+    // }
+
   }
 
   // selects appropriate number of random categories for startime and duration
-  getCategories(startTime, duration) {
-    let categories = [];
-    let times = {'short': 1, 'medium': 2, 'long': 3}
-    for (let i = times[duration]; i > 0; i--) {
-      categories.push(this.randomCategory(startTime));
-      startTime += 200;
-    }
+  getRandomCategories(startTime, duration) {
+    // only get a random category when category at that index is not locked
+    this.state.categoriesLocked.forEach((locked, index) => {
+      if (!locked) {
+        // make a copy, then update state
+        let newCategories = [...this.state.categories];
+        newCategories[index] = this.randomCategory;
+        this.setState({ categories: newCategories });
+      }
+      startTime += 200;         
+    });
     return categories;
   }
 
+  // return one random category given a start time
   randomCategory(startTime) {
     let time = '';
     // set time to the correct key for categories object
@@ -76,23 +83,21 @@ class DateResults extends Component {
   }
 
   render() {
-    console.log('PROPS:', this.props);
-    console.log('state:', this.state);
-    const displayResults = this.props.results.map(results => {
-      if (results.length === 0) {
-        return <div><h2>No results found for this category</h2></div>;
-      } else {
-        let randIndex = Math.floor(Math.random() * results.length);
-      return (
-        <div>
+    // const displayResults = this.props.results.map(results => {
+    //   if (results.length === 0) {
+    //     return <div><h2>No results found for this category</h2></div>;
+    //   } else {
+    //     let randIndex = Math.floor(Math.random() * results.length);
+    //   return (
+    //     <div>
           
-          <a target="_blank" href={ results[randIndex].url }>{results[randIndex].name}</a>
-          {results[randIndex].categories.map(category => <h2>{category.alias}
-          </h2>)}
-        </div>
-    );
-      }
-    })
+    //       <a target="_blank" href={ results[randIndex].url }>{results[randIndex].name}</a>
+    //       {results[randIndex].categories.map(category => <h2>{category.alias}
+    //       </h2>)}
+    //     </div>
+    // );
+    //   }
+    // })
     return (
       <div className='date-results'>
         <h1>All results from our date search</h1>
