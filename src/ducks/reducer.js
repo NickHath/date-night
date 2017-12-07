@@ -3,7 +3,7 @@ import categories from './categories';
 
 const initialState = {
   results: [],
-  preferences: [],
+  preferences: {},
   categories: categories
 }
 
@@ -18,7 +18,7 @@ export default function reducer(state = initialState, action) {
     case CLEAR_RESULTS:
       return Object.assign({}, state, { results: [] })
     case ADD_PREFERENCES:
-      return Object.assign({}, state, { preferences: [action.payload]})
+      return Object.assign({}, state, { preferences: action.payload })
     default:
       return state;
   } 

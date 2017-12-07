@@ -32,14 +32,12 @@ class Form extends Component {
   if(this.refs.location.value){
     let preferences = {
       startDate: this.refs.startDate.value,
-      startTime: this.refs.startTime.value,
+      startTime: parseInt(this.refs.startTime.value),
       duration: this.state.buttonClick,
       location: this.refs.location.value,
       radius: milesToMeters
-    }
-    console.log(preferences)
-    this.props.addPreferences(preferences)
-    //link here
+    };
+    this.props.addPreferences(preferences);
    }
  
 else{
@@ -59,8 +57,6 @@ render(){
       <button onClick = {() => this.setState ({buttonClick: "long"})} >long </button>
       <input type="text" placeholder = "location" ref = "location"/>
       <input type="integer" placeholder = "radius" ref = "radius"/>
-      
-      
       <Link to = "/results" onClick = { () =>{this.createDate()}}> <button>click me hoe</button></Link>
       </div>
   );
@@ -73,4 +69,4 @@ function mapStateToProps(state){
   }
 
 }
-export default connect(mapStateToProps, {addPreferences})(Form)
+export default connect(mapStateToProps, { addPreferences })(Form)
