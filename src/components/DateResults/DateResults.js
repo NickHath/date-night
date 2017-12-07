@@ -34,7 +34,6 @@ class DateResults extends Component {
     let times = {'short': 1, 'medium': 2, 'long': 3}
     for (let i = times[duration]; i > 0; i--) {
       categories.push(this.randomCategory(startTime));
-      console.log('TIME:',startTime)
       startTime += 200;
     }
     return categories;
