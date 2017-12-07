@@ -46,7 +46,6 @@ class Form extends Component {
       this.props.addPreferences(preferences)
       //link here
     }
-
     else {
       alert("please put in a location bitch")
     }
