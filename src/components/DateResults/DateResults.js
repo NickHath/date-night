@@ -9,8 +9,30 @@ import { connect } from 'react-redux';
 import { getResults, clearResults } from '../../ducks/reducer';
 
 class DateResults extends Component {
+  constructor() {
+    super();
+    this.state = {
+      categories: [],
+      categoriesLocked: [],
+      businesses: [],
+      businessesLocked: []
+    }
+  }
+
   componentDidMount() {
+    this.initState();
     this.findBusinesses();
+  }
+
+  initState() {
+    let durations = { 'short': 1, 'medium': 2, 'long': 3 };
+    let locked = [], businesses = [], categories = [];
+    for (let i = durations[this.props.preferences.duration]; i > 0; i--) {
+      locked.push(false);
+      categories.push('');
+      businesses.push(null);
+    }
+    this.setState({ categories, businesses, categoriesLocked: locked, businessesLocked: locked })
   }
 
   findBusinesses() {
@@ -55,6 +77,7 @@ class DateResults extends Component {
 
   render() {
     console.log('PROPS:', this.props);
+    console.log('state:', this.state);
     const displayResults = this.props.results.map(results => {
       if (results.length === 0) {
         return <div><h2>No results found for this category</h2></div>;
