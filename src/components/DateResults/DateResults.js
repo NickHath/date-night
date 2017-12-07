@@ -65,7 +65,8 @@ class DateResults extends Component {
         <div>
           
           <a target="_blank" href={ results[randIndex].url }>{results[randIndex].name}</a>
-          {results[randIndex].categories.map(category => <h2>{category.alias}</h2>)}
+          {results[randIndex].categories.map(category => <h2>{category.alias}
+          </h2>)}
         </div>
     );
       }
