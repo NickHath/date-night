@@ -1,5 +1,9 @@
-$test-variable: firebrick;
-$another-test-variable: 'Comic Sans';
+$main-font: Helvetica, sans-serif;
+$primary-color: #e57455;
+$secondary-color: #2a2c3b;
+$link-color: #03a9f4;
+$bg-color: #e5e5e5;
+$white: #ffffff;
 
 /* media query breakpoints */
 $breakpoints: (
