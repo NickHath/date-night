@@ -52,5 +52,92 @@ table {
 /* by default, will apply styling to provider $width and larger */
 /* encourages mobile first design */
 /* page layout */
+.first-bg-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  width: 100vw; }
+
+.first-bg, .logo {
+  position: absolute; }
+
+.logo {
+  width: 80%;
+  padding-bottom: 150px; }
+
+.header-bar {
+  margin-top: -5px;
+  height: 100px;
+  background-color: #e57455; }
+
 h1 {
-  color: firebrick; }
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  color: #000000;
+  font-size: 56px;
+  margin: 15px; }
+
+h2 {
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  color: #000000;
+  font-size: 18px; }
+
+.icon-box {
+  height: 1100px;
+  background-color: #e5e5e5;
+  text-align: center; }
+
+.icons {
+  width: 325px; }
+
+.btn-container {
+  text-align: center;
+  padding: 20px; }
+
+.main-btn {
+  background-color: #03a9f4;
+  width: 300px;
+  height: 100px;
+  color: #ffffff;
+  border: none;
+  font-family: Helvetica, sans-serif;
+  font-size: 21px;
+  cursor: pointer;
+  border-radius: 0px;
+  margin: 10px; }
+
+.second-btn {
+  border: 5px solid #03a9f4;
+  background-color: #ffffff;
+  width: 300px;
+  height: 100px;
+  color: #03a9f4;
+  font-family: Helvetica, sans-serif;
+  font-size: 21px;
+  cursor: pointer;
+  border-radius: 0px;
+  margin: 10px; }
+
+.featured {
+  height: 600px;
+  border: 40px solid #2a2c3b; }
+
+.logo-lines {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.line {
+  width: 100px;
+  height: 2px;
+  background-color: #e57455; }
+
+.photo-caption {
+  font-family: Helvetica, sans-serif;
+  font-weight: normal;
+  color: #000000;
+  font-size: 29px;
+  margin: 20px; }

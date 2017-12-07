@@ -1,0 +1,75 @@
+.first-bg-box {
+    @include flexSetUp;   
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+.first-bg, .logo {
+    position: absolute;
+}
+
+.logo {
+    width: 80%;
+    padding-bottom: 150px;
+}
+
+.header-bar {
+    margin-top: -5px;
+    height: 100px;
+    background-color: $primary-color;
+}
+
+h1 {
+    @include headerSetUp;
+}
+
+h2 {
+    @include header2SetUp;
+}
+
+.icon-box {
+    height: 1100px;
+    background-color: $bg-color;
+    text-align: center;
+}
+
+.icons {
+    width: 325px;;
+}
+
+.btn-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.main-btn {
+    @include mainBtn;
+}
+
+.second-btn {
+    @include secondBtn;
+}
+
+.featured {
+    height: 600px;
+    border: 40px solid $secondary-color;
+}
+
+.logo-lines {
+    @include flexSetUp;
+}
+
+.line {
+    width: 100px;
+    height: 2px;
+    background-color: $primary-color;
+}
+
+.photo-caption {
+    font-family: Helvetica, sans-serif;
+    font-weight: normal;
+    color: #000000;
+    font-size: 29px;
+    margin: 20px;
+}

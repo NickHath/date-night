@@ -9,3 +9,51 @@
       }
   }
 }
+
+@mixin flexSetUp($justify: center, $align: center, $direction: column) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+ }
+
+@mixin headerSetUp {
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    color: #000000;
+    font-size: 56px;
+    margin: 15px;
+}
+
+@mixin header2SetUp {
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    color: #000000;
+    font-size: 18px;
+}
+
+@mixin mainBtn {
+    background-color: $link-color;
+    width: 300px;
+    height: 100px;
+    color: $white;
+    border: none;
+    font-family: Helvetica, sans-serif;
+    font-size: 21px;
+    cursor: pointer;
+    border-radius: 0px;
+    margin: 10px;
+}
+
+@mixin secondBtn {
+    border: 5px solid $link-color;
+    background-color: $white;
+    width: 300px;
+    height: 100px;
+    color: $link-color;
+    font-family: Helvetica, sans-serif;
+    font-size: 21px;
+    cursor: pointer;
+    border-radius: 0px;
+    margin: 10px;
+}
+ 
