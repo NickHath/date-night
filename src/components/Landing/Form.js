@@ -6,7 +6,7 @@ class Form extends Component {
   constructor(){
     super()
     this.state = {
-      buttonClick: "short",
+      buttonClick: '',
       longitude: '',
       latitude: ''
     }
@@ -24,7 +24,7 @@ class Form extends Component {
 
   createDate(){
     
-    setTimeout(() =>{
+
     var milesToMeters = Math.round(parseFloat(this.refs.radius.value) * 1609.34)
    if(milesToMeters > 40000){
      milesToMeters = 40000
@@ -33,7 +33,7 @@ class Form extends Component {
     let preferences = {
       startDate: this.refs.startDate.value,
       startTime: this.refs.startTime.value,
-      dateLength: this.state.buttonClick,
+      duration: this.state.buttonClick,
       location: this.refs.location.value,
       radius: milesToMeters
     }
@@ -45,7 +45,6 @@ class Form extends Component {
 else{
   alert("please put in a location bitch")
 }
-  }, 250)
   }
 
 
@@ -56,11 +55,13 @@ render(){
       <input type="text" placeholder = "start Date" ref = 'startDate'  />
       <input type="text" placeholder = "start Time" ref = 'startTime'/>
       <button onClick = {() => this.setState ({buttonClick: "short"})} >Short </button>
-      <button onClick = {() => this.setState ({buttonClick: "Medium"})} >medium </button>
+      <button onClick = {() => this.setState ({buttonClick: "medium"})} >medium </button>
       <button onClick = {() => this.setState ({buttonClick: "long"})} >long </button>
       <input type="text" placeholder = "location" ref = "location"/>
       <input type="integer" placeholder = "radius" ref = "radius"/>
-      <button onClick = { () =>{this.createDate()}}>create date</button>
+      
+      
+      <Link to = "/results" onClick = { () =>{this.createDate()}}> <button>click me hoe</button></Link>
       </div>
   );
 }
