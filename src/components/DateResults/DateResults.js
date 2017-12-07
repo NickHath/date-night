@@ -21,7 +21,6 @@ class DateResults extends Component {
 
   componentDidMount() {
     this.initState();
-    this.findBusinesses();
   }
 
   initState() {
@@ -32,39 +31,54 @@ class DateResults extends Component {
       categories.push('');
       businesses.push(null);
     }
-    this.setState({ categories, businesses, lockedCategories: locked, lockedBusinesses: locked })
+    this.setState({ categories, businesses, lockedCategories: locked, lockedBusinesses: locked }, () => {
+      this.refreshDate();
+    });
+  }
+
+  refreshDate() {
+    let { location, radius, duration, startTime } = this.props.preferences;
+    this.getRandomCategories(this.props.preferences.startTime);    
   }
 
   findBusinesses() {
-    console.log('CATEGORIES:', this.getRandomCategories());
-    // // clear businesses off store
-    // this.props.clearResults();
-    // let { location, radius, duration, startTime } = this.props.preferences;
-    // let categories = this.getRandomCategories(startTime, duration);
-    // console.log(`random category within ${radius} meters of ${location}\n${duration} date at ${startTime}: `, categories);
+    let newBusinesses = [];
+    this.state.lockedBusinesses.forEach((locked, index) => {
+      let location = this.props.preferences.location;
+      let currCategory = this.state.categories[index];
+      if (!locked) {
+        if (Object.keys(this.props.results).includes(currCategory)) {
 
-    // // cycle through categories
-    // if (Array.isArray(categories)) {
-    //   for(let i = 0; i < categories.length; i++ ){
-    //     this.props.getResults(location, categories[i]);
-    //   }
-    // }
+        } else {
+          this.props.getResults(location, currCategory);
+        }
+        console.log('find new business with' + this.state.categories[index]);
 
+      }
+    })
   }
 
-  // selects appropriate number of random categories for startime and duration
-  getRandomCategories(startTime, duration) {
+  randomBusiness(businesses) {
+    let randIndex = Math.floor(Math.random() * businesses.length)
+    return businesses[randIndex];
+  }
+
+  // selects appropriate number of random categories for startime
+  getRandomCategories(startTime) {
+    let newCategories = [...this.state.categories];
+
     // only get a random category when category at that index is not locked
-    this.state.categoriesLocked.forEach((locked, index) => {
+    this.state.lockedCategories.forEach((locked, index) => {
       if (!locked) {
-        // make a copy, then update state
-        let newCategories = [...this.state.categories];
-        newCategories[index] = this.randomCategory;
-        this.setState({ categories: newCategories });
+        newCategories[index] = this.randomCategory(startTime);
       }
       startTime += 200;         
     });
-    return categories;
+
+    // after updateing categories, get new business with those keywords
+    this.setState({ categories: newCategories }, () => {
+      this.findBusinesses();
+    });
   }
 
   // return one random category given a start time
@@ -80,6 +94,23 @@ class DateResults extends Component {
     let mainCategories = this.props.categories[time];
     let randIndex = Math.floor(Math.random() * mainCategories.length)
     return mainCategories[randIndex];
+  }
+
+  lockBusiness(index) {
+    let lockedBusinesses = [...this.state.businesses];
+    lockedBusinesses[index] = true;
+    this.setState({ lockedBusinesses });
+  }
+
+  // given an index and a subcategory, update state
+  lockCategory(index, newCategory) {
+    let lockedCategories = [...this.state.lockedCategories];
+    let categories = [...this.state.categories];
+
+    lockedCategories[index] = true;
+    categories[index] = newCategory;
+
+    this.setState({ lockedCategories, categories });
   }
 
   render() {
@@ -98,12 +129,12 @@ class DateResults extends Component {
     // );
     //   }
     // })
+    console.log('STATE:', this.state);
     return (
       <div className='date-results'>
         <h1>All results from our date search</h1>
         {/* render several date components here */}
-        <button onClick={ () => this.findBusinesses() }>Give me some dates!!!</button>
-      { displayResults }
+        <button onClick={ () => this.refreshDate() }>Give me some dates!!!</button>
       </div>
     );
   }
