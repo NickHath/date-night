@@ -34,12 +34,12 @@ const SearchRadiusInput = ({ radius, onChange }) => (
       {'Search radius'}
     </Subheader>
     <Slider
-      defaultValue={25 / 25}
-      min={0}
-      max={1}
-      step={1 / 25}
-      value={radius / 25}
-      onChange={onChange}
+        min={1}
+        max={25}
+        step={1}
+        value={this.state.secondSlider}
+        onChange={this.handleSecondSlider}
+      
       label={
         <div style={styles.labelStyleOuter}>
           <div style={styles.labelStyleInner}>
