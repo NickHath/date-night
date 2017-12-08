@@ -11,16 +11,9 @@ const GET_RESULTS = 'GET_RESULTS'
     , ADD_PREFERENCES = 'ADD_PREFERENCES';
 
 export default function reducer(state = initialState, action) {
-  console.log(state);
   switch(action.type) {
-    case GET_RESULTS + '_PENDING':
-      console.log('GET_RESULTS_PENDING:', action);
-      return state;
     case GET_RESULTS + '_FULFILLED':
-      // let newResults = {};
-      // newResults[action.category] = action.payload;
-      console.log('GET_RESULTS_FULFILLED:', action);
-      return state;
+      return Object.assign({}, state, { results: Object.assign({}, state.results, action.payload) });
     case ADD_PREFERENCES:
       return Object.assign({}, state, { preferences: action.payload })
     default:
@@ -29,14 +22,16 @@ export default function reducer(state = initialState, action) {
 }
 
 export function getResults(location, category, radius) {
-  console.log('GET RESULTS', location, category, radius);
   const results = axios.post('http://localhost:4200/api/yelp', { location, category, radius })
-                       .then(res => res.data);
+                       .then(res => {
+                         let results = {};
+                         results[category] = res.data;
+                         return results
+                        });
   
   return {
     type: GET_RESULTS,
     payload: results,
-    category: category,
   }
 }
 
