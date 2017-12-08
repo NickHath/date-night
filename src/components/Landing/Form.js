@@ -83,6 +83,7 @@ class Form extends Component {
   }
     //parseFloat(this.refs.radius.getValue()
     var milesToMeters = Math.round(this.state.secondSlider) * 1609.34
+    milesToMeters = parseInt(milesToMeters)
     if (milesToMeters > 40000) {
       milesToMeters = 40000
     }

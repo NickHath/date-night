@@ -16,16 +16,19 @@ const crypto = require('crypto');
 module.exports = {
   
   getBusinesses: (req, res) => {
+    console.log(req.body)
     let { location, category, radius } = req.body;
-    if (!radius) { radius = 15000; };
+    if (!radius) { radius = 15000; }
+    if(!location){location = "provo"}
+    
     let send1, send2, send3 = false;
     let arr = []
 
-    filterRatings = (array) =>{
-     var newArray = array.filter( (business) => business.rating >= 3 || category == 'park'
-      )
-     arr = newArray
-    }
+    // filterRatings = (array) =>{
+    //  var newArray = array.filter( (business) => business.rating >= 3 || category == 'park'
+    //   )
+    //  arr = newArray
+    // }
 
 
     console.log(`FULL URL:\n${baseUrl}?location=${location}&limit=${limit}&categories=${category}&radius=${radius}`);
@@ -39,7 +42,7 @@ module.exports = {
            send1 = true;
 
            if(send1 && send2 && send3){
-            filterRatings(arr)
+           // filterRatings(arr)
             res.status(200).send(arr)
           }
         })
@@ -57,7 +60,7 @@ module.exports = {
            send2 = true;
 
            if(send1 && send2 && send3){
-            filterRatings(arr) 
+            //filterRatings(arr) 
             res.status(200).send(arr)
           }
         })
@@ -73,7 +76,7 @@ module.exports = {
           }
            send3 = true;
            if(send1 && send2 && send3){
-            filterRatings(arr)
+            //filterRatings(arr)
             res.status(200).send(arr)
           }
         }).catch(err => res.status(500).send(err));
