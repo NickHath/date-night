@@ -30,10 +30,9 @@ class DateResults extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('CWRP:', nextProps);
     if (nextProps.pending === 0) {
       this.state.lockedBusinesses.forEach((locked, index) => {
-        if (!locked) {
+        if (!locked && this.props.results[this.state.categories[index]]) {
           let randIndex = Math.floor(Math.random() * this.props.results[this.state.categories[index]].length)
           this.state.businesses[index] = this.props.results[this.state.categories[index]][randIndex];
         }
@@ -63,17 +62,22 @@ class DateResults extends Component {
 
   // using categories on state, retrieve a random business for each non-locked business on state
   updateBusinesses() {
-    console.log('update our businesses with these categories:\n', this.state.categories);
+    console.log('UPDATE BUSINESSES WITH ', this.state.categories)
     let { location, radius } = this.props.preferences;
     let { categories } = this.state;
-    let returnedBusinesses = [];
+    let returnedBusinesses = [], newBusinesses = [...this.state.businesses];
     // if category is locked, we might need to hit the yelp api (because it is a specific cat not initialized)
-
     this.state.lockedBusinesses.forEach((locked, index) => {
       if (!locked && !this.props.results[categories[index]]) {
         this.props.getResults(location, categories[index], radius);
+        // randomize business from componentwillreceiveprops
+      } else if(!locked && this.props.results[categories[index]]) {
+        // randomize business from function
+        let randIndex = Math.floor(Math.random() * this.props.results[this.state.categories[index]].length)
+        newBusinesses[index] = this.props.results[this.state.categories[index]][randIndex];
       }
     });
+    this.setState({ businesses: newBusinesses });
   }
 
   // selects appropriate number of random categories for startime
@@ -126,18 +130,19 @@ class DateResults extends Component {
 
   render() {
     console.log('STATE:', this.state);
-    console.log('CATEGORIES:', this.state.categories);
-    console.log('BUSINESSES:', this.state.businesses);
-    console.log('RESULTS:', this.props.results);
-    
-    let displayBusinesses = this.state.businesses.map(business => {
+    console.log('PROPS:', this.props);
+    let displayBusinesses = this.state.businesses.map((business, index) => {
       if (business !== null) {
         return (
           <div>
-            {/* <a href={business.url}> */}
+            <button onClick={ () => this.lockBusiness(index) }>Lock Business #{ index + 1 }</button>
+            <button onClick={ () => this.lockCategory(index, business.categories[0].alias) }>Lock Category #{ index + 1 }</button><br/>
+            <a target="_blank" href={business.url}>
               <h1>{ business.name }</h1>
-              <img src={ business.img_url }/>
-            {/* </a> */}
+              <h2>{ JSON.stringify(business.categories) }</h2>
+              <img style={ {"width": "100px", "height":"100px"} }src={ business.image_url } alt="No image found"/>
+            </a>
+            <br/>
           </div>
         )
       }
@@ -147,15 +152,7 @@ class DateResults extends Component {
       <div className='date-results'>
         <h1>All results from our date search</h1>
         {/* render several date components here */}
-        <button onClick={ () => this.refreshDate() }>Give me some dates!!!</button><br/><br/>
-
-        <button onClick={ () => this.lockCategory(0, '1 locked!!!') }>Lock Category #1</button>
-        <button onClick={ () => this.lockCategory(1, '2 locked!!!') }>Lock Category #2</button>
-        <button onClick={ () => this.lockCategory(2, '3 locked!!!') }>Lock Category #3</button><br/>
-
-        <button onClick={ () => this.lockBusiness(0) }>Lock Business #1</button>
-        <button onClick={ () => this.lockBusiness(1) }>Lock Business #2</button>
-        <button onClick={ () => this.lockBusiness(2) }>Lock Business #3</button>
+        <button onClick={ () => this.refreshDate() }>Give me some dates!!!</button><br/><br/><br/>
         { displayBusinesses } 
       </div>
     );
