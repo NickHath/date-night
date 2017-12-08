@@ -64,8 +64,7 @@ module.exports = {
            if(send1 && send2 && send3){
             res.status(200).send(arr)
           }
-        })
-         .catch(err => res.status(500).send(err));
+        }).catch(err => res.status(500).send(err));
 
              
        

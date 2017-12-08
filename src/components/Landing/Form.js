@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {addPreferences} from '../../ducks/reducer';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 class Form extends Component {
   constructor(){
@@ -39,12 +39,14 @@ class Form extends Component {
     }
     console.log(preferences)
     this.props.addPreferences(preferences)
-    //link here
-   }
+    this.props.history.push("/results")
+    
+  }
  
 else{
   alert("please put in a location bitch")
 }
+
   }
 
 
@@ -61,7 +63,7 @@ render(){
       <input type="integer" placeholder = "radius" ref = "radius"/>
       
       
-      <Link to = "/results" onClick = { () =>{this.createDate()}}> <button>click me hoe</button></Link>
+       <button onClick = { () =>{this.createDate()}}>click me hoe</button>
       </div>
   );
 }
@@ -73,4 +75,4 @@ function mapStateToProps(state){
   }
 
 }
-export default connect(mapStateToProps, {addPreferences})(Form)
+export default withRouter(connect(mapStateToProps, {addPreferencnes})(Form))
