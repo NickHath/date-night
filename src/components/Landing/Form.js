@@ -1,32 +1,32 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import {addPreferences} from '../../ducks/reducer';
-import {Link, withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-class Form extends Component {
-  constructor(){
-=======
 import { addPreferences } from '../../ducks/reducer';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
-// import Slider from 'material-ui/Slider';
+import Slider from 'material-ui/Slider';
 import SearchRadiusInput from './Slider';
 
 
 class Form extends Component {  
   constructor() {
->>>>>>> master
     super()
     this.state = {
       buttonClick: '',
       longitude: '',
       latitude: '',
+      secondSlider: 10,
     }
     this.getLocation = this.getLocation.bind(this);
   }
+
+
+  handleSecondSlider = (event, value) => {
+    this.setState({secondSlider: value});
+    
+  };
+
 
   getLocation() {
     navigator.geolocation.getCurrentPosition(function (location) {
@@ -38,29 +38,83 @@ class Form extends Component {
   }
 
   createDate() {
-    var milesToMeters = Math.round(parseFloat(this.refs.radius.getValue()) * 1609.34)
+    let time =  this.refs.startTime.refs.input.input.value;
+    let date = this.refs.startDate.refs.input.input.value;
+    let location = this.refs.location.input.value ;
+
+  console.log(this.refs.location.input.value)
+  
+  if(time.includes('pm')){
+    
+    time = time.replace(" pm", "").replace(":", '');
+    time = parseFloat(time)
+    console.log(time)
+    //check if time is less than twelve   
+    if(time < 1200 ){
+      //checks if is a single digit with two trailing zeros is less than 12 ex: 1:00 becomes 1
+      if(time < 12){
+        time = time *10 + 1200
+      }
+      time = time + 1200
+    console.log(time)   
+  }
+}
+  else{
+    
+    time = time.replace(" pm", "").replace(":", '');
+    time = parseFloat(time)
+    console.log(time)
+    
+   
+
+    if(time < 12){
+      time = time *100
+      
+    }
+    if(time == 12){
+      time = 0
+      console.log("wtf")
+    }
+
+    if(time> 1200 && time < 1261){
+      time = time - 1200
+    }
+
+    console.log(time)
+  }
+    //parseFloat(this.refs.radius.getValue()
+    var milesToMeters = Math.round(this.state.secondSlider) * 1609.34
     if (milesToMeters > 40000) {
       milesToMeters = 40000
     }
-    if (this.refs.location.getValue()) {
+    if (date && time && location) {
       let preferences = {
-        startDate: this.refs.startDate.getValue(),
-        startTime: this.refs.startTime.getValue(),
+        startDate: date,
+        startTime: time,
         duration: this.state.buttonClick,
         location: this.refs.location.getValue(),
         radius: milesToMeters
       }
-      console.log(preferences)
+    
       this.props.addPreferences(preferences)
-      //link here
+      this.props.history.push("/results")
     }
-    else {
-      alert("please put in a location bitch")
+    else if(!date){
+      console.log('need to select a date')
+      
     }
-  }
+    else if (!time){
+      console.log('need to select a time')
+    }
+    else if(!location){
+      console.log('need to put in location')
+    }
+ }
+
 
 
   render() {      
+    {console.log(this.state.secondSlider)}
     return (
       <div className="date-form">
         {console.log(this.state.buttonClick)}
@@ -71,6 +125,7 @@ class Form extends Component {
           hintText="01/12/2017" />
         <h3>START TIME</h3>
         <TimePicker
+        
           ref='startTime'
           hintText="12hr Format" />
         <h3>LENGTH</h3>
@@ -84,12 +139,18 @@ class Form extends Component {
         <TextField
           ref="location"
           hintText="Provo, UT" />
-        <h3>RADIUS</h3>
-        {/* <Slider defaultValue={25} /> */}
+        <h3>RADIUS: {this.state.secondSlider}</h3>
+        <Slider
+          min={1}
+          max={25}
+          step={1}
+          value={this.state.secondSlider}
+          onChange={this.handleSecondSlider}
+        />
+        
+        
 
-        <SearchRadiusInput />
-
-        <Link to="/results" onClick={() => { this.createDate() }}> <button className="main-btn">CREATE</button></Link>
+        <button className="main-btn" onClick={() => { this.createDate() }}>CREATE</button>
       </div >
     );
   }
@@ -101,8 +162,4 @@ function mapStateToProps(state) {
   }
 
 }
-<<<<<<< HEAD
-export default withRouter(connect(mapStateToProps, {addPreferencnes})(Form))
-=======
-export default connect(mapStateToProps, { addPreferences })(Form)
->>>>>>> master
+export default withRouter(connect(mapStateToProps, {addPreferences})(Form))
