@@ -160,7 +160,7 @@ class DateResults extends Component {
         <DateCard />
         <AddCard />
         <button onClick={ () => this.findBusinesses() }>Give me some dates!!!</button>
-      { displayResults }
+      { displayBusinesses }
         <SaveDate />
       </div>
     );
