@@ -159,7 +159,7 @@ class DateResults extends Component {
         <DateCard />
         <DateCard />
         <AddCard />
-        <button onClick={ () => this.findBusinesses() }>Give me some dates!!!</button>
+        <button onClick={ () => this.refreshDate() }>Give me some dates!!!</button>
       { displayBusinesses }
         <SaveDate />
       </div>
