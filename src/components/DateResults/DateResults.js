@@ -5,6 +5,8 @@ import axios from 'axios';
 import Date from './Date';
 import MobileHeader from './MobileHeader';
 import DateCard from './DateCard';
+import SaveDate from './SaveDate';
+import AddCard from './AddCard';
 
 // redux
 import { connect } from 'react-redux';
@@ -74,12 +76,15 @@ class DateResults extends Component {
     })
     return (
       <div className='date-results'>
-        <h1>All results from our date search</h1>
-        {/* render several date components here */}
+        <MobileHeader />
+        <DateCard />
+        <DateCard />
+        <DateCard />
+        <AddCard />
         <button onClick={ () => this.findBusinesses() }>Give me some dates!!!</button>
       { displayResults }
-      <MobileHeader />
-      <DateCard />
+        <SaveDate />
+
       </div>
     );
   }

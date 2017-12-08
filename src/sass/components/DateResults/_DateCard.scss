@@ -1,7 +1,11 @@
-.top-level, .mid-level,  {
+.top-level, .mid-level {
     @include flexSetUp;
     justify-content: space-between;
     margin: 15px;
+}
+
+.date-card {
+    border: solid 10px $bg-color;
 }
 
 .rating-number {
@@ -11,6 +15,17 @@
     margin-right: 8px;
     margin-top: 4px;
     font-size: 18px;
+}
+
+.price-level {
+    color: $primary-color;
+    font-family: $main-font;
+    margin-right: 8px;
+    margin-top: 4px;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px;
 }
 
 .ratings {
@@ -49,5 +64,104 @@
     font-weight: normal;
     color: $link-color;
     margin: 15px;
+}
+
+.expanded {
+    text-align: center;
+    font-family: $main-font;
+    font-weight: normal;
+    color: #000000;
+    margin: 27px;
+    width: 300px;
+}
+
+.see-more, .data-response, .type-response {
+    color: $link-color;    
+}
+
+.lock-type {
+    display: flex;
+    border: 1.5px solid #000000;
+    align-items: center;
+    justify-content: space-around;
+    height: 40px;
+}
+
+.data {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.second-address, .second-address-response {
+    margin-top: -15px;
+    margin-bottom: -15px;
+}
+
+.data-box {
+    display: flex;
+    text-align: left;
+    margin-left: 25px;
+}
+
+.data-response {
+    margin-left: 20px;
+}
+
+
+.save-date-box {
+    text-align: center;
+    background-color: $bg-color;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.save-date {
+    @include thirdBtn;
+}
+
+.edit-date {
+    @include fourthBtn;
+}
+
+.input-box {
+    @include flexSetUp;
+    margin-top: 25px;
+}
+
+.share-input {
+    width: 185px;
+    height: 35px;
+    margin: 10px;
+    font-family: Helvetica, sans-serif;
+    font-weight: normal;
+    color: #000000;
+    font-size: 21px;
+}
+
+.white-line {
+    margin: auto;
+    height: 2px;
+    width: 220px;
+    margin-top:10px;
+    margin-bottom:10px;
+    background-color: $white;
+}
+
+.add-card-box {
+    @include flexSetUp;
+    border: solid 10px $bg-color;
+    height: 100px;    
+    font-family: Helvetica, sans-serif;
+    font-weight: normal;
+    color: $link-color;
+    font-size: 21px;
+}
+
+.add-text {
+    margin: 10px;
+}
+
+.expandable-arrow:hover {
+    transform:rotate(180deg);
 }
 

@@ -167,6 +167,9 @@ h3 {
   justify-content: space-between;
   margin: 15px; }
 
+.date-card {
+  border: solid 10px #e5e5e5; }
+
 .rating-number {
   color: #e57455;
   font-family: Helvetica, sans-serif;
@@ -174,6 +177,16 @@ h3 {
   margin-right: 8px;
   margin-top: 4px;
   font-size: 18px; }
+
+.price-level {
+  color: #e57455;
+  font-family: Helvetica, sans-serif;
+  margin-right: 8px;
+  margin-top: 4px;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-end;
+  margin: 15px; }
 
 .ratings {
   display: flex;
@@ -210,3 +223,107 @@ h3 {
   font-weight: normal;
   color: #03a9f4;
   margin: 15px; }
+
+.expanded {
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+  font-weight: normal;
+  color: #000000;
+  margin: 27px;
+  width: 300px; }
+
+.see-more, .data-response, .type-response {
+  color: #03a9f4; }
+
+.lock-type {
+  display: flex;
+  border: 1.5px solid #000000;
+  align-items: center;
+  justify-content: space-around;
+  height: 40px; }
+
+.data {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.second-address, .second-address-response {
+  margin-top: -15px;
+  margin-bottom: -15px; }
+
+.data-box {
+  display: flex;
+  text-align: left;
+  margin-left: 25px; }
+
+.data-response {
+  margin-left: 20px; }
+
+.save-date-box {
+  text-align: center;
+  background-color: #e5e5e5;
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+.save-date {
+  background-color: #2a2c3b;
+  width: 300px;
+  height: 100px;
+  color: #ffffff;
+  border: none;
+  font-family: Helvetica, sans-serif;
+  font-size: 21px;
+  cursor: pointer;
+  border-radius: 0px;
+  margin: 10px; }
+
+.edit-date {
+  background-color: #2a2c3b;
+  width: 215px;
+  height: 75px;
+  color: #ffffff;
+  border: none;
+  font-family: Helvetica, sans-serif;
+  font-size: 21px;
+  cursor: pointer;
+  border-radius: 0px;
+  margin: 10px; }
+
+.input-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px; }
+
+.share-input {
+  width: 185px;
+  height: 35px;
+  margin: 10px;
+  font-family: Helvetica, sans-serif;
+  font-weight: normal;
+  color: #000000;
+  font-size: 21px; }
+
+.white-line {
+  margin: auto;
+  height: 2px;
+  width: 220px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff; }
+
+.add-card-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 10px #e5e5e5;
+  height: 100px;
+  font-family: Helvetica, sans-serif;
+  font-weight: normal;
+  color: #03a9f4;
+  font-size: 21px; }
+
+.add-text {
+  margin: 10px; }
+
+.expandable-arrow:hover {
+  transform: rotate(180deg); }

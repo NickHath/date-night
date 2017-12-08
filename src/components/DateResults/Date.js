@@ -7,7 +7,6 @@ export default function Date() {
     <div className='date'>
       <h1>Main view for date location/event</h1>
       <DateDetails/>
-      <DateCard />
     </div>
   );
 }
