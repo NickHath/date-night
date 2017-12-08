@@ -31,9 +31,38 @@ export default function DateCard() {
       <div className="gray-line"></div>
       <div className="expandable-container">
         <div className="see-more">SEE MORE DETAILS</div>
-        <img className="expandable-arrow" src={Arrow} width="30px" />
+        <img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" />
       </div>
 
+      <div className="expanded">
+        <div className="see-more">HIDE DETAILS</div>
+        <img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" />
+        <div className="lock-type">
+          <div className="type">TYPE:</div>
+          <div className="type-response">AMERICAN</div>
+          <img className="lock-icon-small" src={Lock} alt="Lock Type Icon" height="28px" />
+        </div>
+        <div className="data-box">
+          <div className="data-labels">
+            <div className="data hours">HOURS:</div>
+            <div className="data phone">PHONE:</div>
+            <div className="data first-address">ADDRESS:</div>
+            <div className="data second-address"></div>
+          </div>
+          <div className="data-response">
+            <div className="data hours-response">10AM-9PM</div>
+            <div className="data phone-response">555-555-5555</div>
+            <div className="data first-address-response">1234 Provo St.</div>
+            <div className="data second-address-response">Provo, UT 84043</div>
+          </div>
+        </div>
+
+
+        <div className="hours"></div>
+      </div>
+      <div className="bottom-level">
+        <div className="price-level">$$$</div>
+      </div>
     </div>
   );
 }
