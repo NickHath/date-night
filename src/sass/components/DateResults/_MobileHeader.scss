@@ -1,0 +1,6 @@
+.mobile-header {
+    background-color: $primary-color;
+    @include flexSetUp;
+    justify-content: space-between;
+    height: 100px;
+}

@@ -151,3 +151,62 @@ h3 {
 
 .date-form {
   margin: 20px; }
+
+.mobile-header {
+  background-color: #e57455;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px; }
+
+.top-level, .mid-level {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px; }
+
+.rating-number {
+  color: #e57455;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  margin-right: 8px;
+  margin-top: 4px;
+  font-size: 18px; }
+
+.ratings {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+.start-box {
+  text-align: center;
+  color: #03a9f4;
+  font-family: Helvetica, sans-serif; }
+
+.yelp-img {
+  border-radius: 50%;
+  height: 125px;
+  width: 125px; }
+
+.location-text {
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  color: #000000;
+  font-size: 24px;
+  margin: 15px; }
+
+.gray-line {
+  margin: auto;
+  height: 5px;
+  width: 175px;
+  background-color: #e5e5e5; }
+
+.expandable-container {
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+  font-weight: normal;
+  color: #03a9f4;
+  margin: 15px; }
