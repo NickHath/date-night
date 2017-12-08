@@ -73,7 +73,6 @@ class Form extends Component {
     }
     if(time == 12){
       time = 0
-      console.log("wtf")
     }
 
     if(time> 1200 && time < 1261){
@@ -84,6 +83,7 @@ class Form extends Component {
   }
     //parseFloat(this.refs.radius.getValue()
     var milesToMeters = Math.round(this.state.secondSlider) * 1609.34
+    milesToMeters = parseInt(milesToMeters)
     if (milesToMeters > 40000) {
       milesToMeters = 40000
     }
@@ -139,7 +139,7 @@ class Form extends Component {
         <TextField
           ref="location"
           hintText="Provo, UT" />
-        <h3>RADIUS: {this.state.secondSlider}</h3>
+        <h3>RADIUS: {this.state.secondSlider} miles</h3>
         <Slider
           min={1}
           max={25}
