@@ -16,15 +16,14 @@ class DateResults extends Component {
   findBusinesses() {
     // clear businesses off store
     this.props.clearResults();
-    if(this.props.preferences[0]){
-      let { location, radius, duration, startTime } = this.props.preferences[0]
-      let categories = this.getCategories(startTime, duration);
-      console.log(`random category within ${radius} meters of ${location}\n${duration} date at ${startTime}: `, categories);
-      // cycle through categories
-      if (Array.isArray(categories)) {
-        for(let i = 0; i < categories.length; i++ ){
-          this.props.getResults(location, categories[i]);
-        }
+    let { location, radius, duration, startTime } = this.props.preferences;
+    let categories = this.getCategories(startTime, duration);
+    console.log(`random category within ${radius} meters of ${location}\n${duration} date at ${startTime}: `, categories);
+
+    // cycle through categories
+    if (Array.isArray(categories)) {
+      for(let i = 0; i < categories.length; i++ ){
+        this.props.getResults(location, categories[i]);
       }
     }
   }
@@ -35,7 +34,7 @@ class DateResults extends Component {
     let times = {'short': 1, 'medium': 2, 'long': 3}
     for (let i = times[duration]; i > 0; i--) {
       categories.push(this.randomCategory(startTime));
-      startTime += 130;
+      startTime += 200;
     }
     return categories;
   }

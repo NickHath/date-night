@@ -28,6 +28,10 @@ h2 {
     @include header2SetUp;
 }
 
+h3 {
+    @include header3SetUp;
+}
+
 .icon-box {
     height: 1100px;
     background-color: $bg-color;
@@ -40,7 +44,7 @@ h2 {
 
 .btn-container {
     text-align: center;
-    padding: 20px;
+    margin: 20px;
 }
 
 .main-btn {
@@ -66,10 +70,23 @@ h2 {
     background-color: $primary-color;
 }
 
-.photo-caption {
-    font-family: Helvetica, sans-serif;
-    font-weight: normal;
-    color: #000000;
-    font-size: 29px;
+// .photo-caption {
+//     font-family: Helvetica, sans-serif;
+//     font-weight: normal;
+//     color: #000000;
+//     font-size: 29px;
+//     margin: 20px;
+// }
+
+.gray-text {
+    text-align: center;
+    font-family: $main-font;
+    color: $bg-color;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.date-form {
     margin: 20px;
 }
+
