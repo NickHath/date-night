@@ -3,6 +3,8 @@ import axios from 'axios';
 
 // components
 import Date from './Date';
+import MobileHeader from './MobileHeader';
+import DateCard from './DateCard';
 
 // redux
 import { connect } from 'react-redux';
@@ -76,6 +78,8 @@ class DateResults extends Component {
         {/* render several date components here */}
         <button onClick={ () => this.findBusinesses() }>Give me some dates!!!</button>
       { displayResults }
+      <MobileHeader />
+      <DateCard />
       </div>
     );
   }
