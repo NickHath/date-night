@@ -5,6 +5,7 @@ const initialState = {
   results: {},
   preferences: {},
   categories: categories,
+  pending: 0
 }
 
 const GET_RESULTS = 'GET_RESULTS'
@@ -12,8 +13,10 @@ const GET_RESULTS = 'GET_RESULTS'
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
+    case GET_RESULTS + '_PENDING':
+      return Object.assign({}, state, { pending: ++state.pending });
     case GET_RESULTS + '_FULFILLED':
-      return Object.assign({}, state, { results: Object.assign({}, state.results, action.payload) });
+      return Object.assign({}, state, { results: Object.assign({}, state.results, action.payload), pending: --state.pending });
     case ADD_PREFERENCES:
       return Object.assign({}, state, { preferences: action.payload })
     default:

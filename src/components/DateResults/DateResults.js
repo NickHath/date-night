@@ -22,6 +22,23 @@ class DateResults extends Component {
   // initializes state (which sets off the first randomizer method)
   componentDidMount() {
     this.initState();
+    // FRONTLOAD MAIN CATEGORIES
+    let allCategories = this.props.categories.day.concat(this.props.categories.night);
+    allCategories.forEach(category => {
+      this.props.getResults(this.props.preferences.location, category, this.props.preferences.radius);
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('CWRP:', nextProps);
+    if (nextProps.pending === 0) {
+      this.state.lockedBusinesses.forEach((locked, index) => {
+        if (!locked) {
+          let randIndex = Math.floor(Math.random() * this.props.results[this.state.categories[index]].length)
+          this.state.businesses[index] = this.props.results[this.state.categories[index]][randIndex];
+        }
+      })
+    }
   }
 
   // sets state to appropriate length for all 4 arrays
@@ -48,12 +65,15 @@ class DateResults extends Component {
   updateBusinesses() {
     console.log('update our businesses with these categories:\n', this.state.categories);
     let { location, radius } = this.props.preferences;
-    
+    let { categories } = this.state;
+    let returnedBusinesses = [];
+    // if category is locked, we might need to hit the yelp api (because it is a specific cat not initialized)
+
     this.state.lockedBusinesses.forEach((locked, index) => {
-      if (!locked) {
-        this.props.getResults(location, this.state.categories[index], radius);
+      if (!locked && !this.props.results[categories[index]]) {
+        this.props.getResults(location, categories[index], radius);
       }
-    })
+    });
   }
 
   // selects appropriate number of random categories for startime
@@ -105,9 +125,24 @@ class DateResults extends Component {
   }
 
   render() {
+    console.log('STATE:', this.state);
     console.log('CATEGORIES:', this.state.categories);
     console.log('BUSINESSES:', this.state.businesses);
     console.log('RESULTS:', this.props.results);
+    
+    let displayBusinesses = this.state.businesses.map(business => {
+      if (business !== null) {
+        return (
+          <div>
+            {/* <a href={business.url}> */}
+              <h1>{ business.name }</h1>
+              <img src={ business.img_url }/>
+            {/* </a> */}
+          </div>
+        )
+      }
+    })
+
     return (
       <div className='date-results'>
         <h1>All results from our date search</h1>
@@ -121,17 +156,14 @@ class DateResults extends Component {
         <button onClick={ () => this.lockBusiness(0) }>Lock Business #1</button>
         <button onClick={ () => this.lockBusiness(1) }>Lock Business #2</button>
         <button onClick={ () => this.lockBusiness(2) }>Lock Business #3</button>
+        { displayBusinesses } 
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { 
-    results: state.results, 
-    categories: state.categories ,
-    preferences: state.preferences,
-  };
+  return state;
 }
 
 export default connect(mapStateToProps, { getResults })(DateResults);
