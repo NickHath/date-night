@@ -1,0 +1,53 @@
+.top-level, .mid-level,  {
+    @include flexSetUp;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.rating-number {
+    color: $primary-color;
+    font-family: $main-font;
+    font-weight: bold;
+    margin-right: 8px;
+    margin-top: 4px;
+    font-size: 18px;
+}
+
+.ratings {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.start-box {
+    text-align: center;
+    color: $link-color;
+    font-family: $main-font;
+}
+
+.yelp-img {
+    border-radius: 50%;
+    height: 125px;
+    width: 125px;
+}
+
+.location-text {
+    text-align: center;
+    @include header4SetUp;
+}
+
+.gray-line {
+    margin: auto;
+    height: 5px;
+    width: 175px;
+    background-color: $bg-color;
+}
+
+.expandable-container {
+    text-align: center;
+    font-family: $main-font;
+    font-weight: normal;
+    color: $link-color;
+    margin: 15px;
+}
+

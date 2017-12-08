@@ -7,6 +7,12 @@ import Shuffle from '../../assets/Shuffle.svg';
 import Calendar from '../../assets/Calendar.svg';
 import Logo_Icon from '../../assets/Icon.svg';
 import Couple from '../../assets/Couple.png';
+// import TextField from 'material-ui/TextField';
+// import DatePicker from 'material-ui/DatePicker';
+// import TimePicker from 'material-ui/TimePicker';
+// import Slider from 'material-ui/Slider';
+
+
 
 export default function Landing() {
   return (
@@ -32,14 +38,33 @@ export default function Landing() {
       <div className="featured">NEWLY OPENED</div>
       <div className="logo-lines">
         <div className="line"></div>
-        <img className="logo-icon" src={ Logo_Icon } alt="Date Idea Generator Icon" />
+        <img className="logo-icon" src={Logo_Icon} alt="Date Idea Generator Icon" />
         <div className="line"></div>
       </div>
       <img className="second-bg" src={Couple} alt="Couple Hugging" width="100%" />
-      <h2 className="photo-caption">EXPLORE IDEAS AND IMPRESS YOUR DATE!</h2>
+      {/* <h2 className="photo-caption">EXPLORE IDEAS AND IMPRESS YOUR DATE!</h2> */}
 
-      <h6>It's the landing page woo!</h6>
       <Form />
+      {/* <div className="date-form">
+        <h1>CREATE YOUR PERFECT DATE!</h1>
+        <h3>START DATE</h3>
+        <DatePicker hintText="01/12/2017" />
+        <h3>START TIME</h3>
+        <TimePicker hintText="12hr Format" />
+        <h3>LENGTH</h3>
+        <h4 className="gray-text">1 HOUR</h4>
+        <button className="second-btn">SHORT</button>
+        <h4 className="gray-text">2-4 HOURS</h4>
+        <button className="second-btn">MEDIUM</button>
+        <h4 className="gray-text">5-8 HOURS</h4>
+        <button className="second-btn">LONG</button>
+        <h3>LOCATION</h3>
+        <TextField hintText="Provo, UT"/>
+        <h3>RADIUS</h3>
+        <Slider defaultValue={25} />
+        <button className="main-btn">CREATE</button>
+      </div> */}
+
     </div>
   );
 }

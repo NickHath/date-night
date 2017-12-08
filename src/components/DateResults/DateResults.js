@@ -3,6 +3,8 @@ import axios from 'axios';
 
 // components
 import Date from './Date';
+import MobileHeader from './MobileHeader';
+import DateCard from './DateCard';
 
 // redux
 import { connect } from 'react-redux';
@@ -152,8 +154,10 @@ class DateResults extends Component {
       <div className='date-results'>
         <h1>All results from our date search</h1>
         {/* render several date components here */}
-        <button onClick={ () => this.refreshDate() }>Give me some dates!!!</button><br/><br/><br/>
-        { displayBusinesses } 
+        <button onClick={ () => this.refreshDate() }>Give me some dates!!!</button>
+      { displayBusinesses }
+      <MobileHeader />
+      <DateCard />
       </div>
     );
   }
