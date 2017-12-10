@@ -3,4 +3,6 @@
     @include flexSetUp;
     justify-content: space-between;
     height: 100px;
+    position: sticky;
+    top: 0px;
 }

@@ -3,6 +3,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -69,18 +70,23 @@ table {
 
 .header-bar {
   margin-top: -5px;
-  height: 100px;
+  height: 50px;
   background-color: #e57455; }
 
+.text-wrapper {
+  display: flex;
+  flex-direction: column; }
+
 h1 {
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: bold;
   color: #000000;
-  font-size: 56px;
-  margin: 15px; }
+  margin: auto;
+  font-size: 48px;
+  display: flex; }
 
 h2 {
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: bold;
   color: #000000;
   font-size: 18px; }
@@ -92,13 +98,24 @@ h3 {
   font-size: 26px;
   margin: 15px; }
 
+h5 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  color: #000000;
+  margin: auto;
+  font-size: 40px;
+  display: flex; }
+
+.smaller-header {
+  font-size: 40px; }
+
 .icon-box {
-  height: 1100px;
   background-color: #e5e5e5;
-  text-align: center; }
+  text-align: center;
+  padding-bottom: 30px; }
 
 .icons {
-  width: 325px; }
+  width: 275px; }
 
 .btn-container {
   text-align: center;
@@ -106,27 +123,28 @@ h3 {
 
 .main-btn {
   background-color: #03a9f4;
-  width: 300px;
+  width: 100%;
   height: 100px;
   color: #ffffff;
   border: none;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 21px;
   cursor: pointer;
   border-radius: 0px;
-  margin: 10px; }
+  margin: auto;
+  margin-bottom: 10px; }
 
 .second-btn {
   border: 5px solid #03a9f4;
   background-color: #ffffff;
-  width: 300px;
+  width: 100%;
   height: 100px;
   color: #03a9f4;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 21px;
   cursor: pointer;
   border-radius: 0px;
-  margin: 10px; }
+  margin: auto; }
 
 .featured {
   height: 600px;
@@ -142,15 +160,28 @@ h3 {
   height: 2px;
   background-color: #e57455; }
 
+.img-wrapper {
+  width: 90%;
+  margin: auto;
+  background: grey; }
+
+.second-bg {
+  height: auto;
+  width: 100%; }
+
 .gray-text {
   text-align: center;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #e5e5e5;
   font-size: 18px;
-  font-weight: bold; }
+  font-weight: bold;
+  margin: 10px; }
 
 .date-form {
   margin: 20px; }
+
+.hide {
+  display: none; }
 
 .mobile-header {
   background-color: #e57455;
@@ -158,21 +189,23 @@ h3 {
   justify-content: center;
   align-items: center;
   justify-content: space-between;
-  height: 100px; }
+  height: 100px;
+  position: sticky;
+  top: 0px; }
 
 .top-level, .mid-level {
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: space-between;
-  margin: 15px; }
+  margin: 15px 15px 0px; }
 
 .date-card {
   border: solid 10px #e5e5e5; }
 
 .rating-number {
   color: #e57455;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: bold;
   margin-right: 8px;
   margin-top: 4px;
@@ -180,7 +213,7 @@ h3 {
 
 .price-level {
   color: #e57455;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin-right: 8px;
   margin-top: 4px;
   font-size: 18px;
@@ -196,7 +229,7 @@ h3 {
 .start-box {
   text-align: center;
   color: #03a9f4;
-  font-family: Helvetica, sans-serif; }
+  font-family: "Open Sans", sans-serif; }
 
 .yelp-img {
   border-radius: 50%;
@@ -205,7 +238,7 @@ h3 {
 
 .location-text {
   text-align: center;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: bold;
   color: #000000;
   font-size: 24px;
@@ -219,18 +252,21 @@ h3 {
 
 .expandable-container {
   text-align: center;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: normal;
   color: #03a9f4;
   margin: 15px; }
 
 .expanded {
   text-align: center;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: normal;
   color: #000000;
   margin: 27px;
   width: 300px; }
+
+.closed {
+  display: none; }
 
 .see-more, .data-response, .type-response {
   color: #03a9f4; }
@@ -240,7 +276,16 @@ h3 {
   border: 1.5px solid #000000;
   align-items: center;
   justify-content: space-around;
-  height: 40px; }
+  height: 40px;
+  cursor: pointer; }
+
+.locked-category {
+  display: flex;
+  border: 1.5px solid #e57455;
+  align-items: center;
+  justify-content: space-around;
+  height: 40px;
+  cursor: pointer; }
 
 .data {
   margin-top: 20px;
@@ -270,7 +315,7 @@ h3 {
   height: 100px;
   color: #ffffff;
   border: none;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 21px;
   cursor: pointer;
   border-radius: 0px;
@@ -282,7 +327,7 @@ h3 {
   height: 75px;
   color: #ffffff;
   border: none;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 21px;
   cursor: pointer;
   border-radius: 0px;

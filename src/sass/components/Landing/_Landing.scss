@@ -16,12 +16,21 @@
 
 .header-bar {
     margin-top: -5px;
-    height: 100px;
+    height: 50px;
     background-color: $primary-color;
 }
 
+.text-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 h1 {
     @include headerSetUp;
+
+    
 }
 
 h2 {
@@ -32,14 +41,21 @@ h3 {
     @include header3SetUp;
 }
 
+h5{
+    @include header5setup;
+}
+.smaller-header{
+    font-size: 40px;
+}
+
 .icon-box {
-    height: 1100px;
     background-color: $bg-color;
     text-align: center;
+    padding-bottom: 30px;
 }
 
 .icons {
-    width: 325px;;
+    width: 275px;
 }
 
 .btn-container {
@@ -69,6 +85,16 @@ h3 {
     height: 2px;
     background-color: $primary-color;
 }
+.img-wrapper{
+    width: 90%;
+    margin: auto;
+    background: grey
+}
+
+.second-bg{
+    height: auto;
+    width: 100%;
+}
 
 // .photo-caption {
 //     font-family: Helvetica, sans-serif;
@@ -84,9 +110,13 @@ h3 {
     color: $bg-color;
     font-size: 18px;
     font-weight: bold;
+    margin: 10px;
 }
 
 .date-form {
     margin: 20px;
 }
 
+.hide{
+    display: none;
+}

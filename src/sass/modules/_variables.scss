@@ -1,4 +1,7 @@
-$main-font: Helvetica, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+$test: Helvetica, sans-serif;
+$main-font: 'Open Sans', sans-serif;
+
 $primary-color: #e57455;
 $secondary-color: #2a2c3b;
 $link-color: #03a9f4;

@@ -22,7 +22,10 @@ export default function Landing() {
         <img className="logo" src={Logo_White} alt="Date Idea Generator Logo" />
       </div>
       <div className="header-bar"></div>
-      <h1>HOW DOES IT WORK?</h1>
+      <div className = "text-wrapper">
+        <h1>HOW DOES </h1> 
+        <h1>IT WORK?</h1>
+      </div>
       <div className="icon-box">
         <img className="icons" src={Clipboard} alt="clipboard icon" />
         <h2 className="icon-text">LIST YOUR AVAILABLE TIME</h2>
@@ -41,7 +44,7 @@ export default function Landing() {
         <img className="logo-icon" src={Logo_Icon} alt="Date Idea Generator Icon" />
         <div className="line"></div>
       </div>
-      <img className="second-bg" src={Couple} alt="Couple Hugging" width="100%" />
+      <div className = "img-wrapper"><img className="second-bg" src={Couple} alt="Couple Hugging" /></div>
       {/* <h2 className="photo-caption">EXPLORE IDEAS AND IMPRESS YOUR DATE!</h2> */}
 
       <Form />
