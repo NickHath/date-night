@@ -1,7 +1,7 @@
 .top-level, .mid-level {
     @include flexSetUp;
     justify-content: space-between;
-    margin: 15px;
+    margin: 15px 15px 0px;
 }
 
 .date-card {
@@ -16,6 +16,8 @@
     margin-top: 4px;
     font-size: 18px;
 }
+
+
 
 .price-level {
     color: $primary-color;
@@ -64,6 +66,7 @@
     font-weight: normal;
     color: $link-color;
     margin: 15px;
+    
 }
 
 .expanded {
@@ -73,11 +76,17 @@
     color: #000000;
     margin: 27px;
     width: 300px;
+    
+}
+
+.closed{
+    display: none
 }
 
 .see-more, .data-response, .type-response {
     color: $link-color;    
 }
+
 
 .lock-type {
     display: flex;
@@ -85,6 +94,19 @@
     align-items: center;
     justify-content: space-around;
     height: 40px;
+    cursor: pointer;
+}
+
+.locked-category{
+   
+        display: flex;
+        border: 1.5px solid $primary-color;
+        align-items: center;
+        justify-content: space-around;
+        height: 40px;
+        cursor: pointer;
+    
+    
 }
 
 .data {

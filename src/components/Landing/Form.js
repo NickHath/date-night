@@ -17,6 +17,7 @@ class Form extends Component {
       longitude: '',
       latitude: '',
       secondSlider: 10,
+      errorLocation: false,
     }
     this.getLocation = this.getLocation.bind(this);
   }
@@ -41,7 +42,7 @@ class Form extends Component {
     let time =  this.refs.startTime.refs.input.input.value;
     let date = this.refs.startDate.refs.input.input.value;
     let location = this.refs.location.input.value ;
-
+    console.log(this.refs.location.input.value)
   console.log(this.refs.location.input.value)
   
   if(time.includes('pm')){
@@ -87,7 +88,7 @@ class Form extends Component {
     if (milesToMeters > 40000) {
       milesToMeters = 40000
     }
-    if (date && time && location) {
+    if (location) {
       let preferences = {
         startDate: date,
         startTime: time,
@@ -99,46 +100,52 @@ class Form extends Component {
       this.props.addPreferences(preferences)
       this.props.history.push("/results")
     }
-    else if(!date){
-      console.log('need to select a date')
-      
-    }
-    else if (!time){
-      console.log('need to select a time')
-    }
+    
     else if(!location){
-      console.log('need to put in location')
+      console.log("what")
     }
  }
 
 
 
   render() {      
+
+
+
     {console.log(this.state.secondSlider)}
     return (
       <div className="date-form">
         {console.log(this.state.buttonClick)}
-        <h1>CREATE YOUR PERFECT DATE!</h1>
-        <h3>START DATE</h3>
+        <div className = "text-wrapper">
+        <h5 >CREATE YOUR</h5>
+        <h5 >PERFECT DATE!</h5>
+        </div>
+        <h3>START DATE:</h3>
         <DatePicker
           ref='startDate'
           hintText="01/12/2017" />
-        <h3>START TIME</h3>
+        <h3>START TIME:</h3>
         <TimePicker
         
           ref='startTime'
           hintText="12hr Format" />
-        <h3>LENGTH</h3>
+        <h3>LENGTH:</h3>
         <h4 className="gray-text">1 HOUR</h4>
         <button className="second-btn" onClick={() => this.setState({ buttonClick: "short" })}>SHORT</button>
-        <h4 className="gray-text">2-4 HOURS</h4>
+        <h4 className="gray-text">2-3 HOURS</h4>
         <button className="second-btn" onClick={() => this.setState({ buttonClick: "medium" })}>MEDIUM</button>
-        <h4 className="gray-text">5-8 HOURS</h4>
+        <h4 className="gray-text">4+ HOURS</h4>
         <button className="second-btn" onClick={() => this.setState({ buttonClick: "long" })}>LONG</button>
-        <h3>LOCATION</h3>
-        <TextField
+        <h3>LOCATION:</h3>
+        
+          <TextField
           ref="location"
-          hintText="Provo, UT" />
+          hintStyle = ""
+          hintText="Provo, UT"
+          
+            />
+        
+        
         <h3>RADIUS: {this.state.secondSlider} miles</h3>
         <Slider
           min={1}
