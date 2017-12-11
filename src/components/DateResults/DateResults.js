@@ -25,90 +25,107 @@ import IconBulb from '../../assets/Icon_White.svg';
 import FilterBtn from '../../assets/Settings.svg';
 import ShuffleBtn from '../../assets/Shuffle.svg';
 
+// STATE EXPLAINED:
+// businesses and categories are used for the current displayed date
+// (they are arrays with length determined by preferences.duration)
+// 
+// businessesLocked and categoriesLocked are used to determined whether or not
+// we update the business or category with the same index (they are also arrays)
+// 
+// REFRESHDATE EXPLAINED:
+// refreshDate => getRandomCategories => updateBusinesses
+// uses callbacks because setState behaves asynchronously and we need
+// to fully randomize categories before we can retrieve our new businesses
+
 class DateResults extends Component {
-  constructor() {
-    super();
-    this.state = {
-      categories: [],
-      lockedCategories: [],
-      businesses: [],
-      lockedBusinesses: [],
-      expanded:true ,
-    }
-  }
+  constructor(props) {
+    super(props);
 
-  // initializes state (which sets off the first randomizer method)
-  componentDidMount() {
-    this.initState();
-    // FRONTLOAD MAIN CATEGORIES
-    let allCategories = this.props.categories.day.concat(this.props.categories.night);
+    // hit Yelp API to get results for all main categories 
+    let allCategories = props.categories.day.concat(props.categories.night);
     allCategories.forEach(category => {
-      this.props.getResults(this.props.preferences.location, category, this.props.preferences.radius);
-    })
-  }
+      props.getResults(props.preferences.location, category, props.preferences.radius);
+    });
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.pending === 0) {
-      this.state.lockedBusinesses.forEach((locked, index) => {
-        if (!locked && this.props.results[this.state.categories[index]]) {
-          let randIndex = Math.floor(Math.random() * this.props.results[this.state.categories[index]].length)
-          this.state.businesses[index] = this.props.results[this.state.categories[index]][randIndex];
-        }
-      })
-    }
-  }
-
-  // sets state to appropriate length for all 4 arrays
-  initState() {
+    // initalize state arrays using the duration preference for length
     let durations = { 'short': 1, 'medium': 2, 'long': 3 };
     let locked = [], businesses = [], categories = [];
-    for (let i = durations[this.props.preferences.duration]; i > 0; i--) {
+    for (let i = durations[props.preferences.duration]; i > 0; i--) {
       locked.push(false);
       categories.push('');
       businesses.push(null);
     }
-    this.setState({ categories, businesses, lockedCategories: locked, lockedBusinesses: locked }, () => {
-      this.refreshDate();
-    });
+
+    this.state = {
+      categories,
+      lockedCategories: locked,
+      businesses,
+      lockedBusinesses: locked,
+      expanded: false,
+    }
   }
 
-  // this function sets off all the callback methods to update state
-  // called in initState and whenever they press the refresh button
+  // runs the initial refreshDate after component renders
+  componentDidMount() {
+    this.refreshDate();
+  }
+
+  // will run when our store changes (i.e., when results have been returned from our Yelp API call)
+  componentWillReceiveProps(nextProps) {
+    let { lockedBusinesses, categories, businesses } = this.state;
+    let { results } = this.props;
+    let newBusinesses = [...businesses];
+    // nextProps.pending will be 0 when all API requests have resolved
+    if (nextProps.pending === 0) {
+      // set random business to unlocked indices if we have results for that category on our store
+      lockedBusinesses.forEach((locked, index) => {
+        if (!locked && results[categories[index]]) {
+          let randIndex = Math.floor(Math.random() * results[categories[index]].length)
+          newBusinesses[index] = results[categories[index]][randIndex];
+        }
+      })
+    }
+    this.setState({ businesses: newBusinesses });
+  }
+
+  // to refresh a date, we need to 1. get random categories
+  // then 2. use these categories to get random businesses
   refreshDate() {
     this.getRandomCategories(this.props.preferences.startTime);    
   }
 
-  // using categories on state, retrieve a random business for each non-locked business on state
+  // cycles through lockedBusinesses, when index is not locked it will 
+  // use the random category from the same index to retrieve a random business
   updateBusinesses() {
-    console.log('UPDATE BUSINESSES WITH ', this.state.categories)
-    let { location, radius } = this.props.preferences;
-    let { categories } = this.state;
-    let returnedBusinesses = [], newBusinesses = [...this.state.businesses];
-    // if category is locked, we might need to hit the yelp api (because it is a specific cat not initialized)
-    this.state.lockedBusinesses.forEach((locked, index) => {
-      if (!locked && !this.props.results[categories[index]]) {
-        this.props.getResults(location, categories[index], radius);
-        // randomize business from componentwillreceiveprops
-      } else if(!locked && this.props.results[categories[index]]) {
-        // randomize business from function
-        let randIndex = Math.floor(Math.random() * this.props.results[this.state.categories[index]].length)
-        newBusinesses[index] = this.props.results[this.state.categories[index]][randIndex];
+    let { preferences, results, getResults } = this.props;
+    let { businesses, categories, lockedBusinesses } = this.state;
+    let newBusinesses = [...businesses];
+    // if we have results for the category, get them off store; otherwise use getResults to hit Yelp API
+    lockedBusinesses.forEach((locked, index) => {
+      if (!locked) {
+        if (results[categories[index]]) {
+          let randIndex = Math.floor(Math.random() * results[categories[index]].length)
+          newBusinesses[index] = results[categories[index]][randIndex];
+        } else {
+          getResults(preferences.location, categories[index], preferences.radius);
+        }
       }
     });
     this.setState({ businesses: newBusinesses });
   }
 
-  // selects appropriate number of random categories for startime
+  // sets appropriate number of random categories on state
   getRandomCategories(startTime) {
     let newCategories = [...this.state.categories];
-    // only get a random category when category at that index is not locked
+    // only get a random category when its index is NOT locked
     this.state.lockedCategories.forEach((locked, index) => {
       if (!locked) {
         newCategories[index] = this.randomCategory(startTime);
       }
+      // each location adds 2 hours to time
       startTime += 200;         
     });
-    // after updateing categories, get new business with those keywords
+    // pass updateBusinesses as a callback so it runs AFTER we get our categories
     this.setState({ categories: newCategories }, () => {
       this.updateBusinesses();
     });
@@ -117,7 +134,6 @@ class DateResults extends Component {
   // return one random category given a start time
   randomCategory(startTime) {
     let time = '';
-    // set time to the correct key for categories object
     if (630 < startTime && startTime < 1800) {
       time = 'day';
     } else {
@@ -136,11 +152,12 @@ class DateResults extends Component {
     this.setState({ lockedBusinesses });
   }
 
-  // given an index and a subcategory, update categories AND lockedCategories
-  // at that index
+  // given an index and a subcategory, sets that category to the new subcategory
+  // AND sets lockedCategories at that index to true
   lockCategory(index, newCategory) {
     let lockedCategories = [...this.state.lockedCategories];
     let categories = [...this.state.categories];
+
     lockedCategories[index] = !lockedCategories[index];
     if (lockedCategories[index]) { categories[index] = newCategory };
     this.setState({ lockedCategories, categories });
@@ -154,11 +171,11 @@ class DateResults extends Component {
 
   handleOpen = () => {
     this.setState({ open: true });
-};
+  };
 
-handleClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
-};
+  };
 
 
 
