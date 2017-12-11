@@ -140,7 +140,6 @@ class Form extends Component {
         
           <TextField
           ref="location"
-          hintStyle = ""
           hintText="Provo, UT"
           
             />

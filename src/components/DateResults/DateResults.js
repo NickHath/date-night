@@ -33,7 +33,7 @@ class DateResults extends Component {
       lockedCategories: [],
       businesses: [],
       lockedBusinesses: [],
-      expanded: false,
+      expanded:true ,
     }
   }
 
