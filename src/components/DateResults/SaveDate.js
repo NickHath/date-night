@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 import Share from '../../assets/Share.svg';
 
-export default class SaveDate extends Component {
+class SaveDate extends Component {
     constructor() {
         super()
         this.state = {
@@ -47,7 +48,7 @@ export default class SaveDate extends Component {
 
                     >
                     <div className="input-box">
-                        <input className="share-input" placeholder="copy URL"  />
+                        <input value={"http://localhost:300/results/" + this.props.sharingId} className="share-input" placeholder="copy URL"  />
                         <img className="logo-bulb" src={Share} alt="Share Icon" height="35px" />
                     </div>
                     <div className="white-line"></div>
@@ -57,3 +58,9 @@ export default class SaveDate extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+  return { sharingId: state.sharingId };
+}
+
+export default connect(mapStateToProps)(SaveDate);
