@@ -9,6 +9,7 @@ import About from './components/About/About';
 export default (
   <Switch>
     <Route exact path='/' component={ Landing }/>
+    <Route path='/results/:id' component={ DateResults }/>
     <Route path='/results' component={ DateResults }/>
     <Route path='/finalizer' component={ Finalizer }/>
     <Route path='/about' component={ About }/>

@@ -67,6 +67,7 @@ class DateResults extends Component {
 
   // runs the initial refreshDate after component renders
   componentDidMount() {
+    console.log('URL', this.props.match.params.id);
     this.refreshDate();
   }
 
