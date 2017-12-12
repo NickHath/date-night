@@ -12,7 +12,7 @@ import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 // redux
 import { connect } from 'react-redux';
-import { getResults } from '../../ducks/reducer';
+import { getResults, finalizeDate } from '../../ducks/reducer';
 // SVGS
 import DeleteCard from '../../assets/Delete.svg';
 import Star from '../../assets/Star.svg';
@@ -161,6 +161,18 @@ class DateResults extends Component {
     lockedCategories[index] = !lockedCategories[index];
     if (lockedCategories[index]) { categories[index] = newCategory };
     this.setState({ lockedCategories, categories });
+  }
+
+  finalizeDate() {
+    if (this.state.businesses.length !== 0) {
+      // set all values in lockedBusinesses to true
+      // before finalizing date
+      let newLocked = [...this.state.lockedBusinesses];
+      newLocked.forEach((bool, index) => newLocked[index] = true);
+      this.setState({ lockedBusinesses: newLocked  }, () => {
+        this.props.finalizeDate(this.state.businesses);
+      });
+    }
   }
 
   hideAndUnhide(){
@@ -313,7 +325,7 @@ class DateResults extends Component {
       
         
       { displayBusinesses }
-        <SaveDate />
+        <SaveDate finalizeDate={ () => this.finalizeDate() } />
       </div>
     );
   }
@@ -323,4 +335,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { getResults })(DateResults);
+export default connect(mapStateToProps, { getResults, finalizeDate })(DateResults);

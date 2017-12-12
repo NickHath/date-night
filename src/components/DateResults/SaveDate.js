@@ -34,7 +34,7 @@ export default class SaveDate extends Component {
         
         return (
             <div className="save-date-box">
-                <button onClick={this.handleOpen} className="save-date">SAVE MY DATE</button>
+                <button onClick={this.handleOpen} onClick={this.props.finalizeDate} className="save-date">SAVE MY DATE</button>
                 <Dialog
                     title="SHARE YOUR DATE"
                     actions={actions}
