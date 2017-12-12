@@ -171,6 +171,8 @@ class DateResults extends Component {
       newLocked.forEach((bool, index) => newLocked[index] = true);
       this.setState({ lockedBusinesses: newLocked  }, () => {
         this.props.finalizeDate(this.state.businesses);
+        // store date in db, use returned ID to populate sharing URL
+        // axios.post('/api/addDate');
       });
     }
   }
