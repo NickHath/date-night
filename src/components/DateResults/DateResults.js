@@ -12,7 +12,7 @@ import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 // redux
 import { connect } from 'react-redux';
-import { getResults, finalizeDate } from '../../ducks/reducer';
+import { getResults, finalizeDate, addSharingId } from '../../ducks/reducer';
 // SVGS
 import DeleteCard from '../../assets/Delete.svg';
 import Star from '../../assets/Star.svg';
@@ -165,14 +165,20 @@ class DateResults extends Component {
 
   finalizeDate() {
     if (this.state.businesses.length !== 0) {
-      // set all values in lockedBusinesses to true
-      // before finalizing date
+      // set all values in lockedBusinesses to true before finalizing
       let newLocked = [...this.state.lockedBusinesses];
       newLocked.forEach((bool, index) => newLocked[index] = true);
       this.setState({ lockedBusinesses: newLocked  }, () => {
         this.props.finalizeDate(this.state.businesses);
-        // store date in db, use returned ID to populate sharing URL
-        // axios.post('/api/addDate');
+        // store date in DB and put ID on store
+        let keys = [ "first_business", "second_business", "third_business" ];
+        let date = { title: '' };
+        this.state.businesses.forEach((business, index) => {
+          if (business.id) {
+            date[keys[index]] = business.id;
+          }
+        })
+        axios.post('/api/addDate', date).then(res => this.props.addSharingId(res.data));
       });
     }
   }
@@ -337,4 +343,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { getResults, finalizeDate })(DateResults);
+export default connect(mapStateToProps, { getResults, finalizeDate, addSharingId })(DateResults);
