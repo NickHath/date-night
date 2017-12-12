@@ -2,7 +2,7 @@ require('dotenv').config();
 const axios = require('axios')
 
 // Yelp API setup
-const baseUrl = 'https://api.yelp.com/v3/businesses/search'
+const baseUrl = 'https://api.yelp.com/v3/businesses/'
     , limit = 50
     , offset = null
     , config = { 
@@ -31,8 +31,8 @@ module.exports = {
     // }
 
 
-    console.log(`FULL URL:\n${baseUrl}?location=${location}&limit=${limit}&categories=${category}&radius=${radius}`);
-    axios.get(`${baseUrl}?location=${location}&limit=${limit}&categories=${category}&radius=${radius}`, config)    
+    console.log(`FULL URL:\n${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}`);
+    axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}`, config)    
          .then(businesses => {
            
            for (let i = 0; i < businesses.data.businesses.length; i++) {
@@ -48,7 +48,7 @@ module.exports = {
         })
          .catch(err => res.status(500).send(err));
     
-         axios.get(`${baseUrl}?location=${location}&limit=${limit}&categories=${category}&radius=${radius}&offset=${50}`, config)    
+         axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}&offset=${50}`, config)    
          .then(businesses => {
            if(businesses.data.businesses.length !== 0){
            for (let i = 0; i < businesses.data.businesses.length; i++) {
@@ -66,7 +66,7 @@ module.exports = {
         })
          .catch(err => res.status(500).send(err));
     
-         axios.get(`${baseUrl}?location=${location}&limit=${limit}&categories=${category}&radius=${radius}&offset=${100}`, config)    
+         axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}&offset=${100}`, config)    
          .then(businesses => {
            if(businesses.data.businesses.length !== 0){
            for (let i = 0; i < businesses.data.businesses.length; i++) {
@@ -87,6 +87,35 @@ module.exports = {
 
     
   },
+
+
+  getBusinessById: (req, res ) => {
+    
+    const db = req.app.get("db");
+    db.get_one_date(req.body.test).then( (resp) => {
+      
+      let arr = [resp[0].first_business, resp[0].second_business, resp[0].third_business]
+      console.log(arr)
+      let arr2 = ['','','']
+      let count = 3;
+      arr.map( (ID, I) => {
+        axios.get(`${baseUrl}${ID}`, config).then(resp => {
+         
+          arr2[I] = resp.data
+          count--
+          if(count === 0){
+            console.log(arr2)
+            res.status(200).send(arr2)
+            
+          }
+        })
+        
+        
+      })
+      
+    })
+  },
+
 
   getAllDates: (req, res) => {
     const db = req.app.get('db')

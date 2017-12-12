@@ -184,6 +184,11 @@ class DateResults extends Component {
     }
   }
 
+  test(){
+    let test = {test: "A9mDs2"}
+    axios.post('/api/yelp/business', test)
+  }
+
   hideAndUnhide(){
 
 
@@ -334,7 +339,7 @@ class DateResults extends Component {
       
         
       { displayBusinesses }
-        <SaveDate finalizeDate={ () => this.finalizeDate() } />
+        <SaveDate finalizeDate={ () => this.test() } />
       </div>
     );
   }
