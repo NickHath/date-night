@@ -1,36 +1,55 @@
+.landing{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "first-photo" 
+    "header-bar"
+    "text-wrapper"
+    "icon-box"
+    "btn-container"
+    "featured"
+    "logo_lines"
+    "img-wrapper"
+    "form-desktop";
+}
+
+
 .first-bg-box {
     @include flexSetUp;   
     position: relative;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
+    grid-area: first-photo;
+    background-image: url("../assets/Mobile_Ocean.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .first-bg, .logo {
-    position: absolute;
+    height: auto;
+    width: 100%;
 }
 
 .logo {
     width: 80%;
-    padding-bottom: 150px;
+    margin-top: -150px;
+    grid-area: logo;
 }
 
 .header-bar {
     margin-top: -5px;
     height: 50px;
     background-color: $primary-color;
+    grid-area: header-bar;
 }
 
 .text-wrapper{
-    display: flex;
-    flex-direction: column;
+    grid-area: text-wrapper;
 }
-
-
 
 h1 {
     @include headerSetUp;
-
-    
 }
 
 h2 {
@@ -44,6 +63,7 @@ h3 {
 h5{
     @include header5setup;
 }
+
 .smaller-header{
     font-size: 40px;
 }
@@ -52,57 +72,74 @@ h5{
     background-color: $bg-color;
     text-align: center;
     padding-bottom: 30px;
+    grid-area: icon-box;
 }
 
-.icons {
-    width: 275px;
+.icon-clipboard {
+    width: 80%;
+    grid-area: icon-clipboard;
+}
+
+.icon-shuffle{
+    width: 80%;
+    grid-area: icon-shuffle;
+}
+
+.icon-calendar {
+    width: 80%;
+    grid-area: icon-calendar;
 }
 
 .btn-container {
     text-align: center;
     margin: 20px;
+    grid-area: btn-container;
 }
 
 .main-btn {
     @include mainBtn;
 }
 
+.main-btn:hover, .create-btn:hover  {
+    background-color: $secondary-color;
+}
+
 .second-btn {
     @include secondBtn;
 }
 
+.second-btn:hover {
+    background-color: $link-color;
+    color: $white;
+}
+
 .featured {
-    height: 600px;
     border: 40px solid $secondary-color;
+    grid-area: featured;
 }
 
 .logo-lines {
     @include flexSetUp;
+    grid-area: logo-lines;
 }
 
 .line {
-    width: 100px;
+    width: 42%;
     height: 2px;
     background-color: $primary-color;
 }
+
 .img-wrapper{
-    width: 90%;
-    margin: auto;
-    background: grey
+    grid-area: img-wrapper;
 }
 
 .second-bg{
-    height: auto;
-    width: 100%;
+    width: 100vw;
 }
 
-// .photo-caption {
-//     font-family: Helvetica, sans-serif;
-//     font-weight: normal;
-//     color: #000000;
-//     font-size: 29px;
-//     margin: 20px;
-// }
+.photo-caption {
+    display: none;
+}
 
 .gray-text {
     text-align: center;
@@ -115,8 +152,232 @@ h5{
 
 .date-form {
     margin: 20px;
+    grid-area: date-form;
 }
 
 .hide{
     display: none;
+}
+
+.form-desktop {
+    grid-area: form-desktop;
+}
+
+.text-wrapper-form {
+    grid-area: text-wrapper-form;
+}
+
+.replace-photo {
+    display: none;
+}
+
+.numbers-nav {
+    display: none;
+}
+
+
+
+@media screen and (min-width: 750px){
+    .landing{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "first-photo   first-photo   first-photo"
+        "header-bar    header-bar    featured"
+        "text-wrapper  text-wrapper  featured"
+        "icon-box      icon-box      featured"
+        "btn-container btn-container featured"
+        "form-desktop  form-desktop  form-desktop";
+    }
+
+    .form-desktop {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+        "date-form date-form logo-lines logo-lines"
+        "date-form date-form img-wrapper img-wrapper"
+    }
+
+    .date-form {
+        margin: 20px;
+    }
+
+    .first-bg-box {
+        @include flexSetUp;   
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        grid-area: first-photo;
+        background-image: url("../assets/Ocean.jpeg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        flex-direction: column;
+    }
+
+    // .numbers-nav {
+    //     text-align: center;
+    //     color: $white;
+    //     font-family: $main-font;
+    //     font-weight: lighter;
+    //     font-size: 30px;
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: flex-end;
+    // }
+
+    // .nav-line {
+    //     width: 60px;
+    //     height: 2px;
+    //     background-color: $white;
+    //     margin-top: 10px;
+    //     margin-bottom: 10px;
+    //     grid-area: nav-line;
+    // }
+
+    // .bigger-nav-text {
+    //     font-size: 54px;
+    // }
+
+    .logo {
+        width: 45%;
+        margin-top:20px;
+    }
+
+    .header-bar {
+        height: 50%;
+    }
+
+    h1 {
+        margin-left: 75px;
+        margin-bottom: 50px;
+    }
+
+    h2 {
+        font-size: 90%;
+    }
+
+    .icon-box {
+        margin-left: 75px;
+        height: 90%;
+        padding-top: 10px;
+        display: grid;
+        justify-items: center;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+        "icon-clipboard icon-shuffle icon-calendar"
+        "icon-text-clipboard icon-text-shuffle icon-text-calendar";
+    }
+
+    .btn-container {
+        text-align: left;
+        margin: 65px;
+        display: flex;
+    }
+
+    .second-btn {
+        margin-left: 50px;
+    }
+    
+
+    .featured {
+        height: 90vh;
+    }
+
+    .logo-lines {
+        margin: 10px;
+    }
+
+    .line {
+        width: 36%;
+        margin: 10px;
+    }
+
+    .second-bg {
+        display: none;
+    }
+
+    .replace-photo {
+        display: block;
+        margin: auto;
+        margin-top: 10px;
+        width: 90%;
+        grid-area: replace-photo;
+    }
+
+    .photo-caption {
+        @include flexSetUp;
+        font-family: Helvetica, sans-serif;
+        font-style: italic;
+        font-weight: normal;
+        color: #000000;
+        font-size: 46px;
+        margin: 25px;
+        text-align: center;
+        letter-spacing: 2px;
+        height: 40%;
+    }
+
+    .subtitle-short {
+        grid-area: subtitle-short;
+    }
+
+    .subtitle-medium {
+        grid-area: subtitle-medium;
+    }
+
+    .subtitle-long {
+        grid-area: subtitle-long;
+    }
+
+    .btn-short {
+        grid-area: btn-short;
+        height: 100%;
+        width: 75%;
+        margin: 10px;
+        font-size: 90%;
+    }
+
+    .btn-medium {
+        grid-area: btn-medium;
+        height: 100%;
+        width: 75%;
+        margin: 10px;
+        font-size: 90%;
+    }
+
+    .btn-long {
+        grid-area: btn-long;
+        height: 100%;
+        width: 75%;
+        margin: 10px;
+        font-size: 90%;
+    }
+
+    .btn-length {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+        "subtitle-short subtitle-medium subtitle-long"
+        "btn-short      btn-medium     btn-long";
+    }
+
+    .form-desktop {
+        background-color: $white;
+        border: 50px solid $bg-color;
+    }
+
+    .create-btn {
+        width: 100%;
+    }
+
+    .gray-text {
+        font-size: 90%;
+    }
+
+    .form-title {
+        display: none;
+    }
 }

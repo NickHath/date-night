@@ -9,6 +9,7 @@ import Arrow from '../../assets/Arrow.svg';
 
 export default function DateCard() {
   return (
+    <div>
     <div className='date-card'>
       <div className="top-level">
         <img className="delete" src={DeleteCard} alt="delete card" height="40px" />
@@ -63,6 +64,13 @@ export default function DateCard() {
       <div className="bottom-level">
         <div className="price-level">$$$</div>
       </div>
+
+      </div>
+
+
+<div className = "big">show me when big</div>
+
+
     </div>
   );
 }

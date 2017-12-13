@@ -286,6 +286,12 @@ class DateResults extends Component {
         <div className="price-level">{business.price}</div>
       </div>
     </div>
+
+    <div className = "big">
+    
+    
+    
+    </div>
 </div>
         )
       }
