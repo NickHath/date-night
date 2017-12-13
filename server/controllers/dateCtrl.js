@@ -95,26 +95,30 @@ module.exports = {
     db.get_one_date(req.body.test).then( (resp) => {
       
       let arr = [resp[0].first_business, resp[0].second_business, resp[0].third_business]
-      console.log(arr)
       let arr2 = ['','','']
       let count = 3;
+
       arr.map( (ID, I) => {
+        if(ID){
         axios.get(`${baseUrl}${ID}`, config).then(resp => {
-         
           arr2[I] = resp.data
           count--
           if(count === 0){
-            console.log(arr2)
             res.status(200).send(arr2)
-            
           }
         })
-        
-        
-      })
+      }
       
-    })
-  },
+      else{
+        count--;
+        if(count === 0){
+          console.log(arr2)
+          res.status(200).send(arr2)
+        }
+      }
+    }) 
+  })
+},
 
 
   getAllDates: (req, res) => {
