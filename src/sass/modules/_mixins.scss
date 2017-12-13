@@ -20,16 +20,14 @@
     font-family: $main-font;
     font-weight: bold;
     color: #000000;
-    margin: auto;
-    font-size: 48px;
-    display: flex;
+    font-size: 56px;
+    margin: 15px;
 }
 
 @mixin header5setup{
     font-family: $main-font;
     font-weight: bold;
     color: #000000;
-    margin: auto;
     font-size: 40px;
     display: flex;
 }
@@ -42,7 +40,7 @@
 }
 
 @mixin header3SetUp {
-    font-family: $test;
+    font-family: $main-font;
     font-weight: normal;
     color: #000000;
     font-size: 26px;
@@ -57,10 +55,17 @@
     margin: 15px;
 }
 
+@mixin header6SetUp {
+    font-family: $main-font;
+    color: $white;
+    font-size: 28px;
+    margin: 20px;
+}
+
 
 @mixin mainBtn {
     background-color: $link-color;
-    width: 100%;
+    width: 300px;
     height: 100px;
     color: $white;
     border: none;
@@ -68,22 +73,22 @@
     font-size: 21px;
     cursor: pointer;
     border-radius: 0px;
-    
-    margin: auto;
-    margin-bottom: 10px;
+    margin: 10px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.2);    
 }
 
 @mixin secondBtn {
     border: 5px solid $link-color;
     background-color: $white;
-    width: 100%;
+    width: 300px;
     height: 100px;
     color: $link-color;
     font-family: $main-font;
     font-size: 21px;
     cursor: pointer;
     border-radius: 0px;
-    margin: auto;
+    margin: 10px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.2);
 }
 
 @mixin thirdBtn {
@@ -97,6 +102,8 @@
     cursor: pointer;
     border-radius: 0px;
     margin: 10px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.2);
+    
 }
 
 @mixin fourthBtn {
@@ -110,5 +117,7 @@
     cursor: pointer;
     border-radius: 0px;
     margin: 10px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.2);
+    
 }
  
