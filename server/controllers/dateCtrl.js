@@ -112,28 +112,28 @@ module.exports = {
           .slice(0, len)        // return required number of characters
           .replace(/\+/g, '0')  // replace '+' with '0'
           .replace(/\//g, '0'); // replace '/' with '0'
-  }
+    }
     let date_id = randomValueBase64(6)
     db.check_date_ID(date_id).then( (resp) => {
       
       if(resp[0]){
         date_id = randomValueBase64(6)
-        res.status(200).send("same id used")
+        res.status(200).send("ID taken")
       }
       else{
         res.status(200).send(date_id)
       }
     })
-    let { title, first_buisness, second_buisness, third_buisness } = req.body
-    db.add_date([date_id, title, first_buisness, second_buisness, third_buisness]).then( () => {
-      res.status(200).send("successfully added date")
+    let { title, first_business, second_business, third_business } = req.body
+    db.add_date([date_id, title, first_business, second_business, third_business]).then( () => {
+      res.status(200).send(date_id)
     }).catch(err => res.status(500).send(err));
   },
 
   modifyDate: (req,res) => {
     const db = req.app.get('db')
-    let {first_buisness, second_buisness, third_buisness } = req.body
-    db.modify_date([req.params.id, first_buisness, second_buisness, third_buisness ]).then(() => {
+    let {first_business, second_business, third_business } = req.body
+    db.modify_date([req.params.id, first_business, second_business, third_business ]).then(() => {
       res.status(200).send("succesfully modified date")
     }).catch(err => res.status(500).send(err));
   },

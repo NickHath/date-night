@@ -10,6 +10,7 @@ import DateDesktop from './components/DateResults/DateDesktop';
 export default (
   <Switch>
     <Route exact path='/' component={ Landing }/>
+    <Route path='/results/:id' component={ DateResults }/>
     <Route path='/results' component={ DateResults }/>
     <Route path='/dates' component={ DateDesktop } />
     <Route path='/finalizer' component={ Finalizer }/>
