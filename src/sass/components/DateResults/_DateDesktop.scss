@@ -1,0 +1,21 @@
+.side-nav {
+    background-color: $primary-color;
+    height: 100vh;
+    width: 25vw;
+}
+
+.icons-box {
+    display: flex;
+    align-items: center;
+    
+}
+
+.logo-side {
+    height: 200px;
+    margin-top: 75px;
+}
+
+h6 {
+    @include header6SetUp;
+}
+
