@@ -40,6 +40,7 @@ import ShuffleBtn from '../../assets/Shuffle.svg';
 class DateResults extends Component {
   constructor(props) {
     super(props);
+    console.log('URL', this.props.match.params.id);
 
     // hit Yelp API to get results for all main categories 
     let allCategories = props.categories.day.concat(props.categories.night);
@@ -68,7 +69,6 @@ class DateResults extends Component {
 
   // runs the initial refreshDate after component renders
   componentDidMount() {
-    console.log('URL', this.props.match.params.id);
     this.refreshDate();
   }
 
@@ -173,8 +173,9 @@ class DateResults extends Component {
       this.setState({ lockedBusinesses: newLocked  }, () => {
         this.props.finalizeDate(this.state.businesses);
         // store date in DB and put ID on store
+        let { location, radius, startDate, startTime, duration } = this.props.preferences;
         let keys = [ "first_business", "second_business", "third_business" ];
-        let date = { title: '' };
+        let date = { title: '', location, radius, startDate, startTime, duration  };
         this.state.businesses.forEach((business, index) => {
           if (business.id) {
             date[keys[index]] = business.id;

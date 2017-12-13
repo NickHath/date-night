@@ -124,8 +124,10 @@ module.exports = {
         res.status(200).send(date_id)
       }
     })
-    let { title, first_business, second_business, third_business } = req.body
-    db.add_date([date_id, title, first_business, second_business, third_business]).then( () => {
+    let { title, first_business, second_business, third_business } = req.body;
+    // destructure preferences from req.body
+    let { location, radius, startDate, startTime, duration } = req.body;
+    db.add_date([date_id, title, first_business, second_business, third_business, location, radius, startDate, startTime, duration]).then( () => {
       res.status(200).send(date_id)
     }).catch(err => res.status(500).send(err));
   },
