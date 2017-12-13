@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import mojs from 'mo-js';
 
 // components
 import Date from './Date';
@@ -7,6 +8,7 @@ import MobileHeader from './MobileHeader';
 import DateCard from './DateCard';
 import SaveDate from './SaveDate';
 import AddCard from './AddCard';
+import Loading from './Loading'
 //materialUI
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
@@ -24,6 +26,14 @@ import logo from '../../assets/Icon.svg';
 import IconBulb from '../../assets/Icon_White.svg';
 import FilterBtn from '../../assets/Settings.svg';
 import ShuffleBtn from '../../assets/Shuffle.svg';
+
+
+
+
+
+
+
+
 
 // STATE EXPLAINED:
 // businesses and categories are used for the current displayed date
@@ -44,7 +54,7 @@ class DateResults extends Component {
     // hit Yelp API to get results for all main categories 
     let allCategories = props.categories.day.concat(props.categories.night);
     allCategories.forEach(category => {
-      props.getResults(props.preferences.location, category, props.preferences.radius);
+      props.getResults(props.preferences.location, category, props.preferences.radius)
     });
 
     // initalize state arrays using the duration preference for length
@@ -62,6 +72,7 @@ class DateResults extends Component {
       businesses,
       lockedBusinesses: locked,
       expanded: false,
+      isLoading: true
     }
   }
 
@@ -85,8 +96,8 @@ class DateResults extends Component {
           newBusinesses[index] = results[categories[index]][randIndex];
         }
       })
+    this.setState({ businesses: newBusinesses, isLoading: false });
     }
-    this.setState({ businesses: newBusinesses });
   }
 
   // to refresh a date, we need to 1. get random categories
@@ -297,7 +308,19 @@ class DateResults extends Component {
       }
     })
 
+
+
+
+
     return (
+      this.state.isLoading
+        
+        ?
+
+        <Loading/>
+        
+        :
+
       <div className='date-results'>
        <div className='mobile-header' >
                 <img className="logo-bulb" src={IconBulb} alt="Home Logo" height="75px" />
@@ -337,12 +360,16 @@ class DateResults extends Component {
                 </div>
             </div>
         
-      
-        
       { displayBusinesses }
         <SaveDate finalizeDate={ () => this.finalizeDate() } />
       </div>
     );
+
+
+
+
+
+
   }
 }
 

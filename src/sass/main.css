@@ -53,6 +53,9 @@ table {
 /* by default, will apply styling to provider $width and larger */
 /* encourages mobile first design */
 /* page layout */
+#id {
+  position: relative; }
+
 .landing {
   display: grid;
   grid-template-columns: 1fr;
@@ -360,7 +363,8 @@ h5 {
   margin: 15px 15px 0px; }
 
 .date-card {
-  border: solid 10px #e5e5e5; }
+  border: solid 10px #e5e5e5;
+  background-color: #FFF; }
 
 .rating-number {
   color: #e57455;
@@ -561,3 +565,13 @@ h6 {
   color: #ffffff;
   font-size: 28px;
   margin: 20px; }
+
+#loader {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  overflow: hidden; }
