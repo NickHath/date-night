@@ -185,6 +185,11 @@ class DateResults extends Component {
     }
   }
 
+  test(){
+    let test = {test: "bJ6T7J"}
+    axios.post('/api/yelp/business', test)
+  }
+
   hideAndUnhide(){
 
 
