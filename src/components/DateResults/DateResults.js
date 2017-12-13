@@ -62,6 +62,7 @@ class DateResults extends Component {
       businesses,
       lockedBusinesses: locked,
       expanded: false,
+      loading: true
     }
   }
 
@@ -85,8 +86,8 @@ class DateResults extends Component {
           newBusinesses[index] = results[categories[index]][randIndex];
         }
       })
+      this.setState({ businesses: newBusinesses, loading: false });
     }
-    this.setState({ businesses: newBusinesses });
   }
 
   // to refresh a date, we need to 1. get random categories
