@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import mojs from 'mo-js';
 
 // components
 import Date from './Date';
@@ -7,8 +8,12 @@ import MobileHeader from './MobileHeader';
 import DateCard from './DateCard';
 import SaveDate from './SaveDate';
 import AddCard from './AddCard';
+<<<<<<< HEAD
 import DateDesktop from './DateDesktop';
 
+=======
+import Loading from './Loading'
+>>>>>>> master
 //materialUI
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
@@ -27,6 +32,14 @@ import IconBulb from '../../assets/Icon_White.svg';
 import FilterBtn from '../../assets/Settings.svg';
 import ShuffleBtn from '../../assets/Shuffle.svg';
 
+
+
+
+
+
+
+
+
 // STATE EXPLAINED:
 // businesses and categories are used for the current displayed date
 // (they are arrays with length determined by preferences.duration)
@@ -42,13 +55,29 @@ import ShuffleBtn from '../../assets/Shuffle.svg';
 class DateResults extends Component {
   constructor(props) {
     super(props);
+
+    // hit Yelp API to get results for all main categories 
+    let allCategories = props.categories.day.concat(props.categories.night);
+    allCategories.forEach(category => {
+      props.getResults(props.preferences.location, category, props.preferences.radius)
+    });
+
+    // initalize state arrays using the duration preference for length
+    let durations = { 'short': 1, 'medium': 2, 'long': 3 };
+    let locked = [], businesses = [], categories = [];
+    for (let i = durations[props.preferences.duration]; i > 0; i--) {
+      locked.push(false);
+      categories.push('');
+      businesses.push(null);
+    }
+
     this.state = {
       categories: [],
       lockedCategories: [],
       businesses: [],
       lockedBusinesses: [],
       expanded: false,
-      loading: true
+      isLoading: true
     }
   }
 
@@ -113,7 +142,7 @@ class DateResults extends Component {
           newBusinesses[index] = results[categories[index]][randIndex];
         }
       })
-      this.setState({ businesses: newBusinesses, loading: false });
+      this.setState({ businesses: newBusinesses, isLoading: false });
     }
   }
 
@@ -339,8 +368,21 @@ class DateResults extends Component {
       }
     })
 
+
+
+
+
     return (
+      this.state.isLoading
+        
+        ?
+
+        <Loading/>
+        
+        :
+
       <div className='date-results'>
+<<<<<<< HEAD
         <div className='mobile-header' >
           <img className="logo-bulb" src={IconBulb} alt="Home Logo" height="75px" />
           <div className="right-icons">
@@ -383,8 +425,56 @@ class DateResults extends Component {
 
         {displayBusinesses}
         <SaveDate finalizeDate={() => this.finalizeDate()} />
+=======
+       <div className='mobile-header' >
+                <img className="logo-bulb" src={IconBulb} alt="Home Logo" height="75px" />
+                <div className="right-icons">
+                    <img onClick={this.handleOpen} className="filter-btn" src={FilterBtn} alt="Filter Button" height="80px" />
+                        <Dialog
+                            title="FILTER SETTINGS"
+                            actions={actions}
+                            modal={false}
+                            open={this.state.open}
+                            onRequestClose={this.handleClose}
+                            style={{backgroundColor: 'rgba(225, 225, 225, .75)'}}
+                            titleStyle={{fontSize: '36px', lineHeight: '40px', fontWeight: 'bold', fontFamily:'Helvetica'}}
+                        >
+                            <div style={styles.block}>
+                                <Toggle
+                                    label="I'M ON A BUDGET"
+                                    labelPosition="right"
+                                    style={styles.toggle}
+                                    thumbSwitchedStyle={styles.thumbSwitched}                                
+                                />
+                                <Toggle
+                                    label="STONE COLD SOBER"
+                                    labelPosition="right"
+                                    style={styles.toggle}
+                                    thumbSwitchedStyle={styles.thumbSwitched}
+                                />
+                                <Toggle
+                                    label="DON'T MAKE ME EXERCISE"
+                                    labelPosition="right"
+                                    style={styles.toggle}
+                                    thumbSwitchedStyle={styles.thumbSwitched}
+                                />
+                            </div>
+                        </Dialog>
+                    <img className="shuffle-btn" src={ShuffleBtn} onClick={ () => this.refreshDate() } alt="Shuffle Button" height="80px" />
+                </div>
+            </div>
+        
+      { displayBusinesses }
+        <SaveDate finalizeDate={ () => this.finalizeDate() } />
+>>>>>>> master
       </div>
     );
+
+
+
+
+
+
   }
 }
 
