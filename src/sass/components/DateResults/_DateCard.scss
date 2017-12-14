@@ -6,6 +6,7 @@
 
 .date-card {
     border: solid 10px $bg-color;
+    background-color: #FFF;
 }
 
 .rating-number {
@@ -16,8 +17,6 @@
     margin-top: 4px;
     font-size: 18px;
 }
-
-
 
 .price-level {
     color: $primary-color;
@@ -75,7 +74,6 @@
     color: #000000;
     margin: 27px;
     width: 300px;
-    
 }
 
 .closed{
@@ -181,15 +179,49 @@
 .expandable-arrow:hover {
     transform:rotate(180deg);
 }
-.big{
+.big-date{
     display: none;
 }
 
 @media screen and (min-width: 750px) {
-    .date-card{
+    .date-card, .mobile-header {
+        display: none;
+    }
+
+    .big-date {
+        display: block;
+    }
+
+    // .date {
+    //     border: solid 10px $bg-color;
+    // }
+    
+    .side-nav {
+        background-color: $primary-color;
+        height: 100vh;
+        width: 25vw;
         display: flex;
-        color: red;
-        font-size: 60px;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
     }
     
+    .icons-box {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo-side {
+        height: 175px;
+    }
+    
+    h6 {
+        @include header6SetUp;
+    }
+    
+    .save-button {
+        @include fourthBtn;
+        width: 90%;
+        margin-top: 100px;
+    }
 }

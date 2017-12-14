@@ -48,7 +48,7 @@ class SaveDate extends Component {
 
                     >
                     <div className="input-box">
-                        <input value={"http://localhost:300/results/" + this.props.sharingId} className="share-input" placeholder="copy URL"  />
+                        <input value={"http://localhost:3000/results/" + this.props.sharingId} className="share-input" placeholder="copy URL"  />
                         <img className="logo-bulb" src={Share} alt="Share Icon" height="35px" />
                     </div>
                     <div className="white-line"></div>

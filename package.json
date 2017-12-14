@@ -26,6 +26,7 @@
     "massive": "^4.5.0",
     "material-ui": "^0.20.0",
     "material-ui-slider-label": "git+https://github.com/tariqwest/material-ui-slider-label.git",
+    "mo-js": "^0.288.2",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
     "passport": "^0.4.0",
