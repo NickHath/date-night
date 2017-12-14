@@ -54,7 +54,8 @@ table {
 /* encourages mobile first design */
 /* page layout */
 #root {
-  position: relative; }
+  position: relative;
+  background-color: #FFF; }
 
 .landing {
   display: grid;
