@@ -8,12 +8,8 @@ import MobileHeader from './MobileHeader';
 import DateCard from './DateCard';
 import SaveDate from './SaveDate';
 import AddCard from './AddCard';
-<<<<<<< HEAD
-import DateDesktop from './DateDesktop';
-
-=======
 import Loading from './Loading'
->>>>>>> master
+import DateDesktop from './DateDesktop';
 //materialUI
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
@@ -229,14 +225,9 @@ class DateResults extends Component {
       this.setState({ lockedBusinesses: newLocked }, () => {
         this.props.finalizeDate(this.state.businesses);
         // store date in DB and put ID on store
-<<<<<<< HEAD
-        let keys = ["first_business", "second_business", "third_business"];
-        let date = { title: '' };
-=======
         let { location, radius, startDate, startTime, duration } = this.props.preferences;
         let keys = [ "first_business", "second_business", "third_business" ];
         let date = { title: '', location, radius, startDate, startTime, duration  };
->>>>>>> master
         this.state.businesses.forEach((business, index) => {
           if (business.id) {
             date[keys[index]] = business.id;
@@ -247,16 +238,12 @@ class DateResults extends Component {
     }
   }
 
-<<<<<<< HEAD
-  hideAndUnhide() {
-=======
   test(){
     let test = {test: "bJ6T7J"}
     axios.post('/api/yelp/business', test)
   }
 
   hideAndUnhide(){
->>>>>>> master
 
 
   }
@@ -300,11 +287,6 @@ class DateResults extends Component {
     console.log('PROPS:', this.props);
     let displayBusinesses = this.state.businesses.map((business, index) => {
       if (business !== null) {
-<<<<<<< HEAD
-
-        console.log(business)
-=======
->>>>>>> master
         return (
           <div>
             <div className='date-card'>
@@ -382,50 +364,6 @@ class DateResults extends Component {
         :
 
       <div className='date-results'>
-<<<<<<< HEAD
-        <div className='mobile-header' >
-          <img className="logo-bulb" src={IconBulb} alt="Home Logo" height="75px" />
-          <div className="right-icons">
-            <img onClick={this.handleOpen} className="filter-btn" src={FilterBtn} alt="Filter Button" height="80px" />
-            <Dialog
-              title="FILTER SETTINGS"
-              actions={actions}
-              modal={false}
-              open={this.state.open}
-              onRequestClose={this.handleClose}
-              style={{ backgroundColor: 'rgba(225, 225, 225, .75)' }}
-              titleStyle={{ fontSize: '36px', lineHeight: '40px', fontWeight: 'bold', fontFamily: 'Helvetica' }}
-            >
-              <div style={styles.block}>
-                <Toggle
-                  label="I'M ON A BUDGET"
-                  labelPosition="right"
-                  style={styles.toggle}
-                  thumbSwitchedStyle={styles.thumbSwitched}
-                />
-                <Toggle
-                  label="STONE COLD SOBER"
-                  labelPosition="right"
-                  style={styles.toggle}
-                  thumbSwitchedStyle={styles.thumbSwitched}
-                />
-                <Toggle
-                  label="DON'T MAKE ME EXERCISE"
-                  labelPosition="right"
-                  style={styles.toggle}
-                  thumbSwitchedStyle={styles.thumbSwitched}
-                />
-              </div>
-            </Dialog>
-            <img className="shuffle-btn" src={ShuffleBtn} onClick={() => this.refreshDate()} alt="Shuffle Button" height="80px" />
-          </div>
-        </div>
-
-
-
-        {displayBusinesses}
-        <SaveDate finalizeDate={() => this.finalizeDate()} />
-=======
        <div className='mobile-header' >
                 <img className="logo-bulb" src={IconBulb} alt="Home Logo" height="75px" />
                 <div className="right-icons">
@@ -466,7 +404,6 @@ class DateResults extends Component {
         
       { displayBusinesses }
         <SaveDate finalizeDate={ () => this.finalizeDate() } />
->>>>>>> master
       </div>
     );
 
