@@ -14,7 +14,7 @@ import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 // redux
 import { connect } from 'react-redux';
-import { getResults, finalizeDate, addSharingId } from '../../ducks/reducer';
+import { getResults, finalizeDate, addSharingId, addPreferences } from '../../ducks/reducer';
 // SVGS
 import DeleteCard from '../../assets/Delete.svg';
 import Star from '../../assets/Star.svg';
@@ -31,7 +31,7 @@ import ShuffleBtn from '../../assets/Shuffle.svg';
 // businesses and categories are used for the current displayed date
 // (they are arrays with length determined by preferences.duration)
 // 
-// businessesLocked and categoriesLocked are used to determined whether or not
+// lockedBusinesses and lockedCategories are used to determined whether or not
 // we update the business or category with the same index (they are also arrays)
 // 
 // REFRESHDATE EXPLAINED:
@@ -42,35 +42,61 @@ import ShuffleBtn from '../../assets/Shuffle.svg';
 class DateResults extends Component {
   constructor(props) {
     super(props);
-
-    // hit Yelp API to get results for all main categories 
-    let allCategories = props.categories.day.concat(props.categories.night);
-    allCategories.forEach(category => {
-      props.getResults(props.preferences.location, category, props.preferences.radius);
-    });
-
-    // initalize state arrays using the duration preference for length
-    let durations = { 'short': 1, 'medium': 2, 'long': 3 };
-    let locked = [], businesses = [], categories = [];
-    for (let i = durations[props.preferences.duration]; i > 0; i--) {
-      locked.push(false);
-      categories.push('');
-      businesses.push(null);
-    }
-
     this.state = {
-      categories,
-      lockedCategories: locked,
-      businesses,
-      lockedBusinesses: locked,
+      categories: [],
+      lockedCategories: [],
+      businesses: [],
+      lockedBusinesses: [],
       expanded: false,
+      loading: true
     }
   }
 
   // runs the initial refreshDate after component renders
   componentDidMount() {
-    console.log('URL', this.props.match.params.id);
-    this.refreshDate();
+    axios.get(`/api/getDate/${this.props.match.params.id}`).then(res => {
+      // set preferences to db date preferences if we have an id
+      if (res.data.length > 0) {
+        let { date_location, date_radius, day, start_time, duration } = res.data[0];
+        this.props.addPreferences({ 
+          location: date_location, 
+          radius: date_radius, 
+          startDate: day,
+          startTime: start_time,
+          duration: duration
+        });
+      }
+      // hit Yelp API to get results for all main categories 
+      let allCategories = this.props.categories.day.concat(this.props.categories.night);
+      allCategories.forEach(category => {
+        this.props.getResults(this.props.preferences.location, category, this.props.preferences.radius);
+      });     
+
+      let categories = [], lockedCategories = [], businesses = [], lockedBusinesses = [];
+      let durations = { 'short': 1, 'medium': 2, 'long': 3 };
+      // initalize state arrays using the duration preference for length
+      for (let i = durations[this.props.preferences.duration]; i > 0; i--) {
+        categories.push('');
+        lockedCategories.push(false);
+        businesses.push(null);
+        lockedBusinesses.push(false);
+      }
+
+      if (res.data.length > 0) {
+        axios.post('/api/yelp/business', { id: this.props.match.params.id })
+             .then(res => {
+              if (res.data.length > 0) {
+                businesses = res.data;
+                lockedBusinesses = lockedBusinesses.map(bool => true);
+              }
+              this.setState({ categories, lockedCategories, businesses, lockedBusinesses });
+              this.refreshDate();
+             })
+      } else {
+        this.setState({ categories, lockedCategories, businesses, lockedBusinesses });
+        this.refreshDate();
+      }
+    });
   }
 
   // will run when our store changes (i.e., when results have been returned from our Yelp API call)
@@ -87,8 +113,8 @@ class DateResults extends Component {
           newBusinesses[index] = results[categories[index]][randIndex];
         }
       })
+      this.setState({ businesses: newBusinesses, loading: false });
     }
-    this.setState({ businesses: newBusinesses });
   }
 
   // to refresh a date, we need to 1. get random categories
@@ -174,8 +200,14 @@ class DateResults extends Component {
       this.setState({ lockedBusinesses: newLocked }, () => {
         this.props.finalizeDate(this.state.businesses);
         // store date in DB and put ID on store
+<<<<<<< HEAD
         let keys = ["first_business", "second_business", "third_business"];
         let date = { title: '' };
+=======
+        let { location, radius, startDate, startTime, duration } = this.props.preferences;
+        let keys = [ "first_business", "second_business", "third_business" ];
+        let date = { title: '', location, radius, startDate, startTime, duration  };
+>>>>>>> master
         this.state.businesses.forEach((business, index) => {
           if (business.id) {
             date[keys[index]] = business.id;
@@ -186,7 +218,16 @@ class DateResults extends Component {
     }
   }
 
+<<<<<<< HEAD
   hideAndUnhide() {
+=======
+  test(){
+    let test = {test: "bJ6T7J"}
+    axios.post('/api/yelp/business', test)
+  }
+
+  hideAndUnhide(){
+>>>>>>> master
 
 
   }
@@ -203,7 +244,6 @@ class DateResults extends Component {
 
 
   render() {
-
     const actions = [
       <img
         primary={true}
@@ -231,8 +271,11 @@ class DateResults extends Component {
     console.log('PROPS:', this.props);
     let displayBusinesses = this.state.businesses.map((business, index) => {
       if (business !== null) {
+<<<<<<< HEAD
 
         console.log(business)
+=======
+>>>>>>> master
         return (
           <div>
             <div className='date-card'>
@@ -349,4 +392,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { getResults, finalizeDate, addSharingId })(DateResults);
+export default connect(mapStateToProps, { getResults, finalizeDate, addSharingId, addPreferences })(DateResults);
