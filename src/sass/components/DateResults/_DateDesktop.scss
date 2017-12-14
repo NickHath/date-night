@@ -1,21 +1,147 @@
+.date{
+    display: grid;
+    grid-template-columns: 20px 3fr 0.5fr 100px;
+    grid-template-areas: 
+    "circle-lock date-information yelp-container side-level"
+}
+
+.date-information {
+    grid-area: date-information;
+}
+
+.yelp-container {
+    grid-area: yelp-container;
+}
+
+.date-desktop {
+    display: flex;
+    overflow-y: hidden;
+}
+
 .side-nav {
     background-color: $primary-color;
     height: 100vh;
     width: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 5;
 }
 
 .icons-box {
     display: flex;
     align-items: center;
-    
 }
 
 .logo-side {
-    height: 200px;
-    margin-top: 75px;
+    height: 145px;
 }
 
-h6 {
-    @include header6SetUp;
+.place-name {
+    font-family: $main-font;
+    font-weight: bold;
+    color: #000000;
+    font-size: 250%;
+    margin: 20px 11px 20px 11px;
 }
 
+.save-button {
+    @include fourthBtn;
+    width: 90%;
+    margin-top: 100px;
+}
+
+.date {
+    border: solid 10px $bg-color;
+    height: 29vh;
+    width: 73vw;
+    margin-top: 1%;
+    margin-left: -15px;
+    z-index: 1;
+}
+
+.results-text {
+    @include header2SetUp;
+    margin: 15px;
+}
+
+.results-response {
+    color: $link-color;  
+    font-family: $main-font;
+    font-size: 14px;
+}
+
+.category {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid #000;
+    width: 350px;
+    margin-left: 50px;
+}
+
+.second-top-level, .middle-level, .first-bottom-level, .phone , .yelp-container{
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+}
+
+.second-top-level {
+    margin-top: auto;
+}
+
+.yelp-desktop {
+    border-radius: 50%;
+    height: 170px;
+    width: 170px;
+}
+
+.circle-lock {
+    @include flexSetUp;
+    border-radius: 50%;
+    height: 75px;
+    width: 75px; 
+    background-color: $secondary-color;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    grid-area: circle-lock;
+    margin: auto;
+    margin-left: -30px;
+}
+
+
+.ratings {
+    margin-right: 30px;
+    margin-top: 15px;
+}
+
+.price {
+    color: $primary-color;
+    font-family: $main-font;
+    margin-right: 8px;
+    margin-top: 4px;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px;
+}
+
+.date {
+    align-items: center;
+}
+
+.side-btn-text {
+    font-family: $main-font;
+    color: $white;
+    font-size: 18px;
+    margin: 20px;
+}
+
+.side-level {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}

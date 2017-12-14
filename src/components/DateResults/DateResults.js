@@ -9,6 +9,7 @@ import DateCard from './DateCard';
 import SaveDate from './SaveDate';
 import AddCard from './AddCard';
 import Loading from './Loading'
+import DateDesktop from './DateDesktop';
 //materialUI
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
@@ -144,7 +145,7 @@ class DateResults extends Component {
   // to refresh a date, we need to 1. get random categories
   // then 2. use these categories to get random businesses
   refreshDate() {
-    this.getRandomCategories(this.props.preferences.startTime);    
+    this.getRandomCategories(this.props.preferences.startTime);
   }
 
   // cycles through lockedBusinesses, when index is not locked it will 
@@ -176,7 +177,7 @@ class DateResults extends Component {
         newCategories[index] = this.randomCategory(startTime);
       }
       // each location adds 2 hours to time
-      startTime += 200;         
+      startTime += 200;
     });
     // pass updateBusinesses as a callback so it runs AFTER we get our categories
     this.setState({ categories: newCategories }, () => {
@@ -221,7 +222,7 @@ class DateResults extends Component {
       // set all values in lockedBusinesses to true before finalizing
       let newLocked = [...this.state.lockedBusinesses];
       newLocked.forEach((bool, index) => newLocked[index] = true);
-      this.setState({ lockedBusinesses: newLocked  }, () => {
+      this.setState({ lockedBusinesses: newLocked }, () => {
         this.props.finalizeDate(this.state.businesses);
         // store date in DB and put ID on store
         let { location, radius, startDate, startTime, duration } = this.props.preferences;
@@ -246,7 +247,7 @@ class DateResults extends Component {
 
 
   }
-  
+
 
   handleOpen = () => {
     this.setState({ open: true });
@@ -261,26 +262,26 @@ class DateResults extends Component {
   render() {
     const actions = [
       <img
-          primary={true}
-          onClick={this.handleClose}
+        primary={true}
+        onClick={this.handleClose}
       />,
       <img
-          primary={true}
-          keyboardFocused={true}
-          onClick={this.handleClose}
+        primary={true}
+        keyboardFocused={true}
+        onClick={this.handleClose}
       />,
-  ];
-  const styles = {
+    ];
+    const styles = {
       block: {
-          maxWidth: 300,
+        maxWidth: 300,
       },
       toggle: {
-          marginTop: 30,
+        marginTop: 30,
       },
       thumbSwitched: {
-          backgroundColor: '#03a9f4',
+        backgroundColor: '#03a9f4',
       },
-  };
+    };
 
     console.log('STATE:', this.state);
     console.log('PROPS:', this.props);
@@ -295,59 +296,56 @@ class DateResults extends Component {
                   <div className="rating-number">{business.rating}</div>
                   <img className="Star" src={Star} alt="Star Icon" height="25px" />
                 </div>
+              </div>
+              <div className="mid-level">
+                <div className="start-box">
+                  <img className="start-icon" src={Clock} alt="Starting Time Clock" height="80px" />
+                  <div className="start-time">4:30pm</div>
+                </div>
+                <img className="yelp-img" src={business.image_url ? business.image_url : logo} alt="YELP Place" />
+                <img className="lock-icon" onClick={() => this.lockBusiness(index)} src={Lock} alt="Lock Date Icon" height="80px" />
+              </div>
+              <div className="location-text">
+                <h4>{business.name}</h4>
+              </div>
+              <div className="gray-line"></div>
+              <div className="expandable-container">
+                <div className="see-more">SEE MORE DETAILS</div>
+                <img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" />
+              </div>
+
+              <div className={this.state.expanded ? "expanded" : "closed"}>
+                <div className="see-more">HIDE DETAILS</div>
+                <img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" />
+                <div className={!this.state.lockedCategories[index] ? "lock-type" : "locked-category"} onClick={() => this.lockCategory(index, business.categories[0].alias)}>
+                  <div className="type">TYPE:</div>
+                  <div className="type-response" >{business.categories[0].title}</div>
+                  <img className="lock-icon-small" src={Lock} alt="Lock Type Icon" height="28px" />
+                </div>
+                <div className="data-box">
+                  <div className="data-labels">
+                    <div className="data phone">PHONE:</div>
+                    <div className="data first-address">ADDRESS:</div>
+                    <div className="data second-address"></div>
+                  </div>
+                  <div className="data-response">
+                    <div className="data phone-response">555-555-5555</div>
+                    <div className="data first-address-response">1234 Provo St.</div>
+                    <div className="data second-address-response">Provo, UT 84043</div>
+                  </div>
+                </div>
+                <div className="hours"></div>
+              </div>
+              <div className="bottom-level">
+                <div className="price-level">{business.price}</div>
+              </div>
             </div>
-      <div className="mid-level">
-        <div className="start-box">
-          <img className="start-icon" src={Clock} alt="Starting Time Clock" height="80px" />
-          <div className="start-time">4:30pm</div>
-        </div>
-        <img className="yelp-img" src={business.image_url ? business.image_url : logo} alt="YELP Place" />
-        <img className="lock-icon" onClick={ () => this.lockBusiness(index) } src={Lock} alt="Lock Date Icon" height="80px" />
-      </div>
-      <div className="location-text">
-        <h4>{business.name}</h4>
-      </div>
-      <div className="gray-line"></div>
-      <div className="expandable-container">
-        <div className="see-more">SEE MORE DETAILS</div>
-        <img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" />
-      </div>
 
-      <div className={this.state.expanded ? "expanded" : "closed"}>
-        <div className="see-more">HIDE DETAILS</div>
-        <img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" />
-        <div className={!this.state.lockedCategories[index] ?"lock-type" : "locked-category"} onClick={ () => this.lockCategory(index, business.categories[0].alias) }>
-          <div className="type">TYPE:</div>
-          <div className="type-response" >{business.categories[0].title}</div>
-          <img className="lock-icon-small" src={Lock} alt="Lock Type Icon" height="28px" />
-        </div>
-        <div className="data-box">
-          <div className="data-labels">
-            <div className="data phone">PHONE:</div>
-            <div className="data first-address">ADDRESS:</div>
-            <div className="data second-address"></div>
+            <div className="big-date">
+                <DateDesktop />
+              </div>
+
           </div>
-          <div className="data-response">
-            <div className="data phone-response">555-555-5555</div>
-            <div className="data first-address-response">1234 Provo St.</div>
-            <div className="data second-address-response">Provo, UT 84043</div>
-          </div>
-        </div>
-
-
-        <div className="hours"></div>
-      </div>
-      <div className="bottom-level">
-        <div className="price-level">{business.price}</div>
-      </div>
-    </div>
-
-    <div className = "big">
-    
-    
-    
-    </div>
-</div>
         )
       }
     })

@@ -6,6 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 
 
+
 export default class MobileHeader extends Component {
     constructor() {
         super()
@@ -53,7 +54,7 @@ export default class MobileHeader extends Component {
                 <div className="side-icons">
                     <div className="icons-box">
                         <img className="shuffle-btn" src={ShuffleBtn} alt="Shuffle Button" height="80px" />
-                        <h6>SHUFFLE LIST</h6>
+                        <p className="side-btn-text">SHUFFLE LIST</p>
                     </div>
                     <div className="icons-box">
                         <img onClick={this.handleOpen} className="filter-btn" src={FilterBtn} alt="Filter Button" height="80px" />
@@ -87,8 +88,9 @@ export default class MobileHeader extends Component {
                                 />
                             </div>
                         </Dialog>
-                        <h6>FILTER</h6>
+                        <p className="side-btn-text">FILTER</p>
                     </div>
+                    <button className="save-button">SAVE MY DATE</button>
                 </div>
             </div>
         );
