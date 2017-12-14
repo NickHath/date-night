@@ -147,15 +147,13 @@ module.exports = {
           .replace(/\//g, '0'); // replace '/' with '0'
     }
     let date_id = randomValueBase64(6)
+    
     db.check_date_ID(date_id).then( (resp) => {
       
       if(resp[0]){
         date_id = randomValueBase64(6)
-        res.status(200).send("ID taken")
       }
-      else{
-        res.status(200).send(date_id)
-      }
+      
     })
     let { title, first_business, second_business, third_business } = req.body
     db.add_date([date_id, title, first_business, second_business, third_business]).then( () => {
