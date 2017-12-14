@@ -29,7 +29,7 @@ import ShuffleBtn from '../../assets/Shuffle.svg';
 // businesses and categories are used for the current displayed date
 // (they are arrays with length determined by preferences.duration)
 // 
-// businessesLocked and categoriesLocked are used to determined whether or not
+// lockedBusinesses and lockedCategories are used to determined whether or not
 // we update the business or category with the same index (they are also arrays)
 // 
 // REFRESHDATE EXPLAINED:
@@ -70,22 +70,30 @@ class DateResults extends Component {
         this.props.getResults(this.props.preferences.location, category, this.props.preferences.radius);
       });     
 
-      let locked = [], businesses = [], categories = [];
+      let categories = [], lockedCategories = [], businesses = [], lockedBusinesses = [];
       let durations = { 'short': 1, 'medium': 2, 'long': 3 };
       // initalize state arrays using the duration preference for length
       for (let i = durations[this.props.preferences.duration]; i > 0; i--) {
-        locked.push(false);
         categories.push('');
+        lockedCategories.push(false);
         businesses.push(null);
+        lockedBusinesses.push(false);
       }
 
       if (res.data.length > 0) {
-        // set businesses to locations corresponding to the ID
-        // by hitting our business id API using YELP
-      } 
-      
-      this.setState({ categories, lockedCategories: locked, businesses, lockedBusinesses: locked });
-      this.refreshDate();
+        axios.post('/api/yelp/business', { id: this.props.match.params.id })
+             .then(res => {
+              if (res.data.length > 0) {
+                businesses = res.data;
+                lockedBusinesses = lockedBusinesses.map(bool => true);
+              }
+              this.setState({ categories, lockedCategories, businesses, lockedBusinesses });
+              this.refreshDate();
+             })
+      } else {
+        this.setState({ categories, lockedCategories, businesses, lockedBusinesses });
+        this.refreshDate();
+      }
     });
   }
 
@@ -225,7 +233,6 @@ class DateResults extends Component {
 
 
   render() {
-    console.log('NUMBER 2')
     const actions = [
       <img
           primary={true}

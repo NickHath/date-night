@@ -92,7 +92,7 @@ module.exports = {
   getBusinessById: (req, res ) => {
     
     const db = req.app.get("db");
-    db.get_one_date(req.body.test).then( (resp) => {
+    db.get_one_date(req.body.id).then( (resp) => {
       
       let arr = [resp[0].first_business, resp[0].second_business, resp[0].third_business]
       let arr2 = ['','','']
