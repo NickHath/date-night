@@ -53,7 +53,7 @@ table {
 /* by default, will apply styling to provider $width and larger */
 /* encourages mobile first design */
 /* page layout */
-#id {
+#root {
   position: relative; }
 
 .landing {

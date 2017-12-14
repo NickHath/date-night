@@ -25,7 +25,8 @@ class GearShape extends mojs.CustomShape {
     radius: {0 : 1000},
     duration: 500,
     easing: 'ease.inout',
-    fill: '#b20000',
+    fill: '#e57455',
+    // fill: '#b20000',
     delay: 2000,
   })
   
