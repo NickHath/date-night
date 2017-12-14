@@ -1,0 +1,221 @@
+{
+	"info": {
+		"name": "date_night",
+		"_postman_id": "5daff45d-0644-212e-96d1-d0c7f4dbca28",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Date",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:4200/api/addDate",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"api",
+						"addDate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Dates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:4200/api/getalldates",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"api",
+						"getalldates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Date By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:4200/api/getdate/319820389021",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"api",
+						"getdate",
+						"319820389021"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify Date",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:4200/api/modifydate/319820389021",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"api",
+						"modifydate",
+						"319820389021"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Businesses By Category (YELP)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Returns an array\", function() {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Array.isArray(res)).to.be.true;",
+							"})",
+							"",
+							"// NOTE: Yelp's API response might change depending on businesses in the area",
+							"pm.test(\"Returned array has 35 elements\", function() {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.length).to.eql(35);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"location\": \"provo\",\n\t\"category\": \"nightlife\",\n\t\"radius\": 30000\n}"
+				},
+				"url": {
+					"raw": "localhost:4200/api/yelp",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"api",
+						"yelp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a specific business by its Date ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Returns an array on success\", function() {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Array.isArray(res)).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Returned array has three elements\", function() {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res.length).to.eql(3);",
+							"});",
+							"",
+							"pm.test(\"Returned businesses have the correct ID\", function(){",
+							"    const res = pm.response.json();",
+							"    let businessIds = [];",
+							"    let correctIds = [\"heirloom-art-and-co-provo-2\", \"provo-river-parkway-provo\", \"elevated-grounds-coffee-and-espresso-lindon\"];",
+							"    res.forEach(business => businessIds.push(business.id));",
+							"    pm.expect(businessIds).to.eql(correctIds);",
+							"});",
+							"    ",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"tqdrTY\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4200/api/yelp/business",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"api",
+						"yelp",
+						"business"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
