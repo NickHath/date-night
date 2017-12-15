@@ -7,13 +7,15 @@ const initialState = {
   categories: categories,
   pending: 0,
   finalDate: [],
-  sharingId: ''
+  sharingId: '',
+  filters: { 'cheap': false, 'sober': false, 'sedentary': false }
 }
 
 const GET_RESULTS = 'GET_RESULTS'
     , ADD_PREFERENCES = 'ADD_PREFERENCES'
     , FINALIZE_DATE = 'FINALIZE_DATE'
-    , ADD_SHARING_ID = 'ADD_SHARING_ID';
+    , ADD_SHARING_ID = 'ADD_SHARING_ID'
+    , TOGGLE_FILTER = 'TOGGLE_FILTER';
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
@@ -32,6 +34,10 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { finalDate: action.payload });
     case ADD_SHARING_ID:
       return Object.assign({}, state, { sharingId: action.payload });
+    case TOGGLE_FILTER:
+      let filters = {...state.filters};
+      filters[action.payload] = !filters[action.payload];
+      return Object.assign({}, state, { filters });
     default:
       return state;
   } 
@@ -69,5 +75,12 @@ export function addSharingId(id) {
   return {
     type: ADD_SHARING_ID,
     payload: id
+  }
+}
+
+export function activateFilter(filter) {
+  return {
+    type: TOGGLE_FILTER,
+    payload: filter
   }
 }
