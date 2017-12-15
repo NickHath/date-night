@@ -15,7 +15,7 @@ import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 // redux
 import { connect } from 'react-redux';
-import { getResults, finalizeDate, addSharingId, addPreferences } from '../../ducks/reducer';
+import { getResults, finalizeDate, addSharingId, addPreferences, activateFilter } from '../../ducks/reducer';
 // SVGS
 import DeleteCard from '../../assets/Delete.svg';
 import Star from '../../assets/Star.svg';
@@ -386,18 +386,21 @@ class DateResults extends Component {
                                     label="I'M ON A BUDGET"
                                     labelPosition="right"
                                     style={styles.toggle}
+                                    onClick={ () => this.props.activateFilter('cheap') }
                                     thumbSwitchedStyle={styles.thumbSwitched}                                
                                 />
                                 <Toggle
                                     label="STONE COLD SOBER"
                                     labelPosition="right"
                                     style={styles.toggle}
+                                    onClick={ () => this.props.activateFilter('sober') }
                                     thumbSwitchedStyle={styles.thumbSwitched}
                                 />
                                 <Toggle
                                     label="DON'T MAKE ME EXERCISE"
                                     labelPosition="right"
                                     style={styles.toggle}
+                                    onClick={ () => this.props.activateFilter('sedentary') }
                                     thumbSwitchedStyle={styles.thumbSwitched}
                                 />
                             </div>
@@ -410,12 +413,6 @@ class DateResults extends Component {
         <SaveDate finalizeDate={ () => this.finalizeDate() } />
       </div>
     );
-
-
-
-
-
-
   }
 }
 
@@ -423,4 +420,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { getResults, finalizeDate, addSharingId, addPreferences })(DateResults);
+export default connect(mapStateToProps, { getResults, finalizeDate, addSharingId, addPreferences, activateFilter })(DateResults);
