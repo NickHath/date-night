@@ -210,11 +210,15 @@ class DateResults extends Component {
   // AND sets lockedCategories at that index to true
   lockCategory(index, newCategory) {
     let lockedCategories = [...this.state.lockedCategories];
+    let lockedBusinesses = [...this.state.lockedBusinesses];
     let categories = [...this.state.categories];
 
     lockedCategories[index] = !lockedCategories[index];
-    if (lockedCategories[index]) { categories[index] = newCategory };
-    this.setState({ lockedCategories, categories });
+    if (lockedCategories[index]) { 
+      categories[index] = newCategory;
+      lockedBusinesses[index] = false;
+    };
+    this.setState({ lockedCategories, categories, lockedBusinesses });
   }
 
   finalizeDate() {
