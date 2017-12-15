@@ -207,7 +207,6 @@ class DateResults extends Component {
     // push a random category string to the categories array
     let mainCategories = this.props.categories[time];
     if (this.props.filters.sedentary) { mainCategories = mainCategories.filter(cat => cat !== 'active'); }
-    console.log('HEY BITCH:', mainCategories);
     let randIndex = Math.floor(Math.random() * mainCategories.length)
     return mainCategories[randIndex];
   }
