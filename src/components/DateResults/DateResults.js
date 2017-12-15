@@ -151,15 +151,26 @@ class DateResults extends Component {
   // cycles through lockedBusinesses, when index is not locked it will 
   // use the random category from the same index to retrieve a random business
   updateBusinesses() {
-    let { preferences, results, getResults } = this.props;
+    let { preferences, results, getResults, filters } = this.props;
     let { businesses, categories, lockedBusinesses } = this.state;
     let newBusinesses = [...businesses];
     // if we have results for the category, get them off store; otherwise use getResults to hit Yelp API
     lockedBusinesses.forEach((locked, index) => {
       if (!locked) {
         if (results[categories[index]]) {
-          let randIndex = Math.floor(Math.random() * results[categories[index]].length)
-          newBusinesses[index] = results[categories[index]][randIndex];
+          let filteredResults = results[categories[index]];
+
+          // SETTINGS FILTERS
+          if (filters.cheap) { filteredResults = filteredResults.filter(business => business.price === "$" || business.price === undefined) }
+          if (filters.sober) { 
+            filteredResults = filteredResults.filter(business => {
+              let allCategories = business.categories.map(cat => cat.alias);
+              return !allCategories.includes('bars') && !allCategories.includes('pubs') && !allCategories.includes('gaybars') && !allCategories.includes('lounges');
+            })
+          }
+
+          let randIndex = Math.floor(Math.random() * filteredResults.length)
+          newBusinesses[index] = filteredResults[randIndex];
         } else {
           getResults(preferences.location, categories[index], preferences.radius);
         }
@@ -386,21 +397,24 @@ class DateResults extends Component {
                                     label="I'M ON A BUDGET"
                                     labelPosition="right"
                                     style={styles.toggle}
-                                    onClick={ () => this.props.activateFilter('cheap') }
+                                    onToggle={ () => this.props.activateFilter('cheap') }
+                                    toggled={ this.props.filters.cheap }
                                     thumbSwitchedStyle={styles.thumbSwitched}                                
                                 />
                                 <Toggle
                                     label="STONE COLD SOBER"
                                     labelPosition="right"
                                     style={styles.toggle}
-                                    onClick={ () => this.props.activateFilter('sober') }
+                                    onToggle={ () => this.props.activateFilter('sober') }
+                                    toggled={ this.props.filters.sober }
                                     thumbSwitchedStyle={styles.thumbSwitched}
                                 />
                                 <Toggle
                                     label="DON'T MAKE ME EXERCISE"
                                     labelPosition="right"
                                     style={styles.toggle}
-                                    onClick={ () => this.props.activateFilter('sedentary') }
+                                    onToggle={ () => this.props.activateFilter('sedentary') }
+                                    toggled={ this.props.filters.sedentary }
                                     thumbSwitchedStyle={styles.thumbSwitched}
                                 />
                             </div>
