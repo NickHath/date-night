@@ -9,7 +9,7 @@ import DateCard from './DateCard';
 import SaveDate from './SaveDate';
 import AddCard from './AddCard';
 import Loading from './Loading'
-import DateDesktop from './DateDesktop';
+import SideNav from './SideNav';
 //materialUI
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
@@ -72,9 +72,12 @@ class DateResults extends Component {
       lockedCategories: [],
       businesses: [],
       lockedBusinesses: [],
-      expanded: false,
+      expanded: [false, false, false],
       isLoading: true
     }
+    this.lockBusiness = this.lockBusiness.bind(this)
+    this.lockCategory = this.lockCategory.bind(this)
+    this.finalizeDate = this.finalizeDate.bind(this)
   }
 
   // runs the initial refreshDate after component renders
@@ -193,6 +196,9 @@ class DateResults extends Component {
     } else {
       time = 'night';
     }
+
+
+    
     // push a random category string to the categories array
     let mainCategories = this.props.categories[time];
     let randIndex = Math.floor(Math.random() * mainCategories.length)
@@ -289,61 +295,18 @@ class DateResults extends Component {
       if (business !== null) {
         return (
           <div>
-            <div className='date-card'>
-              <div className="top-level">
-                <img className="delete" src={DeleteCard} alt="delete card" height="40px" />
-                <div className="ratings">
-                  <div className="rating-number">{business.rating}</div>
-                  <img className="Star" src={Star} alt="Star Icon" height="25px" />
-                </div>
-              </div>
-              <div className="mid-level">
-                <div className="start-box">
-                  <img className="start-icon" src={Clock} alt="Starting Time Clock" height="80px" />
-                  <div className="start-time">4:30pm</div>
-                </div>
-                <img className="yelp-img" src={business.image_url ? business.image_url : logo} alt="YELP Place" />
-                <img className="lock-icon" onClick={() => this.lockBusiness(index)} src={Lock} alt="Lock Date Icon" height="80px" />
-              </div>
-              <div className="location-text">
-                <h4>{business.name}</h4>
-              </div>
-              <div className="gray-line"></div>
-              <div className="expandable-container">
-                <div className="see-more">SEE MORE DETAILS</div>
-                <img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" />
-              </div>
-
-              <div className={this.state.expanded ? "expanded" : "closed"}>
-                <div className="see-more">HIDE DETAILS</div>
-                <img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" />
-                <div className={!this.state.lockedCategories[index] ? "lock-type" : "locked-category"} onClick={() => this.lockCategory(index, business.categories[0].alias)}>
-                  <div className="type">TYPE:</div>
-                  <div className="type-response" >{business.categories[0].title}</div>
-                  <img className="lock-icon-small" src={Lock} alt="Lock Type Icon" height="28px" />
-                </div>
-                <div className="data-box">
-                  <div className="data-labels">
-                    <div className="data phone">PHONE:</div>
-                    <div className="data first-address">ADDRESS:</div>
-                    <div className="data second-address"></div>
-                  </div>
-                  <div className="data-response">
-                    <div className="data phone-response">555-555-5555</div>
-                    <div className="data first-address-response">1234 Provo St.</div>
-                    <div className="data second-address-response">Provo, UT 84043</div>
-                  </div>
-                </div>
-                <div className="hours"></div>
-              </div>
-              <div className="bottom-level">
-                <div className="price-level">{business.price}</div>
-              </div>
+            <div>
+              <DateCard business = {business} index = {index} expanded = {this.state.expanded}
+              lockedCategories = {this.state.lockedCategories[index]} lockBusiness = {this.lockBusiness} lockCategory = {this.lockCategory}/>
             </div>
 
             <div className="big-date">
-                <DateDesktop />
-              </div>
+           
+              <Date business = {business} index = {index} expanded = {this.state.expanded}
+              lockedCategories = {this.state.lockedCategories[index]} lockBusiness = {this.lockBusiness} lockCategory = {this.lockCategory}/>
+            </div>
+                
+              
 
           </div>
         )
@@ -400,10 +363,21 @@ class DateResults extends Component {
                         </Dialog>
                     <img className="shuffle-btn" src={ShuffleBtn} onClick={ () => this.refreshDate() } alt="Shuffle Button" height="80px" />
                 </div>
+
+
             </div>
-        
-      { displayBusinesses }
-        <SaveDate finalizeDate={ () => this.finalizeDate() } />
+              <div className="big-date">
+                <div className='date-desktop'>
+                  <SideNav shuffle ={ () => this.refreshDate() } finalizeDate={ () => this.finalizeDate() } refreshDate = {this.refreshDate} />
+                  <div className="date-column">
+                  { displayBusinesses }
+                  </div>
+                </div>
+              </div>
+              <div className = "is-small">
+                  { displayBusinesses }
+                  <SaveDate finalizeDate={ () => this.finalizeDate() } />
+              </div>
       </div>
     );
 

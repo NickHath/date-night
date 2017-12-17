@@ -8,8 +8,8 @@ import Toggle from 'material-ui/Toggle';
 
 
 export default class MobileHeader extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             open: false
         }
@@ -53,7 +53,7 @@ export default class MobileHeader extends Component {
                 <center><img className="logo-side" src={Logo} alt="Home Logo" /></center>
                 <div className="side-icons">
                     <div className="icons-box">
-                        <img className="shuffle-btn" src={ShuffleBtn} alt="Shuffle Button" height="80px" />
+                        <img className="shuffle-btn" onClick = { () => {this.props.shuffle()}} src={ShuffleBtn} alt="Shuffle Button" height="80px" />
                         <p className="side-btn-text">SHUFFLE LIST</p>
                     </div>
                     <div className="icons-box">
@@ -90,7 +90,7 @@ export default class MobileHeader extends Component {
                         </Dialog>
                         <p className="side-btn-text">FILTER</p>
                     </div>
-                    <button className="save-button">SAVE MY DATE</button>
+                    <button className="save-button" onClick = { () => this.props.finalizeDate()}>SAVE MY DATE</button>
                 </div>
             </div>
         );

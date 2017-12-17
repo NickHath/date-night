@@ -545,6 +545,8 @@ h5 {
 @media screen and (min-width: 750px) {
   .date-card, .mobile-header {
     display: none; }
+  .is-small {
+    display: none; }
   .big-date {
     display: block; }
   .side-nav {
