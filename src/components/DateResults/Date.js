@@ -5,6 +5,7 @@ import TestPic from '../../assets/Couple.png';
 import Lock from '../../assets/Lock.svg';
 import Lock_White from '../../assets/Lock_White.svg';
 import Arrow from '../../assets/Arrow.svg';
+import logo from '../../assets/Icon.svg';
 
 
 export default function Date(props) {
@@ -47,15 +48,15 @@ export default function Date(props) {
         </div>
 
         <div className="yelp-container">
-          <img className="yelp-desktop" src={TestPic} alt="YELP Place" />
+          <img className="yelp-desktop" src={props.business.image_url ? props.business.image_url : logo} alt="YELP Place" />
         </div>
         
         <div className="side-level">
           <div className="ratings">
-              <div className="rating-number">4.0</div>
+              <div className="rating-number">{props.business.rating}</div>
               <img className="Star" src={Star} alt="Star Icon" height="25px" />
             </div>
-            <div className="price">$$$</div>
+            <div className="price">{props.business.price}</div>
         </div>
 
       </div>
