@@ -8,8 +8,8 @@ import Arrow from '../../assets/Arrow.svg';
 import logo from '../../assets/Icon.svg';
 
 export default class DateCard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { expanded: false };
   }
 
@@ -21,8 +21,9 @@ export default class DateCard extends Component {
     this.setState({ expanded: false });
   }
 
-  convertTime(military) {
-    let standard = '';
+  convertTime() {
+    let standard = '', military = this.props.time;
+    if (!this.props.time) { return '1-2 hrs' };
     if (military >= 1200) {
       military >= 1300 ? military -= 1200 : null;
       military = military.toString();
