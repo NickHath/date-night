@@ -81,7 +81,7 @@ export default class DateCard extends Component {
                 <div className="data second-address"></div>
               </div>
               <div className="data-response">
-                <div className="data phone-response">{this.props.business.display_phone}}</div>
+                <div className="data phone-response">{this.props.business.display_phone}</div>
                 <div className="data first-address-response">{this.props.business.location.display_address[0]}</div>
                 <div className="data second-address-response">{this.props.business.location.display_address[1]}</div>
                 <div className="data">{this.props.business.location.display_address[2]}</div>
