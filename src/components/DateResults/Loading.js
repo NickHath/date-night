@@ -56,11 +56,10 @@ class GearShape extends mojs.CustomShape {
 
   export default class Loading extends Component {
     componentWillMount(){
-        console.log(this.props)
-        timeline.play()
+      timeline.play()
     }
     componentWillUnmount(){
-        timeline.stop()
+      timeline.stop()
     }
     render() {
       return (

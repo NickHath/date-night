@@ -338,13 +338,13 @@ class DateResults extends Component {
           <div>
             <div>
               <DateCard business = {business} index = {index} time = {this.props.preferences.startTime + index * 200}
-              lockedCategories = {this.state.lockedCategories[index]} lockBusiness = {this.lockBusiness} lockCategory = {this.lockCategory}/>
+              lockedCategories = {this.state.lockedCategories[index]} lockedBusinesses = {this.state.lockedBusinesses[index]} lockBusiness = {this.lockBusiness} lockCategory = {this.lockCategory}/>
             </div>
 
             <div className="big-date">
            
               <Date business = {business} index = {index}
-              lockedCategories = {this.state.lockedCategories[index]} lockBusiness = {this.lockBusiness} lockCategory = {this.lockCategory}/>
+              lockedCategories = {this.state.lockedCategories[index]} lockedBusinesses = {this.state.lockedBusinesses[index]} lockBusiness = {this.lockBusiness} lockCategory = {this.lockCategory}/>
             </div>
                 
               
