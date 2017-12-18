@@ -20,7 +20,7 @@ massive(process.env.CONNECTION_STRING)
 // req.body should have location, category and (optionally) radius
 app.post('/api/yelp', dateCtrl.getBusinesses)
 app.post('/api/yelp/business', dateCtrl.getBusinessById)
-app.get("/api/getAllDates", dateCtrl.getAllDates)
+app.get("/api/getAllDates/:location", dateCtrl.getAllDates)
 app.get("/api/getDate/:id", dateCtrl.getDate)
 app.post("/api/addDate", dateCtrl.addDate)
 app.put("/api/modifyDate/:id", dateCtrl.modifyDate)

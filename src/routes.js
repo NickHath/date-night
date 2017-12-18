@@ -6,6 +6,7 @@ import DateResults from './components/DateResults/DateResults';
 import Finalizer from './components/Finalizer/Finalizer';
 import About from './components/About/About';
 import DateDesktop from './components/DateResults/DateDesktop';
+import PopularDates from './components/PopularDates/PopularDates';
 
 export default (
   <Switch>
@@ -15,5 +16,6 @@ export default (
     <Route path='/dates' component={ DateDesktop } />
     <Route path='/finalizer' component={ Finalizer }/>
     <Route path='/about' component={ About }/>
+    <Route path='/popular' component={ PopularDates }/>
   </Switch>
 );
