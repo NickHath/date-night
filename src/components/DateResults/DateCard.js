@@ -21,11 +21,25 @@ export default class DateCard extends Component {
     this.setState({ expanded: false });
   }
 
+  convertTime(military) {
+    let standard = '';
+    if (military >= 1200) {
+      military >= 1300 ? military -= 1200 : null;
+      military = military.toString();
+      standard += military.slice(0, military.length - 2) + ':' + military.slice(military.length - 2) + ' pm';
+    } else {
+      military = military.toString();
+      standard += military.slice(0, military.length - 2) + ':' + military.slice(military.length - 2) + ' am';
+    }
+    return standard;
+  }
+
   render() {
     return (
       <div className='date-card'>
         <div className="top-level">
-          <img className="delete" src={DeleteCard} alt="delete card" height="40px" />
+          {/* <img className="delete" src={DeleteCard} alt="delete card" height="40px" /> */}
+          <div className="price-level">{this.props.business.price}</div>
           <div className="ratings">
             <div className="rating-number">{this.props.business.rating}</div>
             <img className="Star" src={Star} alt="Star Icon" height="25px" />
@@ -34,7 +48,7 @@ export default class DateCard extends Component {
         <div className="mid-level">
           <div className="start-box">
             <img className="start-icon" src={Clock} alt="Starting Time Clock" height="80px" />
-            <div className="start-time">4:30pm</div>
+            <div className="start-time">{this.props.time ? this.convertTime(this.props.time) : '1-2 hrs'}</div>
           </div>
           <img className="yelp-img" src={this.props.business.image_url ? this.props.business.image_url : logo} alt="YELP Place" />
           <img className="lock-icon" onClick={() => this.props.lockBusiness(this.props.index)} src={Lock} alt="Lock Date Icon" height="80px" />
@@ -67,7 +81,7 @@ export default class DateCard extends Component {
                 <div className="data second-address"></div>
               </div>
               <div className="data-response">
-                <div className="data phone-response">{this.props.business.display_phone}}</div>
+                <div className="data phone-response">{this.props.business.display_phone}</div>
                 <div className="data first-address-response">{this.props.business.location.display_address[0]}</div>
                 <div className="data second-address-response">{this.props.business.location.display_address[1]}</div>
                 <div className="data">{this.props.business.location.display_address[2]}</div>

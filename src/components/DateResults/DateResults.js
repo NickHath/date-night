@@ -337,7 +337,7 @@ class DateResults extends Component {
         return (
           <div>
             <div>
-              <DateCard business = {business} index = {index}
+              <DateCard business = {business} index = {index} time = {this.props.preferences.startTime + index * 200}
               lockedCategories = {this.state.lockedCategories[index]} lockBusiness = {this.lockBusiness} lockCategory = {this.lockCategory}/>
             </div>
 
