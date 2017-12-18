@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import mojs from 'mo-js';
 import keymaster from 'keymaster';
+import Shake from 'shake.js';
 
 // components
 import Date from './Date';
@@ -82,7 +83,17 @@ class DateResults extends Component {
 
   // runs the initial refreshDate after component renders
   componentDidMount() {
+    // handle spacebar press
     keymaster('space', this.handleSpace);
+
+    // handle phone shake
+    var myShakeEvent = new Shake({
+      threshold: 15, // optional shake strength threshold
+      timeout: 1000 // optional, determines the frequency of event generation
+    });
+    myShakeEvent.start();
+    window.addEventListener('shake', this.handleShake, false);
+
     axios.get(`/api/getDate/${this.props.match.params.id}`).then(res => {
       // set preferences to db date preferences if we have an id
       if (res.data.length > 0) {
@@ -285,6 +296,11 @@ class DateResults extends Component {
     this.refreshDate();
     // prevents default behavior for spacebar (moving page down)
     return false;
+  }
+
+  handleShake() {
+    alert('shake!');
+    this.refreshDate();
   }
 
   render() {
