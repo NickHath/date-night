@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import mojs from 'mo-js';
+import keymaster from 'keymaster';
 
 // components
 import Date from './Date';
@@ -75,10 +76,13 @@ class DateResults extends Component {
       expanded: true,
       isLoading: true
     }
+    this.refreshDate = this.refreshDate.bind(this);
+    this.handleSpace = this.handleSpace.bind(this);
   }
 
   // runs the initial refreshDate after component renders
   componentDidMount() {
+    keymaster('space', this.handleSpace);
     axios.get(`/api/getDate/${this.props.match.params.id}`).then(res => {
       // set preferences to db date preferences if we have an id
       if (res.data.length > 0) {
@@ -140,6 +144,10 @@ class DateResults extends Component {
       })
       this.setState({ businesses: newBusinesses, isLoading: false });
     }
+  }
+
+  componentDidUnmount() {
+    keymaster.unbind('space', this.handleSpace);
   }
 
   // to refresh a date, we need to 1. get random categories
@@ -273,7 +281,11 @@ class DateResults extends Component {
     this.setState({ open: false });
   };
 
-
+  handleSpace() {
+    this.refreshDate();
+    // prevents default behavior for spacebar (moving page down)
+    return false;
+  }
 
   render() {
     const actions = [
