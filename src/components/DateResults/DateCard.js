@@ -38,7 +38,8 @@ export default class DateCard extends Component {
     return (
       <div className='date-card'>
         <div className="top-level">
-          <img className="delete" src={DeleteCard} alt="delete card" height="40px" />
+          {/* <img className="delete" src={DeleteCard} alt="delete card" height="40px" /> */}
+          <div className="price-level">{this.props.business.price}</div>
           <div className="ratings">
             <div className="rating-number">{this.props.business.rating}</div>
             <img className="Star" src={Star} alt="Star Icon" height="25px" />
@@ -47,7 +48,7 @@ export default class DateCard extends Component {
         <div className="mid-level">
           <div className="start-box">
             <img className="start-icon" src={Clock} alt="Starting Time Clock" height="80px" />
-            <div className="start-time">{this.props.time ? this.convertTime(this.props.time) : ''}</div>
+            <div className="start-time">{this.props.time ? this.convertTime(this.props.time) : '1-2 hrs'}</div>
           </div>
           <img className="yelp-img" src={this.props.business.image_url ? this.props.business.image_url : logo} alt="YELP Place" />
           <img className="lock-icon" onClick={() => this.props.lockBusiness(this.props.index)} src={Lock} alt="Lock Date Icon" height="80px" />
