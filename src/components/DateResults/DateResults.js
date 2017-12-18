@@ -74,8 +74,7 @@ class DateResults extends Component {
       lockedCategories: [],
       businesses: [],
       lockedBusinesses: [],
-expanded: true,
-isLoading: true
+      isLoading: true
     }
     this.lockBusiness = this.lockBusiness.bind(this)
     this.lockCategory = this.lockCategory.bind(this)
@@ -284,12 +283,6 @@ isLoading: true
     axios.post('/api/yelp/business', test)
   }
 
-  hideAndUnhide(){
-
-
-  }
-
-
   handleOpen = () => {
     this.setState({ open: true });
   };
@@ -344,13 +337,13 @@ isLoading: true
         return (
           <div>
             <div>
-              <DateCard business = {business} index = {index} expanded = {this.state.expanded}
+              <DateCard business = {business} index = {index}
               lockedCategories = {this.state.lockedCategories[index]} lockBusiness = {this.lockBusiness} lockCategory = {this.lockCategory}/>
             </div>
 
             <div className="big-date">
            
-              <Date business = {business} index = {index} expanded = {this.state.expanded}
+              <Date business = {business} index = {index}
               lockedCategories = {this.state.lockedCategories[index]} lockBusiness = {this.lockBusiness} lockCategory = {this.lockCategory}/>
             </div>
                 
