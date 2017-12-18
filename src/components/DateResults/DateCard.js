@@ -93,7 +93,6 @@ export default class DateCard extends Component {
         }
 
         <div className="bottom-level">
-          <div className="price-level">{this.props.business.price}</div>
         </div>
       </div>
     );  
