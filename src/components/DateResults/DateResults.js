@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import mojs from 'mo-js';
+import keymaster from 'keymaster';
+import Shake from 'shake.js';
 
 // components
 import Date from './Date';
@@ -15,7 +17,7 @@ import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 // redux
 import { connect } from 'react-redux';
-import { getResults, finalizeDate, addSharingId, addPreferences } from '../../ducks/reducer';
+import { getResults, finalizeDate, addSharingId, addPreferences, activateFilter } from '../../ducks/reducer';
 // SVGS
 import DeleteCard from '../../assets/Delete.svg';
 import Star from '../../assets/Star.svg';
@@ -72,16 +74,29 @@ class DateResults extends Component {
       lockedCategories: [],
       businesses: [],
       lockedBusinesses: [],
-      expanded: [false, false, false],
-      isLoading: true
+expanded: true,
+isLoading: true
     }
     this.lockBusiness = this.lockBusiness.bind(this)
     this.lockCategory = this.lockCategory.bind(this)
     this.finalizeDate = this.finalizeDate.bind(this)
+    this.refreshDate = this.refreshDate.bind(this);
+    this.handleSpace = this.handleSpace.bind(this);
   }
 
   // runs the initial refreshDate after component renders
   componentDidMount() {
+    // handle spacebar press
+    keymaster('space', this.handleSpace);
+
+    // handle phone shake
+    var myShakeEvent = new Shake({
+      threshold: 15, // optional shake strength threshold
+      timeout: 1000 // optional, determines the frequency of event generation
+    });
+    myShakeEvent.start();
+    window.addEventListener('shake', this.handleShake, false);
+
     axios.get(`/api/getDate/${this.props.match.params.id}`).then(res => {
       // set preferences to db date preferences if we have an id
       if (res.data.length > 0) {
@@ -145,6 +160,10 @@ class DateResults extends Component {
     }
   }
 
+  componentDidUnmount() {
+    keymaster.unbind('space', this.handleSpace);
+  }
+
   // to refresh a date, we need to 1. get random categories
   // then 2. use these categories to get random businesses
   refreshDate() {
@@ -154,15 +173,26 @@ class DateResults extends Component {
   // cycles through lockedBusinesses, when index is not locked it will 
   // use the random category from the same index to retrieve a random business
   updateBusinesses() {
-    let { preferences, results, getResults } = this.props;
+    let { preferences, results, getResults, filters } = this.props;
     let { businesses, categories, lockedBusinesses } = this.state;
     let newBusinesses = [...businesses];
     // if we have results for the category, get them off store; otherwise use getResults to hit Yelp API
     lockedBusinesses.forEach((locked, index) => {
       if (!locked) {
         if (results[categories[index]]) {
-          let randIndex = Math.floor(Math.random() * results[categories[index]].length)
-          newBusinesses[index] = results[categories[index]][randIndex];
+          let filteredResults = results[categories[index]];
+
+          // SETTINGS FILTERS
+          if (filters.cheap) { filteredResults = filteredResults.filter(business => business.price === "$" || business.price === undefined) }
+          if (filters.sober) { 
+            filteredResults = filteredResults.filter(business => {
+              let allCategories = business.categories.map(cat => cat.alias);
+              return !allCategories.includes('bars') && !allCategories.includes('pubs') && !allCategories.includes('gaybars') && !allCategories.includes('lounges');
+            })
+          }
+
+          let randIndex = Math.floor(Math.random() * filteredResults.length)
+          newBusinesses[index] = filteredResults[randIndex];
         } else {
           getResults(preferences.location, categories[index], preferences.radius);
         }
@@ -201,6 +231,7 @@ class DateResults extends Component {
     
     // push a random category string to the categories array
     let mainCategories = this.props.categories[time];
+    if (this.props.filters.sedentary) { mainCategories = mainCategories.filter(cat => cat !== 'active'); }
     let randIndex = Math.floor(Math.random() * mainCategories.length)
     return mainCategories[randIndex];
   }
@@ -216,11 +247,15 @@ class DateResults extends Component {
   // AND sets lockedCategories at that index to true
   lockCategory(index, newCategory) {
     let lockedCategories = [...this.state.lockedCategories];
+    let lockedBusinesses = [...this.state.lockedBusinesses];
     let categories = [...this.state.categories];
 
     lockedCategories[index] = !lockedCategories[index];
-    if (lockedCategories[index]) { categories[index] = newCategory };
-    this.setState({ lockedCategories, categories });
+    if (lockedCategories[index]) { 
+      categories[index] = newCategory;
+      lockedBusinesses[index] = false;
+    };
+    this.setState({ lockedCategories, categories, lockedBusinesses });
   }
 
   finalizeDate() {
@@ -263,7 +298,20 @@ class DateResults extends Component {
     this.setState({ open: false });
   };
 
+  handleSpace() {
+    if (!this.state.isLoading) {
+      this.refreshDate();
+    }
+    // prevents default behavior for spacebar (moving page down)
+    return false;
+  }
 
+  handleShake() {
+    if (!this.state.isLoading) {
+      alert('shake!');
+      this.refreshDate();
+    }
+  }
 
   render() {
     const actions = [
@@ -345,18 +393,24 @@ class DateResults extends Component {
                                     label="I'M ON A BUDGET"
                                     labelPosition="right"
                                     style={styles.toggle}
+                                    onToggle={ () => this.props.activateFilter('cheap') }
+                                    toggled={ this.props.filters.cheap }
                                     thumbSwitchedStyle={styles.thumbSwitched}                                
                                 />
                                 <Toggle
                                     label="STONE COLD SOBER"
                                     labelPosition="right"
                                     style={styles.toggle}
+                                    onToggle={ () => this.props.activateFilter('sober') }
+                                    toggled={ this.props.filters.sober }
                                     thumbSwitchedStyle={styles.thumbSwitched}
                                 />
                                 <Toggle
                                     label="DON'T MAKE ME EXERCISE"
                                     labelPosition="right"
                                     style={styles.toggle}
+                                    onToggle={ () => this.props.activateFilter('sedentary') }
+                                    toggled={ this.props.filters.sedentary }
                                     thumbSwitchedStyle={styles.thumbSwitched}
                                 />
                             </div>
@@ -380,12 +434,6 @@ class DateResults extends Component {
               </div>
       </div>
     );
-
-
-
-
-
-
   }
 }
 
@@ -393,4 +441,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { getResults, finalizeDate, addSharingId, addPreferences })(DateResults);
+export default connect(mapStateToProps, { getResults, finalizeDate, addSharingId, addPreferences, activateFilter })(DateResults);

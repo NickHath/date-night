@@ -23,6 +23,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "keymaster": "^1.6.2",
     "massive": "^4.5.0",
     "material-ui": "^0.20.0",
     "material-ui-slider-label": "git+https://github.com/tariqwest/material-ui-slider-label.git",
@@ -37,6 +38,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
-    "redux-promise-middleware": "^5.0.0"
+    "redux-promise-middleware": "^5.0.0",
+    "shake.js": "^1.2.2"
   }
 }
