@@ -21,6 +21,19 @@ export default class DateCard extends Component {
     this.setState({ expanded: false });
   }
 
+  convertTime(military) {
+    let standard = '';
+    if (military >= 1200) {
+      military >= 1300 ? military -= 1200 : null;
+      military = military.toString();
+      standard += military.slice(0, military.length - 2) + ':' + military.slice(military.length - 2) + ' pm';
+    } else {
+      military = military.toString();
+      standard += military.slice(0, military.length - 2) + ':' + military.slice(military.length - 2) + ' am';
+    }
+    return standard;
+  }
+
   render() {
     return (
       <div className='date-card'>
@@ -34,7 +47,7 @@ export default class DateCard extends Component {
         <div className="mid-level">
           <div className="start-box">
             <img className="start-icon" src={Clock} alt="Starting Time Clock" height="80px" />
-            <div className="start-time">4:30pm</div>
+            <div className="start-time">{this.props.time ? this.convertTime(this.props.time) : ''}</div>
           </div>
           <img className="yelp-img" src={this.props.business.image_url ? this.props.business.image_url : logo} alt="YELP Place" />
           <img className="lock-icon" onClick={() => this.props.lockBusiness(this.props.index)} src={Lock} alt="Lock Date Icon" height="80px" />
