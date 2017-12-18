@@ -4,6 +4,8 @@ import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 import Share from '../../assets/Share.svg';
 
+import copy from 'copy-to-clipboard';
+
 class SaveDate extends Component {
     constructor() {
         super()
@@ -19,6 +21,10 @@ class SaveDate extends Component {
     handleClose = () => {
         this.setState({ open: false });
     };
+
+    handleCopy() {
+      copy(`http://localhost:3000/results/${this.props.sharingId}`);
+    }
 
     render() {
         const actions = [
@@ -49,7 +55,7 @@ class SaveDate extends Component {
                     >
                     <div className="input-box">
                         <input value={"http://localhost:3000/results/" + this.props.sharingId} className="share-input" placeholder="copy URL"  />
-                        <img className="logo-bulb" src={Share} alt="Share Icon" height="35px" />
+                        <img className="logo-bulb" src={Share} alt="Share Icon" height="35px" onClick={ () => this.handleCopy() }/>
                     </div>
                     <div className="white-line"></div>
                     <button className="edit-date">EDIT DATE</button>
