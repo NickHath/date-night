@@ -293,14 +293,18 @@ class DateResults extends Component {
   };
 
   handleSpace() {
-    this.refreshDate();
+    if (!this.state.isLoading) {
+      this.refreshDate();
+    }
     // prevents default behavior for spacebar (moving page down)
     return false;
   }
 
   handleShake() {
-    alert('shake!');
-    this.refreshDate();
+    if (!this.state.isLoading) {
+      alert('shake!');
+      this.refreshDate();
+    }
   }
 
   render() {
