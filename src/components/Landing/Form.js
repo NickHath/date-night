@@ -14,6 +14,12 @@ const marginStyle = {
   marginRight: 18,
 };
 
+const marginState = {
+  marginLeft: 18,
+  marginRight: 18,
+  width: 135
+}
+
 
 class Form extends Component {
   constructor() {
@@ -120,7 +126,7 @@ class Form extends Component {
 
     { console.log(this.state.secondSlider) }
     return (
-      <div className="date-form">
+      <div className="date-form" id="createform">
         {console.log(this.state.buttonClick)}
         <div className="text-wrapper-form">
           <h5 className="form-title">CREATE YOUR PERFECT DATE!</h5>
@@ -145,15 +151,19 @@ class Form extends Component {
         </div>
         <h3>LOCATION:</h3>
 
-        <TextField style={marginStyle}
+        <TextField style={marginState}
           ref="location"
-          hintText="Provo, UT"
-
+          hintText="Provo"
         />
 
+        <TextField style={marginState}
+          ref="location"
+          hintText="UT"
+        />
 
         <h3>RADIUS: {this.state.secondSlider} miles</h3>
-        <Slider style={marginStyle}
+        <Slider 
+          style={marginStyle}
           min={1}
           max={25}
           step={1}

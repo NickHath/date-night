@@ -284,6 +284,12 @@ h5{
         height: 90vh;
     }
 
+    .img-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
     .logo-lines {
         margin: 10px;
     }
@@ -311,11 +317,9 @@ h5{
         font-style: italic;
         font-weight: normal;
         color: #000000;
-        font-size: 46px;
+        font-size: 23px;
         margin: 25px;
-        text-align: center;
-        letter-spacing: 2px;
-        height: 40%;
+        letter-spacing: 2px;        
     }
 
     .subtitle-short {

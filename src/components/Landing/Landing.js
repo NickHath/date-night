@@ -10,6 +10,7 @@ import Couple from '../../assets/Couple.png';
 import Love from '../../assets/CoupleFull.jpg';
 import Arrow_Nav from '../../assets/Arrow_White.svg';
 
+
 export default function Landing() {
   return (
     <div className='landing'>
@@ -30,7 +31,7 @@ export default function Landing() {
         <h2 className="icon-text-calendar">ENJOY YOUR PERFECT DATE</h2>
       </div>
       <div className="btn-container">
-        <button className="main-btn">CREATE YOUR DATE</button>
+        <a href="#createform"><button className="main-btn">CREATE YOUR DATE</button></a>
         <button className="second-btn">EXPLORE FEATURED</button>
       </div>
       <div className="featured">NEWLY OPENED</div>
@@ -43,7 +44,7 @@ export default function Landing() {
         <div className="img-wrapper">
           <img className="second-bg" src={Couple} alt="Couple Hugging" />
           <img className="replace-photo" src={Love} alt="Couple Hugging" />
-          <h2 className="photo-caption">CREATE YOUR PERFECT DATE!</h2>
+          <div className="desktop-caption"><h2 className="photo-caption">CREATE YOUR PERFECT DATE!</h2></div>
         </div>
         <Form />
       </div>
