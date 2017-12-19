@@ -102,7 +102,7 @@ class Form extends Component {
       let preferences = {
         startDate: date,
         startTime: time,
-        duration: this.state.buttonClick,
+        duration: this.state.buttonClick || 'long',
         location: this.refs.city.getValue() + ',' + this.refs.state.getValue(),
         radius: milesToMeters
       }
