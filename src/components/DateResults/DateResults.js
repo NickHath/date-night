@@ -164,7 +164,7 @@ class DateResults extends Component {
     }
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     keymaster.unbind('space', this.handleSpace);
   }
 
