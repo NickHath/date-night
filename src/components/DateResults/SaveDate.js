@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 import Share from '../../assets/Share.svg';
@@ -58,7 +59,7 @@ class SaveDate extends Component {
                         <img className="logo-bulb" src={Share} alt="Share Icon" height="35px" onClick={ () => this.handleCopy() }/>
                     </div>
                     <div className="white-line"></div>
-                    <button className="edit-date">EDIT DATE</button>
+                    <Link to={ `/results/${this.props.sharingId}` }><button className="edit-date">EDIT DATE</button></Link>
                 </Dialog>
             </div>
         )
