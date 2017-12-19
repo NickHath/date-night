@@ -70,6 +70,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .expanded {
@@ -90,6 +91,7 @@
 
 .see-more {
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .lock-type {

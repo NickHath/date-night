@@ -6,7 +6,6 @@ import Lock from '../../assets/Lock.svg';
 
 import lockWhite from '../../assets/locker.svg';
 import lockbar from '../../assets/lockbar.svg';
-// import Lock_White from '../../assets/Lock_White.svg';
 import Arrow from '../../assets/Arrow.svg';
 import logo from '../../assets/Icon.svg';
 
@@ -17,8 +16,7 @@ export default function Date(props) {
       <div className='date'>
       <div className="circle-lock" onClick={() => props.lockBusiness(props.index)}>
             <img src={lockWhite} className="lock"/>
-            <img src={lockbar} id={props.lockedBusinesses ? "" : "unlocked"} className="lockbar"/>
-            {/* <img className="lock-icon" src={Lock_White} alt="Lock Date Icon" height="50px" /> */}
+            <img src={lockbar} id={props.lockedBusinesses ? "" : "unlocked"} className="lockbar" />
           </div>
         <div className="date-information">
           {/* <div className="top-level">
@@ -57,7 +55,7 @@ export default function Date(props) {
         
         <div className="side-level">
           <div className="ratings">
-              <div className="rating-number">{props.business.rating}</div>
+              <div className="rating-num">{props.business.rating}</div>
               <img className="Star" src={Star} alt="Star Icon" height="25px" />
             </div>
             <div className="price">{props.business.price}</div>
