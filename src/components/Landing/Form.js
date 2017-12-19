@@ -53,9 +53,7 @@ class Form extends Component {
   createDate() {
     let time = this.refs.startTime.refs.input.input.value;
     let date = this.refs.startDate.refs.input.input.value;
-    let location = this.refs.location.input.value;
-    console.log(this.refs.location.input.value)
-    console.log(this.refs.location.input.value)
+    let location = this.refs.city.input.value + ',' + this.refs.state.input.value;
 
     if (time.includes('pm')) {
 
@@ -105,7 +103,7 @@ class Form extends Component {
         startDate: date,
         startTime: time,
         duration: this.state.buttonClick,
-        location: this.refs.location.getValue(),
+        location: this.refs.city.getValue() + ',' + this.refs.state.getValue(),
         radius: milesToMeters
       }
 
@@ -152,12 +150,12 @@ class Form extends Component {
         <h3>LOCATION:</h3>
 
         <TextField style={marginState}
-          ref="location"
+          ref="city"
           hintText="Provo"
         />
 
         <TextField style={marginState}
-          ref="location"
+          ref="state"
           hintText="UT"
         />
 
