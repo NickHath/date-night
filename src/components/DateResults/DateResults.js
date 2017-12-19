@@ -96,6 +96,11 @@ class DateResults extends Component {
     myShakeEvent.start();
     window.addEventListener('shake', this.handleShake, false);
 
+    // add parameter id to store if it exists
+    if (this.props.match.params.id) {
+      this.props.addSharingId(this.props.match.params.id);
+    }
+
     axios.get(`/api/getDate/${this.props.match.params.id}`).then(res => {
       // set preferences to db date preferences if we have an id
       if (res.data.length > 0) {
@@ -159,7 +164,7 @@ class DateResults extends Component {
     }
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     keymaster.unbind('space', this.handleSpace);
   }
 
@@ -273,7 +278,14 @@ class DateResults extends Component {
             date[keys[index]] = business.id;
           }
         })
-        axios.post('/api/addDate', date).then(res => this.props.addSharingId(res.data));
+
+        // we update the table rather than adding a new entry if sharingId exists 
+        if (!this.props.sharingId) {
+          axios.post('/api/addDate', date).then(res => this.props.addSharingId(res.data));
+        } else if (this.props.sharingId) {
+          // update date
+          axios.put(`/api/modifyDate/${this.props.sharingId}`, date);
+        }
       });
     }
   }
