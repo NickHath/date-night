@@ -57,6 +57,9 @@ table {
   position: relative;
   background-color: #FFF; }
 
+ellipse {
+  margin-top: -425px; }
+
 .landing {
   display: grid;
   grid-template-columns: 1fr;
