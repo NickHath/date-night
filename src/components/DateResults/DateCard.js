@@ -41,7 +41,7 @@ export default class DateCard extends Component {
         <div className="top-level">
           {/* <img className="delete" src={DeleteCard} alt="delete card" height="40px" /> */}
           <div className="price-level">{this.props.business.price}</div>
-          <div className="ratings">
+          <div className="ratings-mobile">
             <div className="rating-number">{this.props.business.rating}</div>
             <img className="Star" src={Star} alt="Star Icon" height="25px" />
           </div>
@@ -62,14 +62,14 @@ export default class DateCard extends Component {
           !this.state.expanded ? 
             <div className="expandable-container" onClick={ () => this.handleOpen() }>
               <div className="see-more">SEE MORE DETAILS</div>
-              <img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" />
+              <center><img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" /></center>
             </div>
 
             :
             
             <div className={this.state.expanded ? "expanded" : "closed"}>
             <div className="see-more" onClick={ () => this.handleClose() }>HIDE DETAILS</div>
-            <img className="expandable-arrow" src={Arrow} alt="click to expand" width="30px" onClick={ () => this.handleClose() } />
+            <img className="hide-arrow" src={Arrow} alt="click to expand" width="30px" onClick={ () => this.handleClose() } />
             <div className={!this.props.lockedCategories? "lock-type" : "locked-category"} onClick={() => this.props.lockCategory(this.props.index, this.props.business.categories[0].alias)}>
               <div className="type">TYPE:</div>
               <div className="type-response" >{this.props.business.categories[0].title}</div>
