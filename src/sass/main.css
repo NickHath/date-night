@@ -283,6 +283,10 @@ h5 {
     margin-left: 50px; }
   .featured {
     height: 90vh; }
+  .img-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; }
   .logo-lines {
     margin: 10px; }
   .line {
@@ -304,11 +308,9 @@ h5 {
     font-style: italic;
     font-weight: normal;
     color: #000000;
-    font-size: 46px;
+    font-size: 23px;
     margin: 25px;
-    text-align: center;
-    letter-spacing: 2px;
-    height: 40%; }
+    letter-spacing: 2px; }
   .subtitle-short {
     grid-area: subtitle-short; }
   .subtitle-medium {
@@ -388,10 +390,11 @@ h5 {
   justify-content: flex-end;
   margin: 15px; }
 
-.ratings {
+.ratings-mobile {
   display: flex;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+  margin-right: 15px; }
 
 .start-box {
   text-align: center;
@@ -422,15 +425,17 @@ h5 {
   font-family: Helvetica, sans-serif;
   font-weight: normal;
   color: #03a9f4;
-  margin: 15px; }
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
 
 .expanded {
   text-align: center;
   font-family: Helvetica, sans-serif;
   font-weight: normal;
   color: #000000;
-  margin: 27px;
-  width: 300px; }
+  margin: 27px; }
 
 .closed {
   display: none; }
@@ -438,13 +443,21 @@ h5 {
 .see-more, .data-response, .type-response {
   color: #03a9f4; }
 
+.see-more {
+  margin-top: 10px; }
+
 .lock-type {
   display: flex;
   border: 1.5px solid #000000;
   align-items: center;
-  justify-content: space-around;
   height: 40px;
   cursor: pointer; }
+
+.type {
+  margin-left: 25px; }
+
+.type-response, .lock-icon-small {
+  margin-left: 55px; }
 
 .locked-category {
   display: flex;
@@ -539,7 +552,7 @@ h5 {
 .add-text {
   margin: 10px; }
 
-.expandable-arrow:hover {
+.hide-arrow {
   transform: rotate(180deg); }
 
 .big-date {
@@ -667,7 +680,7 @@ h5 {
   width: 350px;
   margin-left: 50px; }
 
-.second-top-level, .middle-level, .first-bottom-level, .phone, .yelp-container {
+.second-top-level, .middle-level, .first-bottom-level, .yelp-container {
   display: flex;
   align-items: center;
   margin-left: 50px; }
