@@ -108,7 +108,7 @@
     display: flex;
     justify-content: center;
     grid-area: circle-lock;
-    margin-left: -30px;
+    margin-left: -36px;
 }
 
 
@@ -167,4 +167,14 @@
     top: -5px;
     transform: scaleX(-1);
     transition: 0.4s ease-in-out;
+}
+
+.locked-category {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid #000;
+    width: 350px;
+    margin-left: 50px;
+    background-color: $bg-color;
 }
