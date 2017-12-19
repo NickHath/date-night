@@ -177,4 +177,10 @@
     width: 350px;
     margin-left: 50px;
     background-color: $bg-color;
+    
+    .type-black {
+        color: #000;
+        font-weight: bold;
+        font-size: 16px;
+    }
 }
