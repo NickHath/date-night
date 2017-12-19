@@ -123,7 +123,7 @@ module.exports = {
 
   getAllDates: (req, res) => {
     const db = req.app.get('db')
-    db.get_all_dates().then((resp) => {
+    db.get_all_dates([req.params.location]).then((resp) => {
       res.status(200).send(resp)
     })
   },

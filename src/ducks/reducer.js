@@ -8,14 +8,16 @@ const initialState = {
   pending: 0,
   finalDate: [],
   sharingId: '',
-  filters: { 'cheap': false, 'sober': false, 'sedentary': false }
+  filters: { 'cheap': false, 'sober': false, 'sedentary': false },
+  popularDates: []
 }
 
 const GET_RESULTS = 'GET_RESULTS'
     , ADD_PREFERENCES = 'ADD_PREFERENCES'
     , FINALIZE_DATE = 'FINALIZE_DATE'
     , ADD_SHARING_ID = 'ADD_SHARING_ID'
-    , TOGGLE_FILTER = 'TOGGLE_FILTER';
+    , TOGGLE_FILTER = 'TOGGLE_FILTER'
+    , GET_POPULAR_DATES = 'GET_POPULAR_DATES';
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
@@ -38,6 +40,8 @@ export default function reducer(state = initialState, action) {
       let filters = {...state.filters};
       filters[action.payload] = !filters[action.payload];
       return Object.assign({}, state, { filters });
+    case GET_POPULAR_DATES + '_FULFILLED': 
+      return Object.assign({}, state, { popularDates: action.payload });
     default:
       return state;
   } 
@@ -82,5 +86,14 @@ export function activateFilter(filter) {
   return {
     type: TOGGLE_FILTER,
     payload: filter
+  }
+}
+
+export function getPopularDates(location) {
+  const results = axios.get(`http://localhost:4200/api/getAllDates/${location}`)
+                       .then(res => res.data);
+  return {
+    type: GET_POPULAR_DATES,
+    payload: results
   }
 }

@@ -3,7 +3,10 @@ import DeleteCard from '../../assets/Delete.svg';
 import Star from '../../assets/Star.svg';
 import TestPic from '../../assets/Couple.png';
 import Lock from '../../assets/Lock.svg';
-import Lock_White from '../../assets/Lock_White.svg';
+
+import lockWhite from '../../assets/locker.svg';
+import lockbar from '../../assets/lockbar.svg';
+// import Lock_White from '../../assets/Lock_White.svg';
 import Arrow from '../../assets/Arrow.svg';
 import logo from '../../assets/Icon.svg';
 
@@ -11,10 +14,11 @@ import logo from '../../assets/Icon.svg';
 export default function Date(props) {
   console.log(props)
   return (
-    
       <div className='date'>
       <div className="circle-lock" onClick={() => props.lockBusiness(props.index)}>
-            <img className="lock-icon" src={Lock_White} alt="Lock Date Icon" height="50px" />
+            <img src={lockWhite} className="lock"/>
+            <img src={lockbar} id={props.lockedBusinesses ? "" : "unlocked"} className="lockbar"/>
+            {/* <img className="lock-icon" src={Lock_White} alt="Lock Date Icon" height="50px" /> */}
           </div>
         <div className="date-information">
           {/* <div className="top-level">
