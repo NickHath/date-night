@@ -26,13 +26,17 @@ export default function Date(props) {
           <div className="second-top-level">
             <div className="results-text">START TIME:</div>
             <div className="results-response">4:30</div>
-            <div className= {!props.lockedCategories?"category" : "locked-category"} >
+            <div className= {!props.lockedCategories?"category" : "big-locked"} >
               <div className="results-text">TYPE:</div>
               <div className="results-response">{props.business.categories[0].title}</div>
-              <img className="lock-icon-small"
-              
-              onClick={() => props.lockCategory(props.index, props.business.categories[0].alias)} src={Lock} alt="Lock Type Icon" height="28px" />
+
+                  <div className="little-lock" onClick={() => props.lockCategory(props.index, props.business.categories[0].alias)}>
+                  <img src={lockWhite} className="lock2"/>
+                  <img src={lockbar} id={props.lockedCategories ? "" : "unlocked2"} className="lockbar2" />
+                </div>
+
             </div>
+            
           </div>
 
           <div className="middle-level">

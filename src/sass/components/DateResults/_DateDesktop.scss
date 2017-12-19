@@ -75,11 +75,11 @@
 
 .category {
     display: flex;
-    justify-content: space-around;
+    
     align-items: center;
-    border: 2px solid #000;
     width: 350px;
     margin-left: 50px;
+    border-radius: 5px;
 }
 
 .second-top-level, .middle-level, .first-bottom-level, .yelp-container{
@@ -164,6 +164,48 @@
 
 #unlocked {
     right: 1px;
+    top: -5px;
+    transform: scaleX(-1);
+    transition: 0.4s ease-in-out;
+}
+
+.big-locked{
+    display: flex;
+    
+    align-items: center;
+    width: 350px;
+    margin-left: 50px;
+    border-radius: 5px;
+}
+
+.little-lock{
+    @include flexSetUp;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px; 
+    background-color: $secondary-color;
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+}
+.lock2 {
+    position: relative;
+    top: 2px;
+    left: 5px;
+    margin: auto;
+    width: 13px;
+}
+
+.lockbar2 {
+    margin: auto;
+    position: relative;
+    right: 9px;
+    top: -6px;
+    width: 11px;
+    transition: 0.4s ease-in-out;
+  }
+  #unlocked2 {
+    right: 14px;
     top: -5px;
     transform: scaleX(-1);
     transition: 0.4s ease-in-out;
