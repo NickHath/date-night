@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import Finalizer from './Finalizer';
 import Share from '../../assets/Share.svg';
 import IconBulb from '../../assets/Icon_White.svg';
+import {connect} from 'react-redux'
 
-export default class Summary extends Component {
-
+class Summary extends Component {
+    constructor(props){
+        super(props)
+    }
     render() {
+        console.log(this.props)
         return (
             <main>
                 <div className="final-summary">
@@ -28,3 +32,9 @@ export default class Summary extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return state;
+  }
+
+export default connect(mapStateToProps)(Summary);

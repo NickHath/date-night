@@ -89,8 +89,9 @@ class DateResults extends Component {
     keymaster('space', this.handleSpace);
 
     // handle phone shake
+    this.handleShake = this.handleShake.bind(this)
     var myShakeEvent = new Shake({
-      threshold: 15, // optional shake strength threshold
+      threshold: 4, // optional shake strength threshold
       timeout: 1000 // optional, determines the frequency of event generation
     });
     myShakeEvent.start();
@@ -313,7 +314,6 @@ class DateResults extends Component {
 
   handleShake() {
     if (!this.state.isLoading) {
-      alert('shake!');
       this.refreshDate();
     }
   }

@@ -4,7 +4,8 @@ import FilterBtn from '../../assets/Settings.svg';
 import ShuffleBtn from '../../assets/Shuffle.svg';
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
-
+import {Link} from 'react-router-dom'
+import { setTimeout } from 'timers';
 
 
 export default class MobileHeader extends Component {
@@ -23,6 +24,12 @@ export default class MobileHeader extends Component {
         this.setState({ open: false });
     };
 
+    finalPage(){
+        setTimeout( () =>{
+            this.props.history.push("/results")
+        }, 300)
+        
+    }
 
     render() {
         const actions = [
@@ -90,7 +97,7 @@ export default class MobileHeader extends Component {
                         </Dialog>
                         <p className="side-btn-text">FILTER</p>
                     </div>
-                    <button className="save-button" onClick = { () => this.props.finalizeDate()}>SAVE MY DATE</button>
+                    <button className="save-button" onClick = { () => {this.props.finalizeDate(); this.finalPage()}} >SAVE MY DATE</button>
                 </div>
             </div>
         );

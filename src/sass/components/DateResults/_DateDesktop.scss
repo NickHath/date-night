@@ -164,12 +164,11 @@
 
 #unlocked {
     right: 1px;
-    top: -5px;
+    top: -7px;
     transform: scaleX(-1);
     transition: 0.4s ease-in-out;
 }
 
-<<<<<<< HEAD
 .big-locked{
     display: flex;
     
@@ -184,7 +183,6 @@
     border-radius: 50%;
     height: 30px;
     width: 30px; 
-    background-color: $secondary-color;
     display: flex;
     justify-content: center;
     margin-left: 10px;
@@ -192,7 +190,7 @@
 .lock2 {
     position: relative;
     top: 2px;
-    left: 5px;
+    left: 9px;
     margin: auto;
     width: 13px;
 }
@@ -200,30 +198,14 @@
 .lockbar2 {
     margin: auto;
     position: relative;
-    right: 9px;
-    top: -6px;
+    right: 6px;
+    top: -5px;
     width: 11px;
     transition: 0.4s ease-in-out;
   }
   #unlocked2 {
-    right: 14px;
-    top: -5px;
+    right: -3px;
+    top: -6px;
     transform: scaleX(-1);
     transition: 0.4s ease-in-out;
-=======
-.locked-category {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border: 2px solid #000;
-    width: 350px;
-    margin-left: 50px;
-    background-color: $bg-color;
-    
-    .type-black {
-        color: #000;
-        font-weight: bold;
-        font-size: 16px;
-    }
->>>>>>> master
 }
