@@ -359,7 +359,6 @@ class DateResults extends Component {
           if (business.id) {
             date[keys[index]] = business.id;
           }
-<<<<<<< HEAD
         })
 
         // we update the table rather than adding a new entry if sharingId exists 
@@ -369,10 +368,6 @@ class DateResults extends Component {
           // update date
           axios.put(`/api/modifyDate/${this.props.sharingId}`, date);
         }
-=======
-        });
-        axios.post('/api/addDate', date).then(res => this.props.addSharingId(res.data));
->>>>>>> filter
       });
     }
   }

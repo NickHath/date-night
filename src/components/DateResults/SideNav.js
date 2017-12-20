@@ -4,7 +4,7 @@ import FilterBtn from '../../assets/Settings.svg';
 import ShuffleBtn from '../../assets/Shuffle.svg';
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
-import {Link} from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom';
 import { setTimeout } from 'timers';
 import { connect } from 'react-redux';
 import {  activateFilter } from '../../ducks/reducer';
@@ -29,8 +29,8 @@ import {  activateFilter } from '../../ducks/reducer';
 
     finalPage(){
         setTimeout( () =>{
-            this.props.history.push("/results")
-        }, 300)
+            this.props.history.push("/summary")
+        }, 3000)
         
     }
 
@@ -106,7 +106,7 @@ import {  activateFilter } from '../../ducks/reducer';
                         </Dialog>
                         <p className="side-btn-text">FILTER</p>
                     </div>
-                    <button className="save-button" onClick = { () => {this.props.finalizeDate(); this.finalPage()}} >SAVE MY DATE</button>
+                    <button className="save-button" onClick = { () => {this.props.finalizeDate(); }} >SAVE MY DATE</button>
                 </div>
             </div>
         );
@@ -118,4 +118,4 @@ function mapStateToProps(state) {
   }
   
 
-export default connect(mapStateToProps, {activateFilter})(SideNav)
+export default withRouter(connect(mapStateToProps, {activateFilter})(SideNav))
