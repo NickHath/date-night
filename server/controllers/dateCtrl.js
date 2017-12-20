@@ -46,7 +46,7 @@ module.exports = {
             res.status(200).send(arr)
           }
         })
-         .catch(err => res.status(500).send(err));
+         .catch(err => res.status(500).send("Invalid API request"));
     
          axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}&offset=${50}`, config)    
          .then(businesses => {
@@ -64,7 +64,7 @@ module.exports = {
             res.status(200).send(arr)
           }
         })
-         .catch(err => res.status(500).send(err));
+         .catch(err => res.status(500).send("Invalid API request"));
     
          axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}&offset=${100}`, config)    
          .then(businesses => {
@@ -79,7 +79,7 @@ module.exports = {
             //filterRatings(arr)
             res.status(200).send(arr)
           }
-        }).catch(err => res.status(500).send(err));
+        }).catch(err => res.status(500).send("Invalid API request"));
 
              
        

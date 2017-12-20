@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 import Share from '../../assets/Share.svg';
@@ -10,8 +11,13 @@ class SaveDate extends Component {
     constructor() {
         super()
         this.state = {
-            open: false
+            open: false,
+            url: ''
         }
+    }
+
+    componentWillReceiveProps() {
+      this.setState({ url: this.googleMapsUrl() })
     }
 
     handleOpen = () => {
@@ -24,6 +30,15 @@ class SaveDate extends Component {
 
     handleCopy() {
       copy(`http://localhost:3000/results/${this.props.sharingId}`);
+    }
+
+    googleMapsUrl() {
+      let baseUrl = 'https://www.google.com/maps/dir/';
+      this.props.finalDate.map(date => {
+        baseUrl = baseUrl + (date.coordinates.latitude + ',' +  date.coordinates.longitude + '/');
+      });
+      console.log(baseUrl);
+      return baseUrl;
     }
 
     render() {
@@ -58,7 +73,8 @@ class SaveDate extends Component {
                         <img className="logo-bulb" src={Share} alt="Share Icon" height="35px" onClick={ () => this.handleCopy() }/>
                     </div>
                     <div className="white-line"></div>
-                    <button className="edit-date">EDIT DATE</button>
+                    <Link to={ `/results/${this.props.sharingId}` }><button className="edit-date">EDIT DATE</button></Link>
+                    <a href={this.state.url} target='_blank'>To GoogleMaps</a>
                 </Dialog>
             </div>
         )
@@ -66,7 +82,7 @@ class SaveDate extends Component {
 }
 
 function mapStateToProps(state) {
-  return { sharingId: state.sharingId };
+  return { sharingId: state.sharingId, finalDate: state.finalDate };
 }
 
 export default connect(mapStateToProps)(SaveDate);
