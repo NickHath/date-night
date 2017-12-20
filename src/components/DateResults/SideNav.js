@@ -17,6 +17,7 @@ import {  activateFilter } from '../../ducks/reducer';
         this.state = {
             open: false
         }
+
     }
 
     handleOpen = () => {
@@ -30,7 +31,7 @@ import {  activateFilter } from '../../ducks/reducer';
     finalPage(){
         setTimeout( () =>{
             this.props.history.push("/summary")
-        }, 3000)
+        }, 500)
         
     }
 
@@ -106,7 +107,7 @@ import {  activateFilter } from '../../ducks/reducer';
                         </Dialog>
                         <p className="side-btn-text">FILTER</p>
                     </div>
-                    <button className="save-button" onClick = { () => {this.props.finalizeDate(); }} >SAVE MY DATE</button>
+                    <button className="save-button" onClick = { () => {this.props.finalizeDate(); this.finalPage() }} >SAVE MY DATE</button>
                 </div>
             </div>
         );
