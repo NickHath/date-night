@@ -808,7 +808,9 @@ h5 {
 .final-summary {
   display: flex;
   overflow-x: hidden;
-  overflow-y: hidden; }
+  overflow-y: hidden;
+  height: 90vh;
+  justify-content: center; }
 
 .summary-card {
   border: 15px solid #e5e5e5;
@@ -895,7 +897,10 @@ h5 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px; }
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
 
 .start-text {
   font-weight: bold;

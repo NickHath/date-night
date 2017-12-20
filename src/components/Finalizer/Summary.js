@@ -10,12 +10,14 @@ class Summary extends Component {
     }
     render() {
         console.log(this.props)
+
+        let finalCard = this.props.finalDate.map( (date) => {
+          return  <Finalizer  date = {date}/>
+        })
         return (
             <main>
                 <div className="final-summary">
-                    <Finalizer />
-                    <Finalizer />
-                    <Finalizer />
+                    {finalCard}
                 </div>
                 <div className="share-summary-box">
                     <p className="share-desktop">SHARE WITH YOUR SIGNIFICANT OTHER:</p>
