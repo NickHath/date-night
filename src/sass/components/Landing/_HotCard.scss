@@ -1,0 +1,40 @@
+.hot-card {
+    text-align: center;
+}
+
+.yelp-hotandnew {
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    margin: 15px;
+    margin-right: 5px;
+}
+
+// .slider-frame {
+//     height: 80vh !important; 
+// }
+
+.featured-carosel {
+    border: 15px solid $bg-color;
+    display: flex;
+    height: 100px;
+    margin-bottom: -15px;
+}
+
+.new-info {
+    font-family: $main-font;
+    font-size: 18px;
+    margin: 15px;
+    
+}
+
+.new-title {
+    width: 100%;
+    height: 60px;
+    font-family: $main-font;
+    color: $white;
+    background-color: $secondary-color;
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
+}

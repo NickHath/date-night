@@ -9,14 +9,29 @@ import Logo_Icon from '../../assets/Icon.svg';
 import Couple from '../../assets/Couple.png';
 import Love from '../../assets/CoupleFull.jpg';
 import Arrow_Nav from '../../assets/Arrow_White.svg';
+// import Carousel from 'nuka-carousel';
+import HotCard from './HotCard';
 
 import { connect } from 'react-redux';
 
 class Landing extends Component {
   render() {
-    const hotAndNew = this.props.hotAndNew.map(business => <p>{business.name}</p>);
+    let hotAndNew = this.props.hotAndNew.map(business => {
+      return (
+        <div className="featured-carosel">
+          <HotCard img={business.image_url} />
+          <div className="new-info">
+            <p>{business.name}</p>
+            <p>{business.location.display_address[0]}</p>
+            <p>{business.location.display_address[1]}</p>
+          </div>
+          {console.log(business)}
+        </div>
+      )
+    });
+
     return (
-      <div className='landing'>
+      <div className='landing' >
         <div className="first-bg-box">
           <img className="logo" src={Logo_White} alt="Date Idea Generator Logo" />
           {/* <img className="arrow-down-nav" src={Arrow_Nav} alt="Click to scroll down"/>  */}
@@ -37,7 +52,12 @@ class Landing extends Component {
           <a href="#createform"><button className="main-btn">CREATE YOUR DATE</button></a>
           <button className="second-btn">EXPLORE FEATURED</button>
         </div>
-        <div className="featured">NEWLY OPENED { hotAndNew }</div>
+        <div className="featured">
+        <div className="new-title">HOT AND NEW IN YOUR AREA</div>        
+          {/* <Carousel decorators={false} autoplay={true}> */}
+            {hotAndNew}
+          {/* </Carousel> */}
+        </div>
         <div className="form-desktop">
           <div className="logo-lines">
             <div className="line"></div>

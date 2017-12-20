@@ -113,9 +113,19 @@ h5{
     color: $white;
 }
 
+.second-btn:active {
+    background-color: $link-color;
+    color: $white;
+}
+
 .featured {
     border: 40px solid $secondary-color;
     grid-area: featured;
+    overflow: scroll;
+}
+
+.featured-carosel {
+    height: 400px;
 }
 
 .logo-lines {
@@ -385,3 +395,4 @@ h5{
         display: none;
     }
 }
+
