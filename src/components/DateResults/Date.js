@@ -8,7 +8,8 @@ import lockWhite from '../../assets/locker.svg';
 import lockbar from '../../assets/lockbar.svg';
 import Arrow from '../../assets/Arrow.svg';
 import logo from '../../assets/Icon.svg';
-
+import lockbarBlack from '../../assets/lockbar-black.svg'
+import lockBlack from '../../assets/locker-black.svg'
 
 export default function Date(props) {
   console.log(props)
@@ -31,8 +32,8 @@ export default function Date(props) {
               <div className="results-response">{props.business.categories[0].title}</div>
 
                   <div className="little-lock" onClick={() => props.lockCategory(props.index, props.business.categories[0].alias)}>
-                  <img src={lockWhite} className="lock2"/>
-                  <img src={lockbar} id={props.lockedCategories ? "" : "unlocked2"} className="lockbar2" />
+                  <img src={lockBlack} className="lock2"/>
+                  <img src={lockbarBlack} id={props.lockedCategories ? "" : "unlocked2"} className="lockbar2" />
                 </div>
 
             </div>
