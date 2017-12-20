@@ -10,7 +10,8 @@ const initialState = {
   sharingId: '',
   filters: { 'cheap': false, 'sober': false, 'sedentary': false },
   popularDates: [],
-  hotAndNew: []
+  hotAndNew: [],
+  googleMaps: ''
 }
 
 const GET_RESULTS = 'GET_RESULTS'
@@ -35,7 +36,7 @@ export default function reducer(state = initialState, action) {
     case ADD_PREFERENCES:
       return Object.assign({}, state, { preferences: action.payload });
     case FINALIZE_DATE:
-      return Object.assign({}, state, { finalDate: action.payload });
+      return Object.assign({}, state, { finalDate: action.payload, googleMaps: googleMapsUrl(action.payload) });
     case ADD_SHARING_ID:
       return Object.assign({}, state, { sharingId: action.payload });
     case TOGGLE_FILTER:
@@ -107,4 +108,12 @@ export function addHotAndNew(locations) {
     type: ADD_HOT_AND_NEW,
     payload: locations
   }
+}
+
+function googleMapsUrl(businesses) {
+  let url = 'https://www.google.com/maps/dir/';
+  businesses.map(location => {
+    url = url + (location.coordinates.latitude + ',' +  location.coordinates.longitude + '/');
+  });
+  return url;
 }
