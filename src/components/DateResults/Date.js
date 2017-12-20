@@ -28,7 +28,7 @@ export default function Date(props) {
             <div className="results-response">4:30</div>
             <div className= {!props.lockedCategories?"category" : "locked-category"} >
               <div className="results-text">TYPE:</div>
-              <div className="results-response">{props.business.categories[0].title}</div>
+              <div className="results-response type-black">{props.business.categories[0].title}</div>
               <img className="lock-icon-small"
               
               onClick={() => props.lockCategory(props.index, props.business.categories[0].alias)} src={Lock} alt="Lock Type Icon" height="28px" />
