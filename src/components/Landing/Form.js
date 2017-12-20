@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { addPreferences } from '../../ducks/reducer';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
@@ -30,8 +31,13 @@ class Form extends Component {
       latitude: '',
       secondSlider: 10,
       errorLocation: false,
+      hotAndNew: []
     }
     this.getLocation = this.getLocation.bind(this);
+  }
+
+  componentDidMount() {
+    this.getLocation();
   }
 
 
@@ -42,11 +48,19 @@ class Form extends Component {
 
 
   getLocation() {
-    navigator.geolocation.getCurrentPosition(function (location) {
+    navigator.geolocation.getCurrentPosition(location => {
       console.log(location.coords.latitude);
-      console.log(location.coords.longitude);
-      console.log(location.coords.accuracy);
-
+      const { latitude, longitude } = location.coords;
+      axios.get(`http://localhost:4200/api/yelp/hotandnew/${latitude}/${longitude}`)
+           .then(res => {
+              let businesses = res.data.businesses;
+              let keys = Object.keys(businesses), hotAndNew = [];
+              for (let i = 0; i < 10; i++) {
+                hotAndNew.push(businesses[keys[i]]);
+              }            
+              this.setState({ hotAndNew })
+            })
+           .catch(err => console.log(err));
     });
   }
 
@@ -119,8 +133,7 @@ class Form extends Component {
 
 
   render() {
-
-
+    console.log(this.state);
 
     { console.log(this.state.secondSlider) }
     return (

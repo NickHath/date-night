@@ -20,10 +20,13 @@ massive(process.env.CONNECTION_STRING)
 // req.body should have location, category and (optionally) radius
 app.post('/api/yelp', dateCtrl.getBusinesses)
 app.post('/api/yelp/business', dateCtrl.getBusinessById)
+app.get('/api/yelp/hotandnew/:lat/:long', dateCtrl.hotAndNew)
+
 app.get("/api/getAllDates/:location", dateCtrl.getAllDates)
 app.get("/api/getDate/:id", dateCtrl.getDate)
 app.post("/api/addDate", dateCtrl.addDate)
 app.put("/api/modifyDate/:id", dateCtrl.modifyDate)
 app.get("/api/test", dateCtrl.test)
+
 const PORT = 4200;
 app.listen(PORT, console.log(`I'm listening.. port: ${PORT}`));
