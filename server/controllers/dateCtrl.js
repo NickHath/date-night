@@ -194,5 +194,14 @@ module.exports = {
       }
     })
     
+  },
+
+  hotAndNew: (req, res) => {
+    const { lat, long } = req.params;
+    console.log(`${baseUrl}search?latitude=${lat}&longitude=${long}&hot_and_new`);
+    console.log(config);
+    axios.get(`${baseUrl}search?latitude=${lat}&longitude=${long}&hot_and_new`, config)
+         .then(businesses => res.status(200).send(businesses.data))
+         .catch(err => res.status(500).send('What!'));
   }
 }
