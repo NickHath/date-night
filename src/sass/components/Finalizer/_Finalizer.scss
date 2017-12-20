@@ -1,0 +1,152 @@
+.final-summary {
+    display: flex;
+    overflow-x: hidden;  
+    overflow-y: hidden;  
+}
+
+.summary-card {
+    border: 15px solid $bg-color;
+    width: 30%;
+    margin: 1%;
+    position: relative;
+}
+
+.share-summary-box {
+    background-color: $primary-color;
+    width: 100vw;
+    height: 10vh;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-top {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px;
+    color: $primary-color;
+    font-family: $main-font;
+    font-size: 18px;
+    margin-top: 30px;
+}
+
+.summary-ratings {
+    display: flex;
+}
+
+.summary-rating-number {
+    margin-top: 5px;
+    margin-right: 8px;
+}
+
+.middle-section {
+    @include flexSetUp;
+}
+
+.yelp-summary {
+    margin-top: -80px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    width: 190px;
+    height: 190px;
+}
+
+.location-header {
+    @include flexSetUp;
+    margin: 10px;
+    font-family: $main-font;
+    font-weight: bold;
+    color: #000000;
+    font-size: 28px;
+}
+
+.gray-bar {
+    margin: auto;
+    margin-top: 30px;
+    height: 5px;
+    width: 175px;
+    background-color: $bg-color;
+}
+
+.summary-data-box {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    margin: 30px;
+    font-family: $main-font;
+    font-size: 18px;
+}
+
+.summary-text {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.summary-response {
+    margin-left: 20px;
+    color: $link-color;
+    margin-bottom: 20px;
+}
+
+.gray-box {
+    background-color: $bg-color;
+    font-family: $main-font;
+    color: #000000;
+    font-size: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+.start-text {
+    font-weight: bold;
+    margin-top: 20px;    
+}
+
+.start-response {
+    margin-left: 20px;
+    color: $link-color;
+    margin-top: 20px;
+}
+
+.share-desktop {
+    font-weight: bold;
+    font-family: $main-font;
+    color: #000000;
+    margin-left: 20px;
+}
+
+.share-input-desktop {
+    width: 30vw;
+    height: 35px;
+    margin-left: -10px;
+    font-family: Helvetica, sans-serif;
+    font-weight: normal;
+    color: #000000;
+    font-size: 21px;
+}
+
+.share-link {
+    margin-bottom: -10px;
+    margin-left: 10px;
+}
+
+.edit-share-desktop {
+    background-color: $secondary-color;
+    width: 215px;
+    height: 50px;
+    color: $white;
+    border: none;
+    font-family: $main-font;
+    font-size: 21px;
+    cursor: pointer;
+    border-radius: 0px;
+    margin: 10px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.2);
+}
+
+.logo-share-box {
+    margin-right: 20px;
+}

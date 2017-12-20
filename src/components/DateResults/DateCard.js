@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import DeleteCard from '../../assets/Delete.svg';
+// import DeleteCard from '../../assets/Delete.svg';
 import Star from '../../assets/Star.svg';
 import Clock from '../../assets/Start.svg';
-import TestPic from '../../assets/Couple.png';
 import Lock from '../../assets/Lock.svg';
 import Arrow from '../../assets/Arrow.svg';
 import logo from '../../assets/Icon.svg';
