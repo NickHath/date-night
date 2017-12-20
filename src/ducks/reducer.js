@@ -9,7 +9,9 @@ const initialState = {
   finalDate: [],
   sharingId: '',
   filters: { 'cheap': false, 'sober': false, 'sedentary': false },
-  popularDates: []
+  popularDates: [],
+  hotAndNew: [],
+  googleMaps: ''
 }
 
 const GET_RESULTS = 'GET_RESULTS'
@@ -17,7 +19,8 @@ const GET_RESULTS = 'GET_RESULTS'
     , FINALIZE_DATE = 'FINALIZE_DATE'
     , ADD_SHARING_ID = 'ADD_SHARING_ID'
     , TOGGLE_FILTER = 'TOGGLE_FILTER'
-    , GET_POPULAR_DATES = 'GET_POPULAR_DATES';
+    , GET_POPULAR_DATES = 'GET_POPULAR_DATES'
+    , ADD_HOT_AND_NEW ='ADD_HOT_AND_NEW';
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
@@ -33,7 +36,7 @@ export default function reducer(state = initialState, action) {
     case ADD_PREFERENCES:
       return Object.assign({}, state, { preferences: action.payload });
     case FINALIZE_DATE:
-      return Object.assign({}, state, { finalDate: action.payload });
+      return Object.assign({}, state, { finalDate: action.payload, googleMaps: googleMapsUrl(action.payload) });
     case ADD_SHARING_ID:
       return Object.assign({}, state, { sharingId: action.payload });
     case TOGGLE_FILTER:
@@ -42,6 +45,8 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { filters });
     case GET_POPULAR_DATES + '_FULFILLED': 
       return Object.assign({}, state, { popularDates: action.payload });
+    case ADD_HOT_AND_NEW: 
+      return Object.assign({}, state, { hotAndNew: action.payload });
     default:
       return state;
   } 
@@ -96,4 +101,19 @@ export function getPopularDates(location) {
     type: GET_POPULAR_DATES,
     payload: results
   }
+}
+
+export function addHotAndNew(locations) {
+  return {
+    type: ADD_HOT_AND_NEW,
+    payload: locations
+  }
+}
+
+function googleMapsUrl(businesses) {
+  let url = 'https://www.google.com/maps/dir/';
+  businesses.map(location => {
+    url = url + (location.coordinates.latitude + ',' +  location.coordinates.longitude + '/');
+  });
+  return url;
 }

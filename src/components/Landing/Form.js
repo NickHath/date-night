@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addPreferences } from '../../ducks/reducer';
+import { addPreferences, addHotAndNew } from '../../ducks/reducer';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -58,7 +58,7 @@ class Form extends Component {
               for (let i = 0; i < 10; i++) {
                 hotAndNew.push(businesses[keys[i]]);
               }            
-              this.setState({ hotAndNew })
+              this.props.addHotAndNew(hotAndNew);
             })
            .catch(err => console.log(err));
     });
@@ -196,4 +196,4 @@ function mapStateToProps(state) {
   }
 
 }
-export default withRouter(connect(mapStateToProps, { addPreferences })(Form))
+export default withRouter(connect(mapStateToProps, { addPreferences, addHotAndNew })(Form))

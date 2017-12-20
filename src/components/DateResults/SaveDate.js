@@ -12,12 +12,7 @@ class SaveDate extends Component {
         super()
         this.state = {
             open: false,
-            url: ''
         }
-    }
-
-    componentWillReceiveProps() {
-      this.setState({ url: this.googleMapsUrl() })
     }
 
     handleOpen = () => {
@@ -30,15 +25,6 @@ class SaveDate extends Component {
 
     handleCopy() {
       copy(`http://localhost:3000/results/${this.props.sharingId}`);
-    }
-
-    googleMapsUrl() {
-      let baseUrl = 'https://www.google.com/maps/dir/';
-      this.props.finalDate.map(date => {
-        baseUrl = baseUrl + (date.coordinates.latitude + ',' +  date.coordinates.longitude + '/');
-      });
-      console.log(baseUrl);
-      return baseUrl;
     }
 
     render() {
@@ -74,7 +60,7 @@ class SaveDate extends Component {
                     </div>
                     <div className="white-line"></div>
                     <Link to={ `/results/${this.props.sharingId}` }><button className="edit-date">EDIT DATE</button></Link>
-                    <a href={this.state.url} target='_blank'><img src={directions} alt=""/></a>
+                    <a href={this.props.googleMaps} target='_blank'>To GoogleMaps</a>
                 </Dialog>
             </div>
         )
@@ -82,7 +68,7 @@ class SaveDate extends Component {
 }
 
 function mapStateToProps(state) {
-  return { sharingId: state.sharingId, finalDate: state.finalDate };
+  return { sharingId: state.sharingId, finalDate: state.finalDate, googleMaps: state.googleMaps };
 }
 
 export default connect(mapStateToProps)(SaveDate);
