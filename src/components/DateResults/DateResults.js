@@ -330,7 +330,7 @@ class DateResults extends Component {
         keyboardFocused={true}
         onClick={this.handleClose}
       />,
-    ];
+    ]
     const styles = {
       block: {
         maxWidth: 300,
