@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
 import Share from '../../assets/Share.svg';
-import directions from '../../assets/directions.svg'
+import Google from '../../assets/Google.svg';
 import copy from 'copy-to-clipboard';
 
 class SaveDate extends Component {
@@ -74,7 +74,9 @@ class SaveDate extends Component {
                     </div>
                     <div className="white-line"></div>
                     <Link to={ `/results/${this.props.sharingId}` }><button className="edit-date">EDIT DATE</button></Link>
-                    <a href={this.state.url} target='_blank'><img src={directions} alt=""/></a>
+                    <div className="google-box">
+                    <a href={this.state.url} className="google-text" target='_blank'>Map On Google Maps<img className="google-icon" src={Google} alt="Map on Google" width="40px"/></a>
+                    </div>
                 </Dialog>
             </div>
         )

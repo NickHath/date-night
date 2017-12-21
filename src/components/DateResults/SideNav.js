@@ -7,11 +7,11 @@ import Toggle from 'material-ui/Toggle';
 import { Link, withRouter } from 'react-router-dom';
 import { setTimeout } from 'timers';
 import { connect } from 'react-redux';
-import {  activateFilter } from '../../ducks/reducer';
+import { activateFilter } from '../../ducks/reducer';
 
 
 
- class SideNav extends Component {
+class SideNav extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -28,11 +28,11 @@ import {  activateFilter } from '../../ducks/reducer';
         this.setState({ open: false });
     };
 
-    finalPage(){
-        setTimeout( () =>{
+    finalPage() {
+        setTimeout(() => {
             this.props.history.push("/summary")
         }, 500)
-        
+
     }
 
     render() {
@@ -61,10 +61,12 @@ import {  activateFilter } from '../../ducks/reducer';
 
         return (
             <div className='side-nav' >
-                <center><img className="logo-side" src={Logo} alt="Home Logo" /></center>
+                <Link to="/">
+                    <center><img className="logo-side" src={Logo} alt="Home Logo" /></center>
+                </Link>
                 <div className="side-icons">
                     <div className="icons-box">
-                        <img className="shuffle-btn" onClick = { () => {this.props.shuffle()}} src={ShuffleBtn} alt="Shuffle Button" height="80px" />
+                        <img className="shuffle-btn" onClick={() => { this.props.shuffle() }} src={ShuffleBtn} alt="Shuffle Button" height="80px" />
                         <p className="side-btn-text">SHUFFLE LIST</p>
                     </div>
                     <div className="icons-box">
@@ -76,6 +78,7 @@ import {  activateFilter } from '../../ducks/reducer';
                             open={this.state.open}
                             onRequestClose={this.handleClose}
                             style={{ backgroundColor: 'rgba(225, 225, 225, .75)' }}
+                            contentStyle={{maxWidth: 450}}                            
                             titleStyle={{ fontSize: '36px', lineHeight: '40px', fontWeight: 'bold', fontFamily: 'Helvetica' }}
                         >
                             <div style={styles.block}>
@@ -107,7 +110,7 @@ import {  activateFilter } from '../../ducks/reducer';
                         </Dialog>
                         <p className="side-btn-text">FILTER</p>
                     </div>
-                    <button className="save-button" onClick = { () => {this.props.finalizeDate(); this.finalPage() }} >SAVE MY DATE</button>
+                    <button className="save-button" onClick={() => { this.props.finalizeDate(); this.finalPage() }} >SAVE MY DATE</button>
                 </div>
             </div>
         );
@@ -116,7 +119,7 @@ import {  activateFilter } from '../../ducks/reducer';
 
 function mapStateToProps(state) {
     return state;
-  }
-  
+}
 
-export default withRouter(connect(mapStateToProps, {activateFilter})(SideNav))
+
+export default withRouter(connect(mapStateToProps, { activateFilter })(SideNav))

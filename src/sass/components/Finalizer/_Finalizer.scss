@@ -124,13 +124,18 @@
 }
 
 .share-input-desktop {
-    width: 30vw;
+    width: 20vw;
     height: 35px;
     margin-left: -10px;
     font-family: Helvetica, sans-serif;
     font-weight: normal;
     color: #000000;
     font-size: 21px;
+}
+
+.btn-box-final {
+    display: flex;
+    margin-right: -20px;
 }
 
 .share-link {

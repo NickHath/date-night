@@ -34,7 +34,7 @@ class Landing extends Component {
       <div className='landing' >
         <div className="first-bg-box">
           <img className="logo" src={Logo_White} alt="Date Idea Generator Logo" />
-          {/* <img className="arrow-down-nav" src={Arrow_Nav} alt="Click to scroll down"/>  */}
+          <img className="arrow-down-nav" src={Arrow_Nav} alt="Click to scroll down" width="55px"/> 
         </div>
         <div className="header-bar"></div>
         <div className="text-wrapper">
