@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import Finalizer from './Finalizer';
 import Share from '../../assets/Share.svg';
 import IconBulb from '../../assets/Icon_White.svg';
+import {connect} from 'react-redux'
 
-export default class Summary extends Component {
-
+class Summary extends Component {
+    constructor(props){
+        super(props)
+    }
     render() {
+        console.log(this.props)
+
+        let finalCard = this.props.finalDate.map( (date) => {
+          return  <Finalizer  date = {date}/>
+        })
         return (
             <main>
                 <div className="final-summary">
-                    <Finalizer />
-                    <Finalizer />
-                    <Finalizer />
+                    {finalCard}
                 </div>
                 <div className="share-summary-box">
                     <p className="share-desktop">SHARE WITH YOUR SIGNIFICANT OTHER:</p>
@@ -28,3 +34,9 @@ export default class Summary extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return state;
+  }
+
+export default connect(mapStateToProps)(Summary);

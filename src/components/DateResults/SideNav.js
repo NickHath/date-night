@@ -4,15 +4,20 @@ import FilterBtn from '../../assets/Settings.svg';
 import ShuffleBtn from '../../assets/Shuffle.svg';
 import Dialog from 'material-ui/Dialog';
 import Toggle from 'material-ui/Toggle';
+import { Link, withRouter } from 'react-router-dom';
+import { setTimeout } from 'timers';
+import { connect } from 'react-redux';
+import {  activateFilter } from '../../ducks/reducer';
 
 
 
-export default class MobileHeader extends Component {
+ class SideNav extends Component {
     constructor(props) {
         super(props)
         this.state = {
             open: false
         }
+
     }
 
     handleOpen = () => {
@@ -23,6 +28,12 @@ export default class MobileHeader extends Component {
         this.setState({ open: false });
     };
 
+    finalPage(){
+        setTimeout( () =>{
+            this.props.history.push("/summary")
+        }, 500)
+        
+    }
 
     render() {
         const actions = [
@@ -72,17 +83,23 @@ export default class MobileHeader extends Component {
                                     label="I'M ON A BUDGET"
                                     labelPosition="right"
                                     style={styles.toggle}
+                                    onToggle={() => this.props.activateFilter('cheap')}
+                                    toggled={this.props.filters.cheap}
                                     thumbSwitchedStyle={styles.thumbSwitched}
                                 />
                                 <Toggle
                                     label="STONE COLD SOBER"
                                     labelPosition="right"
                                     style={styles.toggle}
+                                    onToggle={() => this.props.activateFilter('sober')}
+                                    toggled={this.props.filters.sober}
                                     thumbSwitchedStyle={styles.thumbSwitched}
                                 />
                                 <Toggle
                                     label="DON'T MAKE ME EXERCISE"
                                     labelPosition="right"
+                                    onToggle={() => this.props.activateFilter('sedentary')}
+                                    toggled={this.props.filters.sedentary}
                                     style={styles.toggle}
                                     thumbSwitchedStyle={styles.thumbSwitched}
                                 />
@@ -90,9 +107,16 @@ export default class MobileHeader extends Component {
                         </Dialog>
                         <p className="side-btn-text">FILTER</p>
                     </div>
-                    <button className="save-button" onClick = { () => this.props.finalizeDate()}>SAVE MY DATE</button>
+                    <button className="save-button" onClick = { () => {this.props.finalizeDate(); this.finalPage() }} >SAVE MY DATE</button>
                 </div>
             </div>
         );
     }
 }
+
+function mapStateToProps(state) {
+    return state;
+  }
+  
+
+export default withRouter(connect(mapStateToProps, {activateFilter})(SideNav))

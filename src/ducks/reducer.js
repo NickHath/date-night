@@ -53,7 +53,7 @@ export default function reducer(state = initialState, action) {
 }
 
 export function getResults(location, category, radius) {
-  const results = axios.post('http://localhost:4200/api/yelp', { location, category, radius })
+  const results = axios.post('/api/yelp', { location, category, radius })
                        .then(res => {
                          let results = {};
                          results[category] = res.data;
@@ -95,7 +95,7 @@ export function activateFilter(filter) {
 }
 
 export function getPopularDates(location) {
-  const results = axios.get(`http://localhost:4200/api/getAllDates/${location}`)
+  const results = axios.get(`/api/getAllDates/${location}`)
                        .then(res => res.data);
   return {
     type: GET_POPULAR_DATES,

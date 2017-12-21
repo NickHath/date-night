@@ -8,7 +8,8 @@ import lockWhite from '../../assets/locker.svg';
 import lockbar from '../../assets/lockbar.svg';
 import Arrow from '../../assets/Arrow.svg';
 import logo from '../../assets/Icon.svg';
-
+import lockbarBlack from '../../assets/lockbar-black.svg'
+import lockBlack from '../../assets/locker-black.svg'
 
 export default function Date(props) {
   console.log(props)
@@ -26,13 +27,17 @@ export default function Date(props) {
           <div className="second-top-level">
             <div className="results-text">START TIME:</div>
             <div className="results-response">4:30</div>
-            <div className= {!props.lockedCategories?"category" : "locked-category"} >
+            <div className= {!props.lockedCategories?"category" : "big-locked"} >
               <div className="results-text">TYPE:</div>
-              <div className="results-response type-black">{props.business.categories[0].title}</div>
-              <img className="lock-icon-small"
-              
-              onClick={() => props.lockCategory(props.index, props.business.categories[0].alias)} src={Lock} alt="Lock Type Icon" height="28px" />
+              <div className="results-response">{props.business.categories[0].title}</div>
+
+                  <div className="little-lock" onClick={() => props.lockCategory(props.index, props.business.categories[0].alias)}>
+                  <img src={lockBlack} className="lock2"/>
+                  <img src={lockbarBlack} id={props.lockedCategories ? "" : "unlocked2"} className="lockbar2" />
+                </div>
+
             </div>
+            
           </div>
 
           <div className="middle-level">

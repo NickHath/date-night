@@ -94,6 +94,7 @@ class DateResults extends Component {
       timeout: 1000 // optional, determines the frequency of event generation
     });
     myShakeEvent.start();
+    this.handleShake = this.handleShake.bind(this)
     window.addEventListener('shake', this.handleShake, false);
 
     // add parameter id to store if it exists
@@ -313,7 +314,7 @@ class DateResults extends Component {
 
   handleShake() {
     if (!this.state.isLoading) {
-      alert('shake!');
+      
       this.refreshDate();
     }
   }
@@ -329,7 +330,7 @@ class DateResults extends Component {
         keyboardFocused={true}
         onClick={this.handleClose}
       />,
-    ];
+    ]
     const styles = {
       block: {
         maxWidth: 300,

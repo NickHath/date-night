@@ -154,11 +154,11 @@ class Form extends Component {
         <h3>LENGTH:</h3>
         <div className="btn-length">
           <h4 className="gray-text subtitle-short">1 HOUR</h4>
-          <button className="second-btn btn-short active" onClick={() => this.setState({ buttonClick: "short" })}>SHORT</button>
-          <h4 className="gray-text subtitle-medium ">2-3 HOURS</h4>
-          <button className="second-btn btn-medium active" onClick={() => this.setState({ buttonClick: "medium" })}>MEDIUM</button>
+          <button className="second-btn btn-short" onClick={() => this.setState({ buttonClick: "short" })}>SHORT</button>
+          <h4 className="gray-text subtitle-medium">2-3 HOURS</h4>
+          <button className="second-btn btn-medium" onClick={() => this.setState({ buttonClick: "medium" })}>MEDIUM</button>
           <h4 className="gray-text subtitle-long">4+ HOURS</h4>
-          <button className="second-btn btn-long active" onClick={() => this.setState({ buttonClick: "long" })}>LONG</button>
+          <button className="second-btn btn-long" onClick={() => this.setState({ buttonClick: "long" })}>LONG</button>
         </div>
         <h3>LOCATION:</h3>
 
