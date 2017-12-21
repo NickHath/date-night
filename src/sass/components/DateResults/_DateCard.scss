@@ -112,11 +112,16 @@
 
 .locked-category{
     display: flex;
-    border: 1.5px solid $primary-color;
+    border: 1.5px solid #000000;
     align-items: center;
     justify-content: space-around;
     height: 40px;
     cursor: pointer;
+    background: $bg-color;
+    .type-response {
+        color: #000;
+        font-weight: bold;
+    }
 
 
 }
@@ -201,6 +206,28 @@
 
 .big-date{
     display: none;
+}
+
+.google-box {
+    text-align: center;
+    background-color: $white;
+    margin: 10px;
+    border: 5px solid $bg-color;
+    font-size: 13px;
+}
+
+.google-icon {
+    margin-left: 10px;
+}
+
+.google-text {
+    @include flexSetUp;
+    margin-left: 10px;
+}
+
+a {
+    color: $secondary-color;
+    text-decoration: none;
 }
 
 @media screen and (min-width: 750px) {

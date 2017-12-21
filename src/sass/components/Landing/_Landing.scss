@@ -37,6 +37,10 @@
     grid-area: logo;
 }
 
+.arrow-down-nav {
+    display: none;
+}
+
 .header-bar {
     margin-top: -5px;
     height: 50px;
@@ -252,6 +256,11 @@ h5{
     .logo {
         width: 45%;
         margin-top:20px;
+        margin: 120px;
+    }
+
+    .arrow-down-nav {
+        display: block;
     }
 
     .header-bar {

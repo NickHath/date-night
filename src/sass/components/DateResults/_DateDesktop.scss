@@ -70,16 +70,15 @@
 .results-response {
     color: $link-color;  
     font-family: $main-font;
-    font-size: 13px;
+    font-size: 13px;    
 }
 
 .category {
     display: flex;
-    
+    border: 2px solid #000;
     align-items: center;
     width: 350px;
-    margin-left: 50px;
-    border-radius: 5px;
+    margin-left: 50px;    
 }
 
 .second-top-level, .middle-level, .first-bottom-level, .yelp-container{
@@ -157,25 +156,29 @@
     margin: auto;
     position: relative;
     right: 20px;
-    top: -6px;
+    top: -5px;
     width: 22px;
     transition: 0.4s ease-in-out;
   }
 
 #unlocked {
     right: 1px;
-    top: -7px;
+    top: -5px;
     transform: scaleX(-1);
     transition: 0.4s ease-in-out;
 }
 
 .big-locked{
     display: flex;
-    
+    border: 2px solid #000;
+    background-color: $bg-color;  
     align-items: center;
     width: 350px;
     margin-left: 50px;
-    border-radius: 5px;
+    .results-response {
+        color: #000;
+        font-weight: bold;
+    }
 }
 
 .little-lock{
@@ -204,8 +207,54 @@
     transition: 0.4s ease-in-out;
   }
   #unlocked2 {
-    right: -3px;
+    right: -4px;
     top: -6px;
+    transform: scaleX(-1);
+    transition: 0.4s ease-in-out;
+}
+
+.lock3 {
+    position: relative;
+    top: 2px;
+    left: 9px;
+    margin: auto;
+    width: 35px;
+}
+
+.lockbar3 {
+    margin: auto;
+    position: relative;
+    right: 23px;
+    top: -20px;
+    width: 30px;
+    transition: 0.4s ease-in-out;
+  }
+  #unlocked3 {
+    right: -3px;
+    top: -20px;
+    transform: scaleX(-1);
+    transition: 0.4s ease-in-out;
+}
+
+.lock4 {
+    position: relative;
+    top: 4px;
+    left: 9px;
+    margin: auto;
+    width: 13px;
+}
+
+.lockbar4 {
+    margin: auto;
+    position: relative;
+    right: 3px;
+    top: -5px;
+    width: 11px;
+    transition: 0.4s ease-in-out;
+  }
+  #unlocked4 {
+    right: -6px;
+    top: -5px;
     transform: scaleX(-1);
     transition: 0.4s ease-in-out;
 }

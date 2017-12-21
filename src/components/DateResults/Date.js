@@ -8,8 +8,8 @@ import lockWhite from '../../assets/locker.svg';
 import lockbar from '../../assets/lockbar.svg';
 import Arrow from '../../assets/Arrow.svg';
 import logo from '../../assets/Icon.svg';
-import lockbarBlack from '../../assets/lockbar-black.svg'
-import lockBlack from '../../assets/locker-black.svg'
+import lockbarBlack from '../../assets/lockbar-black.svg';
+import lockBlack from '../../assets/locker-black.svg';
 
 export default function Date(props) {
   console.log(props)
