@@ -50,7 +50,7 @@ class Landing extends Component {
         </div>
         <div className="btn-container">
           <a href="#createform"><button className="main-btn">CREATE YOUR DATE</button></a>
-          <button className="second-btn">EXPLORE FEATURED</button>
+          <button className="second-btn" onClick={ () => alert('Coming soon!') }>EXPLORE FEATURED</button>
         </div>
         <div className="featured">
         <div className="new-title">HOT AND NEW IN YOUR AREA</div>        
