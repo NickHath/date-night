@@ -26,7 +26,7 @@ class Summary extends Component {
       }
 
     handleCopy() {
-        copy(`http://www.dategen.io/results/${this.props.sharingId}`);
+        copy(`dategen.io/results/${this.props.sharingId}`);
         this.setState({showSnack: true})
         setTimeout(function(){
             this.setState({showSnack: false})
@@ -45,7 +45,7 @@ class Summary extends Component {
                 <div className="share-summary-box">
                     <p className="share-desktop">SHARE WITH YOUR SIGNIFICANT OTHER:</p>
                     <div className="input-desktop">
-                        <input value={"http://www.dategen.io/results/" + this.props.sharingId} className="share-input-desktop" placeholder="copy URL" />
+                        <input value={"dategen.io/results/" + this.props.sharingId} className="share-input-desktop" placeholder="copy URL" />
                         <img className="share-link" src={Share} alt="Share Icon" height="35px" onClick={() => this.handleCopy()} />
                         <div id={this.state.showSnack ? "snackBar" : "shnakeBar"} className="popup">Copied to clipboard!<img id="tri" src={triangle}/></div>
                     </div>
