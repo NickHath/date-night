@@ -185,10 +185,6 @@ h5 {
   background-color: #03a9f4;
   color: #ffffff; }
 
-.second-btn:active {
-  background-color: #03a9f4;
-  color: #ffffff; }
-
 .featured {
   border: 40px solid #2a2c3b;
   grid-area: featured;
@@ -295,9 +291,6 @@ h5 {
     display: flex; }
   .second-btn {
     margin-left: 50px; }
-  #isBlue {
-    color: #ffffff;
-    background-color: #03a9f4; }
   .featured {
     height: 90vh; }
   .img-wrapper {
@@ -367,6 +360,10 @@ h5 {
     font-size: 90%; }
   .form-title {
     display: none; } }
+
+#isBlue {
+  color: #ffffff;
+  background-color: #03a9f4; }
 
 .mobile-header {
   background-color: #e57455;
