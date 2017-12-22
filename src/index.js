@@ -1,5 +1,4 @@
 import React from 'react';
-import registerServiceWorker from './registerServiceWorker';
 
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -29,4 +28,3 @@ ReactDOM.render(
     </MuiThemeProvider>
   </BrowserRouter>
   , document.getElementById('root'));
-registerServiceWorker();
