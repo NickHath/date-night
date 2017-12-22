@@ -34,10 +34,8 @@ class Summary extends Component {
       }
 
     render() {
-        console.log(this.props)
-
         let finalCard = this.props.finalDate.map((date) => {
-            return <Finalizer date={date} />
+            return <Finalizer date={date}/>
         })
         return (
             <main>
@@ -53,7 +51,7 @@ class Summary extends Component {
                     </div>
                     <div className="btn-box-final">
                         <div className="google-box">
-                            <a href={this.state.url} className="google-text" target='_blank'>Map On Google Maps<img className="google-icon" src={Google} alt="Map on Google" width="40px" /></a>
+                            <a href={this.props.googleMaps} className="google-text" target='_blank'>Map On Google Maps<img className="google-icon" src={Google} alt="Map on Google" width="40px" /></a>
                         </div>
                        <Link to = {`/results/${this.props.sharingId}`} >
                         <button className="edit-share-desktop">EDIT DATE</button>

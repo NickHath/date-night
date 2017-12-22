@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Form from './Form';
-import Mobile_Ocean from '../../assets/Mobile_Ocean.svg';
 import Logo_White from '../../assets/Logo_White.svg';
 import Clipboard from '../../assets/Clipboard.svg';
 import ShuffleTwo from '../../assets/Shuffle_Two.svg';
@@ -16,16 +15,15 @@ import { connect } from 'react-redux';
 
 class Landing extends Component {
   render() {
-    let hotAndNew = this.props.hotAndNew.map(business => {
+    let hotAndNew = this.props.hotAndNew.map((business, index) => {
       return (
-        <div className="featured-carosel">
+        <div className="featured-carosel" key={index}>
           <HotCard img={business.image_url} />
           <div className="new-info">
             <p>{business.name}</p>
             <p>{business.location.display_address[0]}</p>
             <p>{business.location.display_address[1]}</p>
           </div>
-          {console.log(business)}
         </div>
       )
     });
@@ -50,7 +48,7 @@ class Landing extends Component {
         </div>
         <div className="btn-container">
           <a href="#createform"><button className="main-btn">CREATE YOUR DATE</button></a>
-          <button className="second-btn">EXPLORE FEATURED</button>
+          <button className="second-btn" onClick={ () => alert('Coming soon!') }>EXPLORE FEATURED</button>
         </div>
         <div className="featured">
         <div className="new-title">HOT AND NEW IN YOUR AREA</div>        

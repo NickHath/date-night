@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Dialog from 'material-ui/Dialog';
-import Toggle from 'material-ui/Toggle';
 import Share from '../../assets/Share.svg';
 import Google from '../../assets/Google.svg';
 import copy from 'copy-to-clipboard';
@@ -34,10 +33,9 @@ class SaveDate extends Component {
 
     googleMapsUrl() {
       let baseUrl = 'https://www.google.com/maps/dir/';
-      this.props.finalDate.map(date => {
+      this.props.finalDate.forEach(date => {
         baseUrl = baseUrl + (date.coordinates.latitude + ',' +  date.coordinates.longitude + '/');
       });
-      console.log(baseUrl);
       return baseUrl;
     }
 

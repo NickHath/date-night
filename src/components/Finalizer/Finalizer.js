@@ -1,9 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Star from '../../assets/Star.svg';
-import Clock from '../../assets/Start.svg';
-import TestPic from '../../assets/Couple.png';
-import Lock from '../../assets/Lock.svg';
-import Arrow from '../../assets/Arrow.svg';
 import logo from '../../assets/Icon.svg';
 
 export default function Finalizer (props) {
@@ -41,8 +37,8 @@ export default function Finalizer (props) {
                 </div>
             </div>
             <div className="gray-box">
-                <div className="start-text">Time est</div>
-                <div className="start-response">1-2 hrs</div>
+                <div className="start-text">Time Est.</div>
+                <div className="start-response">1-2 Hrs</div>
             </div>
         </div>
     );

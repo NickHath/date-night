@@ -9,7 +9,6 @@ class PopularDates extends Component {
   }
 
   render() {
-    console.log(this.props);
     const allDates = this.props.popularDates.map(date => {
       return (
         <Link to={ `results/${date.date_id}` }>
@@ -19,7 +18,6 @@ class PopularDates extends Component {
         </Link>
       );
     });
-    console.log(allDates);
     return (
       <div className='popular-dates-wrapper'>
         <input ref='location'/>

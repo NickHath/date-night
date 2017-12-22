@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { addPreferences, addHotAndNew } from '../../ducks/reducer';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import Slider from 'material-ui/Slider';
-import SearchRadiusInput from './Slider';
-
 
 const marginStyle = {
   marginLeft: 18,
@@ -49,7 +47,6 @@ class Form extends Component {
 
   getLocation() {
     navigator.geolocation.getCurrentPosition(location => {
-      console.log(location.coords.latitude);
       const { latitude, longitude } = location.coords;
       axios.get(`http://localhost:4200/api/yelp/hotandnew/${latitude}/${longitude}`)
            .then(res => {
@@ -73,7 +70,6 @@ class Form extends Component {
 
       time = time.replace(" pm", "").replace(":", '');
       time = parseFloat(time)
-      console.log(time)
       //check if time is less than twelve   
       if (time < 1200) {
         //checks if is a single digit with two trailing zeros is less than 12 ex: 1:00 becomes 1
@@ -81,14 +77,12 @@ class Form extends Component {
           time = time * 10 + 1200
         }
         time = time + 1200
-        console.log(time)
       }
     }
     else {
 
       time = time.replace(" pm", "").replace(":", '');
       time = parseFloat(time)
-      console.log(time)
 
 
 
@@ -96,7 +90,7 @@ class Form extends Component {
         time = time * 100
 
       }
-      if (time == 12) {
+      if (time === 12) {
         time = 0
       }
 
@@ -104,11 +98,9 @@ class Form extends Component {
         time = time - 1200
       }
 
-      console.log(time)
     }
-    //parseFloat(this.refs.radius.getValue()
     var milesToMeters = Math.round(this.state.secondSlider) * 1609.34
-    milesToMeters = parseInt(milesToMeters)
+    milesToMeters = parseInt(milesToMeters, 10)
     if (milesToMeters > 40000) {
       milesToMeters = 40000
     }
@@ -126,19 +118,16 @@ class Form extends Component {
     }
 
     else if (!location) {
-      console.log("what")
+      console.error('No location')
     }
   }
 
 
 
   render() {
-    console.log(this.state);
 
-    { console.log(this.state.secondSlider) }
     return (
       <div className="date-form" id="createform">
-        {console.log(this.state.buttonClick)}
         <div className="text-wrapper-form">
           <h5 className="form-title">CREATE YOUR PERFECT DATE!</h5>
         </div>
