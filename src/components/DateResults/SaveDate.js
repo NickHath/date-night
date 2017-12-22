@@ -11,7 +11,8 @@ class SaveDate extends Component {
         super()
         this.state = {
             open: false,
-            url: ''
+            url: '',
+            mobileSnack: false
         }
     }
 
@@ -29,6 +30,10 @@ class SaveDate extends Component {
 
     handleCopy() {
       copy(`http://localhost:3000/results/${this.props.sharingId}`);
+      this.setState({mobileSnack: true})
+      setTimeout(function(){
+        this.setState({mobileSnack: false})
+      }.bind(this), 2000)
     }
 
     googleMapsUrl() {
@@ -54,6 +59,7 @@ class SaveDate extends Component {
         
         return (
             <div className="save-date-box">
+                <div id={this.state.mobileSnack ? "mobileSnack" : "mobileShnake"}>COPIED TO CLIPBOARD</div>
                 <button onClick={ () => { this.props.finalizeDate(); this.handleOpen() } } className="save-date">SAVE MY DATE</button>
                 <Dialog
                     title="SHARE YOUR DATE"

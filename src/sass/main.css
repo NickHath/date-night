@@ -1064,6 +1064,23 @@ a {
   top: 56px;
   right: 0px; }
 
+#mobileSnack {
+  position: absolute;
+  font-family: Helvetica, sans-serif;
+  background-color: #2a2c3b;
+  color: #ffffff;
+  padding: 40px 0px 40px 0px;
+  bottom: 250px;
+  z-index: 10000;
+  width: 100%;
+  text-align: center;
+  display: block;
+  opacity: 1; }
+
+#mobileShnake {
+  position: absolute;
+  opacity: 0; }
+
 .hot-card {
   text-align: center; }
 
