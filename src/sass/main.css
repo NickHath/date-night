@@ -295,6 +295,9 @@ h5 {
     display: flex; }
   .second-btn {
     margin-left: 50px; }
+  #isBlue {
+    color: #ffffff;
+    background-color: #03a9f4; }
   .featured {
     height: 90vh; }
   .img-wrapper {
