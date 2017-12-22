@@ -220,6 +220,7 @@
 }
 
 .google-text {
+    font-family: $main-font;
     @include flexSetUp;
     margin-left: 10px;
 }

@@ -185,10 +185,6 @@ h5 {
   background-color: #03a9f4;
   color: #ffffff; }
 
-.second-btn:active {
-  background-color: #03a9f4;
-  color: #ffffff; }
-
 .featured {
   border: 20px solid #2a2c3b;
   grid-area: featured;
@@ -299,9 +295,6 @@ h5 {
     display: flex; }
   .second-btn {
     margin-left: 50px; }
-  #isBlue {
-    color: #ffffff;
-    background-color: #03a9f4; }
   .featured {
     border: 25px solid #2a2c3b;
     height: 90vh; }
@@ -375,6 +368,10 @@ h5 {
   .date-form {
     margin: 20px;
     display: block; } }
+
+#isBlue {
+  color: #ffffff;
+  background-color: #03a9f4; }
 
 .mobile-header {
   background-color: #e57455;
@@ -601,6 +598,7 @@ h5 {
   margin-left: 10px; }
 
 .google-text {
+  font-family: Helvetica, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1057,6 +1055,29 @@ a {
 
 .logo-share-box {
   margin-right: 20px; }
+
+#snackBar {
+  opacity: 1;
+  transition: 0.5s ease-in-out; }
+
+#shnakeBar {
+  opacity: 0;
+  transition: 0.5s ease-in-out; }
+
+.popup {
+  padding: 20px;
+  background-color: #2a2c3b;
+  color: #ffffff;
+  position: absolute;
+  left: 41%;
+  bottom: 70px;
+  text-align: center; }
+
+#tri {
+  width: 20px;
+  position: absolute;
+  top: 56px;
+  right: 0px; }
 
 .hot-card {
   text-align: center; }

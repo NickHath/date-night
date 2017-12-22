@@ -16,7 +16,6 @@ const crypto = require('crypto');
 module.exports = {
   
   getBusinesses: (req, res) => {
-    console.log(req.body)
     let { location, category, radius } = req.body;
     if (!radius) { radius = 15000; }
     if(!location){location = "provo"}
@@ -24,14 +23,6 @@ module.exports = {
     let send1, send2, send3 = false;
     let arr = []
 
-    // filterRatings = (array) =>{
-    //  var newArray = array.filter( (business) => business.rating >= 3 || category == 'park'
-    //   )
-    //  arr = newArray
-    // }
-
-
-    console.log(`FULL URL:\n${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}`);
     axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}`, config)    
          .then(businesses => {
            
@@ -112,7 +103,6 @@ module.exports = {
       else{
         count--;
         if(count === 0){
-          console.log(arr2)
           res.status(200).send(arr2)
         }
       }
@@ -198,8 +188,6 @@ module.exports = {
 
   hotAndNew: (req, res) => {
     const { lat, long } = req.params;
-    console.log(`${baseUrl}search?latitude=${lat}&longitude=${long}&hot_and_new`);
-    console.log(config);
     axios.get(`${baseUrl}search?latitude=${lat}&longitude=${long}&hot_and_new`, config)
          .then(businesses => res.status(200).send(businesses.data))
          .catch(err => res.status(500).send('What!'));

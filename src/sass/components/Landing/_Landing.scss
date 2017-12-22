@@ -117,11 +117,6 @@ h5{
     color: $white;
 }
 
-.second-btn:active {
-    background-color: $link-color;
-    color: $white;
-}
-
 .featured {
     border: 20px solid $secondary-color;
     grid-area: featured;
@@ -302,11 +297,6 @@ h5{
         margin-left: 50px;
     }
 
-    #isBlue {
-        color: $white;
-        background-color: $link-color;
-    }
-    
 
     .featured {
         border: 25px solid $secondary-color;
@@ -422,3 +412,8 @@ h5{
     }
 }
 
+
+#isBlue {
+    color: $white;
+    background-color: $link-color;
+}

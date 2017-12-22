@@ -110,9 +110,9 @@ export function addHotAndNew(locations) {
   }
 }
 
-function googleMapsUrl(businesses) {
+export function googleMapsUrl(businesses) {
   let url = 'https://www.google.com/maps/dir/';
-  businesses.map(location => {
+  businesses.forEach(location => {
     url = url + (location.coordinates.latitude + ',' +  location.coordinates.longitude + '/');
   });
   return url;
