@@ -373,7 +373,8 @@ h5 {
   justify-content: space-between;
   height: 100px;
   position: sticky;
-  top: 0px; }
+  top: 0px;
+  z-index: 10; }
 
 .top-level, .mid-level {
   display: flex;
@@ -479,7 +480,6 @@ h5 {
   display: flex;
   border: 1.5px solid #000000;
   align-items: center;
-  justify-content: space-around;
   height: 40px;
   cursor: pointer;
   background: #e5e5e5; }
@@ -714,8 +714,9 @@ a {
   display: flex;
   border: 2px solid #000;
   align-items: center;
-  width: 350px;
-  margin-left: 50px; }
+  width: 300px;
+  margin-left: 50px;
+  cursor: pointer; }
 
 .second-top-level, .middle-level, .first-bottom-level, .yelp-container {
   display: flex;
@@ -738,6 +739,7 @@ a {
   height: 75px;
   width: 75px;
   background-color: #2a2c3b;
+  cursor: pointer;
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -773,6 +775,9 @@ a {
   font-size: 18px;
   margin: 20px; }
 
+.shuffle-btn, .filter-btn {
+  cursor: pointer; }
+
 .lock {
   position: relative;
   top: 9px;
@@ -799,7 +804,8 @@ a {
   border: 2px solid #000;
   background-color: #e5e5e5;
   align-items: center;
-  width: 350px;
+  width: 300px;
+  cursor: pointer;
   margin-left: 50px; }
   .big-locked .results-response {
     color: #000;
