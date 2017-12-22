@@ -22,7 +22,7 @@ import ShuffleBtn from '../../assets/Shuffle.svg';
 
 
 
-
+import {Link} from 'react-router-dom'
 
 
 
@@ -362,7 +362,9 @@ class DateResults extends Component {
 
       <div className='date-results'>
        <div className='mobile-header' >
+            <Link to="/">
                 <img className="logo-bulb" src={IconBulb} alt="Home Logo" height="75px" />
+                </Link>
                 <div className="right-icons">
                     <img onClick={this.handleOpen} className="filter-btn" src={FilterBtn} alt="Filter Button" height="80px" />
                         <Dialog

@@ -11,6 +11,7 @@ import Slider from 'material-ui/Slider';
 const marginStyle = {
   marginLeft: 18,
   marginRight: 18,
+  width: 300
 };
 
 const marginState = {

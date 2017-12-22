@@ -1,8 +1,20 @@
 import React from 'react'
 import DateCard from '../components/DateResults/DateCard';
+import { isFunction } from 'util';
 
 describe('DateCard component', () => {
   describe('convertTime functions correctly', () => {
+
+    test('should be a function', () => {
+
+      let d = new DateCard({ time: NaN });
+      // Act
+      
+      let result = typeof(d.convertTime);
+      console.log(result)
+      expect( result).toBe('function')
+    })
+
     test('convertTime works with no time provided', () => {
       // Arrange
       let d = new DateCard({ time: NaN });

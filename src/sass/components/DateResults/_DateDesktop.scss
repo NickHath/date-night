@@ -59,6 +59,10 @@
     border-left: transparent;
 }
 
+.yelp-title-name{
+    text-align: center;
+}
+
 .results-text {
     font-family: $main-font;
     font-weight: bold;
@@ -152,7 +156,9 @@
     cursor: pointer;
 }
 
-
+.logo-bulb{
+    cursor: pointer;
+}
 
 .lock {
     position: relative;
