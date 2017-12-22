@@ -13,6 +13,9 @@
     "form-desktop";
 }
 
+.logo-icon{
+    max-width: 100px;
+}
 
 .first-bg-box {
     @include flexSetUp;   
@@ -345,6 +348,7 @@ h5{
     .subtitle-short {
         grid-area: subtitle-short;
     }
+    
 
     .subtitle-medium {
         grid-area: subtitle-medium;
