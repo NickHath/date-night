@@ -34,7 +34,7 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, { results: Object.assign({}, state.results, action.payload), pending: --state.pending });
       }
     case ADD_PREFERENCES:
-      return Object.assign({}, state, { preferences: action.payload });
+      return Object.assign({}, state, { preferences: action.payload, results: {} });
     case FINALIZE_DATE:
       return Object.assign({}, state, { finalDate: action.payload, googleMaps: googleMapsUrl(action.payload) });
     case ADD_SHARING_ID:
