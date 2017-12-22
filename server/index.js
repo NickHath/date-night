@@ -6,6 +6,7 @@ const bodyParser = require("body-parser")
     , dateCtrl = require('./controllers/dateCtrl');
 
 const app = express();
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -27,6 +28,11 @@ app.get("/api/getDate/:id", dateCtrl.getDate)
 app.post("/api/addDate", dateCtrl.addDate)
 app.put("/api/modifyDate/:id", dateCtrl.modifyDate)
 app.get("/api/test", dateCtrl.test)
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 const PORT = 4200;
 app.listen(PORT, console.log(`I'm listening.. port: ${PORT}`));
