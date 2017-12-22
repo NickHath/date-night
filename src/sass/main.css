@@ -592,6 +592,7 @@ h5 {
   margin-left: 10px; }
 
 .google-text {
+  font-family: Helvetica, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
