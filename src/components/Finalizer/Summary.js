@@ -12,11 +12,8 @@ class Summary extends Component {
       }
 
     render() {
-        console.log(this.props)
-        let time = this.props.preferences.startTime;
         let finalCard = this.props.finalDate.map((date) => {
-            return <Finalizer date={date} time={time}/>
-            time += 200;
+            return <Finalizer date={date}/>
         })
         return (
             <main>

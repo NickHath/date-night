@@ -36,17 +36,6 @@ class SideNav extends Component {
     }
 
     render() {
-        const actions = [
-            <img
-                primary={true}
-                onClick={this.handleClose}
-            />,
-            <img
-                primary={true}
-                keyboardFocused={true}
-                onClick={this.handleClose}
-            />,
-        ];
         const styles = {
             block: {
                 maxWidth: 300,
@@ -73,7 +62,6 @@ class SideNav extends Component {
                         <img onClick={this.handleOpen} className="filter-btn" src={FilterBtn} alt="Filter Button" height="80px" />
                         <Dialog
                             title="FILTER SETTINGS"
-                            actions={actions}
                             modal={false}
                             open={this.state.open}
                             onRequestClose={this.handleClose}
