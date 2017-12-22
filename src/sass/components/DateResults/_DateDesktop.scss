@@ -77,8 +77,10 @@
     display: flex;
     border: 2px solid #000;
     align-items: center;
-    width: 350px;
+    width: 300px;
     margin-left: 50px;    
+    cursor: pointer;
+
 }
 
 .second-top-level, .middle-level, .first-bottom-level, .yelp-container{
@@ -103,6 +105,8 @@
     height: 75px;
     width: 75px; 
     background-color: $secondary-color;
+    cursor: pointer;
+
     z-index: 10;
     display: flex;
     justify-content: center;
@@ -144,6 +148,12 @@
     margin: 20px;
 }
 
+.shuffle-btn, .filter-btn{
+    cursor: pointer;
+}
+
+
+
 .lock {
     position: relative;
     top: 9px;
@@ -173,7 +183,8 @@
     border: 2px solid #000;
     background-color: $bg-color;  
     align-items: center;
-    width: 350px;
+    width: 300px;
+    cursor: pointer;
     margin-left: 50px;
     .results-response {
         color: #000;
