@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import mojs from 'mo-js';
 import keymaster from 'keymaster';
 import Shake from 'shake.js';
 
 // components
 import Date from './Date';
-import MobileHeader from './MobileHeader';
 import DateCard from './DateCard';
 import SaveDate from './SaveDate';
-import AddCard from './AddCard';
 import Loading from './Loading'
 import SideNav from './SideNav';
 //materialUI
@@ -19,13 +16,6 @@ import Toggle from 'material-ui/Toggle';
 import { connect } from 'react-redux';
 import { getResults, finalizeDate, addSharingId, addPreferences, activateFilter } from '../../ducks/reducer';
 // SVGS
-import DeleteCard from '../../assets/Delete.svg';
-import Star from '../../assets/Star.svg';
-import Clock from '../../assets/Start.svg';
-import TestPic from '../../assets/Couple.png';
-import Lock from '../../assets/Lock.svg';
-import Arrow from '../../assets/Arrow.svg';
-import logo from '../../assets/Icon.svg';
 import IconBulb from '../../assets/Icon_White.svg';
 import FilterBtn from '../../assets/Settings.svg';
 import ShuffleBtn from '../../assets/Shuffle.svg';
@@ -320,17 +310,6 @@ class DateResults extends Component {
   }
 
   render() {
-    const actions = [
-      <img
-        primary={true}
-        onClick={this.handleClose}
-      />,
-      <img
-        primary={true}
-        keyboardFocused={true}
-        onClick={this.handleClose}
-      />,
-    ]
     const styles = {
       block: {
         maxWidth: 300,
@@ -343,12 +322,10 @@ class DateResults extends Component {
       },
     };
 
-    console.log('STATE:', this.state);
-    console.log('PROPS:', this.props);
     let displayBusinesses = this.state.businesses.map((business, index) => {
       if (business !== null) {
         return (
-          <div>
+          <div key={ index }>
             <div>
               <DateCard business = {business} index = {index} time = {this.props.preferences.startTime + index * 200}
               lockedCategories = {this.state.lockedCategories[index]} lockedBusinesses = {this.state.lockedBusinesses[index]} lockBusiness = {this.lockBusiness} lockCategory = {this.lockCategory}/>
@@ -364,6 +341,9 @@ class DateResults extends Component {
 
           </div>
         )
+      }
+      else {
+        return '';
       }
     })
 
@@ -387,7 +367,6 @@ class DateResults extends Component {
                     <img onClick={this.handleOpen} className="filter-btn" src={FilterBtn} alt="Filter Button" height="80px" />
                         <Dialog
                             title="FILTER SETTINGS"
-                            actions={actions}
                             modal={false}
                             open={this.state.open}
                             onRequestClose={this.handleClose}

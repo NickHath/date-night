@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 // import DeleteCard from '../../assets/Delete.svg';
 import Star from '../../assets/Star.svg';
 import Clock from '../../assets/Start.svg';
-import Lock from '../../assets/Lock.svg';
 import Arrow from '../../assets/Arrow.svg';
 import logo from '../../assets/Icon.svg';
 import lockbarBlack from '../../assets/lockbar-black.svg';
@@ -27,7 +26,7 @@ export default class DateCard extends Component {
     let standard = '', military = this.props.time;
     if (!this.props.time) { return '1-2 hrs' };
     if (military >= 1200) {
-      military >= 1300 ? military -= 1200 : null;
+      if (military >= 1300) { military = 1200 };
       military = military.toString();
       standard += military.slice(0, military.length - 2) + ':' + military.slice(military.length - 2) + ' pm';
     } else {
@@ -41,7 +40,6 @@ export default class DateCard extends Component {
     return (
       <div className='date-card'>
         <div className="top-level">
-          {/* <img className="delete" src={DeleteCard} alt="delete card" height="40px" /> */}
           <div className="price-level">{this.props.business.price}</div>
           <div className="ratings-mobile">
             <div className="rating-number">{this.props.business.rating}</div>
@@ -55,8 +53,8 @@ export default class DateCard extends Component {
           </div>
           <img className="yelp-img" src={this.props.business.image_url ? this.props.business.image_url : logo} alt="YELP Place" />
           <div className="lock-icon" onClick={() => this.props.lockBusiness(this.props.index)}>
-            <img src={lockBlack} className="lock3" />
-            <img src={lockbarBlack} id={this.props.lockedBusinesses ? "" : "unlocked3"} className="lockbar3" />
+            <img src={lockBlack} alt="lock" className="lock3" />
+            <img src={lockbarBlack} alt="lock" id={this.props.lockedBusinesses ? "" : "unlocked3"} className="lockbar3" />
           </div>
         </div>
         <div className="location-text">
@@ -78,10 +76,9 @@ export default class DateCard extends Component {
               <div className={!this.props.lockedCategories ? "lock-type" : "locked-category"} onClick={() => this.props.lockCategory(this.props.index, this.props.business.categories[0].alias)}>
                 <div className="type">TYPE:</div>
                 <div className="type-response" >{this.props.business.categories[0].title}</div>
-                {/* <img className="lock-icon-small" src={Lock} alt="Lock Type Icon" height="28px" /> */}
                 <div className="lock-icon-small" onClick={() => this.props.lockCategory(this.props.index, this.props.business.categories[0].alias)}>
-                  <img src={lockBlack} className="lock4" />
-                  <img src={lockbarBlack} id={this.props.lockedCategories ? "" : "unlocked4"} className="lockbar4" />
+                  <img src={lockBlack} alt="lock" className="lock4" />
+                  <img src={lockbarBlack} alt="lock" id={this.props.lockedCategories ? "" : "unlocked4"} className="lockbar4" />
                 </div>
               </div>
               <div className="data-box">
