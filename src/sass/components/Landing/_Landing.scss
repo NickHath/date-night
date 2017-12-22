@@ -123,7 +123,7 @@ h5{
 }
 
 .featured {
-    border: 40px solid $secondary-color;
+    border: 20px solid $secondary-color;
     grid-area: featured;
     overflow: scroll;
 }
@@ -166,6 +166,10 @@ h5{
 
 .date-form {
     margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
     grid-area: date-form;
 }
 
@@ -191,7 +195,7 @@ h5{
 
 
 
-@media screen and (min-width: 750px){
+@media screen and (min-width: 875px){
     .landing{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -305,6 +309,8 @@ h5{
     
 
     .featured {
+        border: 25px solid $secondary-color;
+
         height: 90vh;
     }
 
@@ -407,6 +413,12 @@ h5{
 
     .form-title {
         display: none;
+    }
+
+    .date-form {
+        margin: 20px;
+        display: block;
+        
     }
 }
 
