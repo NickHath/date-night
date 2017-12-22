@@ -187,3 +187,22 @@
     top: 56px;
     right: 0px;
 }
+
+#mobileSnack {
+    position: absolute;
+    font-family: $main-font;
+    background-color: $secondary-color;
+    color: $white;
+    padding: 40px 0px 40px 0px;
+    bottom: 250px;
+    z-index: 10000;
+    width: 100%;
+    text-align: center;
+    display: block;
+    opacity: 1;
+}
+
+#mobileShnake {
+    position: absolute;
+    opacity: 0;
+}
