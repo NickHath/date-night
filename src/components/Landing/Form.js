@@ -65,8 +65,9 @@ class Form extends Component {
   createDate() {
     let time = this.refs.startTime.refs.input.input.value;
     let date = this.refs.startDate.refs.input.input.value;
+    let location = undefined;
     if(this.refs.city.input.value && this.refs.state.input.value){
-    let location = this.refs.city.input.value + ',' + this.refs.state.input.value;
+     location = this.refs.city.input.value + ',' + this.refs.state.input.value;
 }
 
     if (time.includes('pm')) {
