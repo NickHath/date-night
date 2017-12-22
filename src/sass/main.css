@@ -608,7 +608,7 @@ a {
   color: #2a2c3b;
   text-decoration: none; }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 950px) {
   .date-card, .mobile-header {
     display: none; }
   .is-small {
