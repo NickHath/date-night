@@ -160,3 +160,30 @@
 .logo-share-box {
     margin-right: 20px;
 }
+
+#snackBar {
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+}
+
+#shnakeBar {
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+}
+
+.popup {
+    padding: 20px;
+    background-color: $secondary-color;
+    color: $white;
+    position: absolute;
+    left: 41%;
+    bottom: 70px;
+    text-align: center;
+}
+
+#tri {
+    width: 20px;
+    position: absolute;
+    top: 56px;
+    right: 0px;
+}

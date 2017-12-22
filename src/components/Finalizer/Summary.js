@@ -5,12 +5,14 @@ import IconBulb from '../../assets/Icon_White.svg';
 import Google from '../../assets/Google.svg';
 import { connect } from 'react-redux'
 import copy from 'copy-to-clipboard';
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import triangle from "../../assets/triangle.svg";
 class Summary extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: ''
+            url: '',
+            showSnack: false
         }
     }
 
@@ -25,6 +27,10 @@ class Summary extends Component {
 
     handleCopy() {
         copy(`http://localhost:3000/results/${this.props.sharingId}`);
+        this.setState({showSnack: true})
+        setTimeout(function(){
+            this.setState({showSnack: false})
+        }.bind(this), 2000)
       }
 
     render() {
@@ -43,6 +49,7 @@ class Summary extends Component {
                     <div className="input-desktop">
                         <input value={"http://localhost:3000/results/" + this.props.sharingId} className="share-input-desktop" placeholder="copy URL" />
                         <img className="share-link" src={Share} alt="Share Icon" height="35px" onClick={() => this.handleCopy()} />
+                        <div id={this.state.showSnack ? "snackBar" : "shnakeBar"} className="popup">Copied to clipboard!<img id="tri" src={triangle}/></div>
                     </div>
                     <div className="btn-box-final">
                         <div className="google-box">
