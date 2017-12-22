@@ -41,8 +41,8 @@ export default function Finalizer (props) {
                 </div>
             </div>
             <div className="gray-box">
-                <div className="start-text">Time est</div>
-                <div className="start-response">1-2 hrs</div>
+                <div className="start-text">Time Est.</div>
+                <div className="start-response">1-2 Hrs</div>
             </div>
         </div>
     );
