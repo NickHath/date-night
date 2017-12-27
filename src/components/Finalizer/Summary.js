@@ -26,7 +26,7 @@ class Summary extends Component {
       }
 
     handleCopy() {
-        copy(`dategen.io/results/${this.props.sharingId}`);
+        copy(`https://dategen.io/results/${this.props.sharingId}`);
         this.setState({showSnack: true})
         setTimeout(function(){
             this.setState({showSnack: false})

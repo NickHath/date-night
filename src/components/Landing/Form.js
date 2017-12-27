@@ -49,7 +49,7 @@ class Form extends Component {
   getLocation() {
     navigator.geolocation.getCurrentPosition(location => {
       const { latitude, longitude } = location.coords;
-      axios.get(`http://localhost:4200/api/yelp/hotandnew/${latitude}/${longitude}`)
+      axios.get(`/api/yelp/hotandnew/${latitude}/${longitude}`)
            .then(res => {
               let businesses = res.data.businesses;
               let keys = Object.keys(businesses), hotAndNew = [];

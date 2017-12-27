@@ -29,7 +29,7 @@ class SaveDate extends Component {
     };
 
     handleCopy() {
-      copy(`dategen.io/results/${this.props.sharingId}`);
+      copy(`https://dategen.io/results/${this.props.sharingId}`);
       this.setState({mobileSnack: true})
       setTimeout(function(){
         this.setState({mobileSnack: false})
