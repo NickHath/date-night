@@ -20,7 +20,7 @@ module.exports = {
     if (!radius) { radius = 15000; }
     if(!location){location = "provo"}
     
-    let send1, send2, send3 = false;
+    let count = 1
     let arr = []
 
     axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}`, config)    
@@ -30,47 +30,43 @@ module.exports = {
              arr.push(businesses.data.businesses[i])
              
            }
-           send1 = true;
-
-           if(send1 && send2 && send3){
-           // filterRatings(arr)
+           count--
+          if(count === 0){
             res.status(200).send(arr)
           }
         })
-         .catch(err => res.status(500).send("Invalid API request"));
+         .catch(err => res.status(200).send("Invalid API request"));
     
-         axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}&offset=${50}`, config)    
-         .then(businesses => {
-           if(businesses.data.businesses.length !== 0){
-           for (let i = 0; i < businesses.data.businesses.length; i++) {
+        //  axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}&offset=${50}`, config)    
+        //  .then(businesses => {
+        //    if(businesses.data.businesses.length !== 0){
+        //    for (let i = 0; i < businesses.data.businesses.length; i++) {
             
-            arr.push(businesses.data.businesses[i])
+        //     arr.push(businesses.data.businesses[i])
              
-           }
-          }
-           send2 = true;
-
-           if(send1 && send2 && send3){
-            //filterRatings(arr) 
-            res.status(200).send(arr)
-          }
-        })
-         .catch(err => res.status(500).send("Invalid API request"));
+        //    }
+        //   }
+        //   count--
+        //   if(count === 0){
+        //     res.status(200).send(arr)
+        //   }
+        // })
+        //  .catch(err => res.status(500).send("Invalid API request"));
     
-         axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}&offset=${100}`, config)    
-         .then(businesses => {
-           if(businesses.data.businesses.length !== 0){
-           for (let i = 0; i < businesses.data.businesses.length; i++) {
-             arr.push(businesses.data.businesses[i])
+        //  axios.get(`${baseUrl}search?location=${location}&limit=${limit}&categories=${category}&radius=${radius}&offset=${100}`, config)    
+        //  .then(businesses => {
+        //    if(businesses.data.businesses.length !== 0){
+        //    for (let i = 0; i < businesses.data.businesses.length; i++) {
+        //      arr.push(businesses.data.businesses[i])
              
-           }
-          }
-           send3 = true;
-           if(send1 && send2 && send3){
-            //filterRatings(arr)
-            res.status(200).send(arr)
-          }
-        }).catch(err => res.status(500).send("Invalid API request"));
+        //    }
+        //   }
+        //   count--
+        //   if(count === 0){
+        //     res.status(200).send(arr)
+        //   }
+          
+        // }).catch(err => res.status(500).send("Invalid API request"));
 
              
        

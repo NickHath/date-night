@@ -92,7 +92,7 @@ class DateResults extends Component {
       this.props.addSharingId(this.props.match.params.id);
     }
 
-    axios.get(`/api/getDate/${this.props.match.params.id}`).then(res => {
+    axios.get(`http://localhost:4200/api/getDate/${this.props.match.params.id}`).then(res => {
       // set preferences to db date preferences if we have an id
       if (res.data.length > 0) {
         let { date_location, date_radius, day, start_time, duration } = res.data[0];
@@ -143,7 +143,9 @@ class DateResults extends Component {
     let { results } = this.props;
     let newBusinesses = [...businesses];
     // nextProps.pending will be 0 when all API requests have resolved
-    if (nextProps.pending === 0) {
+    console.log(nextProps.pending)
+    if (nextProps.pending < 10) {
+      
       // set random business to unlocked indices if we have results for that category on our store
       lockedBusinesses.forEach((locked, index) => {
         if (!locked && results[categories[index]]) {

@@ -26,7 +26,7 @@ export default class DateCard extends Component {
     let standard = '', military = this.props.time;
     if (!this.props.time) { return '1-2 hrs' };
     if (military >= 1200) {
-      if (military >= 1300) { military = 1200 };
+      if (military >= 1300) { military -= 1200 };
       military = military.toString();
       standard += military.slice(0, military.length - 2) + ':' + military.slice(military.length - 2) + ' pm';
     } else {
