@@ -65,6 +65,9 @@ ellipse {
   grid-template-columns: 1fr;
   grid-template-areas: "first-photo"  "header-bar" "text-wrapper" "icon-box" "btn-container" "featured" "logo_lines" "img-wrapper" "form-desktop"; }
 
+.logo-icon {
+  max-width: 100px; }
+
 .first-bg-box {
   display: flex;
   justify-content: center;
