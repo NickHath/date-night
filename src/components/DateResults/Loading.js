@@ -50,7 +50,7 @@ class GearShape extends mojs.CustomShape {
   })
   
   
-  const timeline = new mojs.Timeline({repeat: 999, onPlaybackStop: function () { console.log(this) }})
+  const timeline = new mojs.Timeline({repeat: 999, onPlaybackStop: function () {  }})
   timeline.add(gear, heart1, heart2, heart3)
   timeline.pause()
 

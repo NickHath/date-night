@@ -29,7 +29,7 @@ export default function reducer(state = initialState, action) {
       
     case GET_RESULTS + '_FULFILLED':
       let results = Object.values(action.payload)[0];
-      console.log(results)
+      
       if (results.length === 0) {
         return Object.assign({}, state, { pending: --state.pending });
       } else {
