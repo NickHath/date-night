@@ -26,8 +26,10 @@ export default function reducer(state = initialState, action) {
   switch(action.type) {
     case GET_RESULTS + '_PENDING':
       return Object.assign({}, state, { pending: ++state.pending });
+      
     case GET_RESULTS + '_FULFILLED':
       let results = Object.values(action.payload)[0];
+      
       if (results.length === 0) {
         return Object.assign({}, state, { pending: --state.pending });
       } else {

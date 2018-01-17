@@ -144,6 +144,7 @@ class DateResults extends Component {
     let newBusinesses = [...businesses];
     // nextProps.pending will be 0 when all API requests have resolved
     if (nextProps.pending === 0) {
+      
       // set random business to unlocked indices if we have results for that category on our store
       lockedBusinesses.forEach((locked, index) => {
         if (!locked && results[categories[index]]) {
