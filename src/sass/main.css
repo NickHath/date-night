@@ -266,7 +266,7 @@ h5 {
     height: 100vh;
     width: 100%;
     grid-area: first-photo;
-    background-image: url("../assets/Ocean.jpeg");
+    background-image: url("../assets/Ocean.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
