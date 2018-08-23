@@ -78,6 +78,9 @@ class DateResults extends Component {
     // handle spacebar press
     keymaster('space', this.handleSpace);
 
+    // prevent undo typing default for devicemotion (mobile safari)
+    window.addEventListener('devicemotion', e => e.preventDefault());
+
     // handle phone shake
     var myShakeEvent = new Shake({
       threshold: 15, // optional shake strength threshold
@@ -305,7 +308,6 @@ class DateResults extends Component {
 
   handleShake() {
     if (!this.state.isLoading) {
-      
       this.refreshDate();
     }
   }
