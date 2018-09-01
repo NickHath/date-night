@@ -29,7 +29,7 @@ class SaveDate extends Component {
     };
 
     handleCopy() {
-      copy(`https://dategen.io/results/${this.props.sharingId}`);
+      copy(`http://dateideagenerator.com/results/${this.props.sharingId}`);
       this.setState({mobileSnack: true})
       setTimeout(function(){
         this.setState({mobileSnack: false})
@@ -73,7 +73,7 @@ class SaveDate extends Component {
 
                     >
                     <div className="input-box">
-                        <input value={"dategen.io/results/" + this.props.sharingId} className="share-input" placeholder="copy URL"  />
+                        <input value={"dateideagenerator.com/results/" + this.props.sharingId} className="share-input" placeholder="copy URL"  />
                         <img className="logo-bulb" src={Share} alt="Share Icon" height="35px" onClick={ () => this.handleCopy() }/>
                     </div>
                     <div className="white-line"></div>
